@@ -6,5 +6,5 @@ router.get("/", controller.main);
 router.get("/project-list", controller.projectlist);
 router.get("/recoplearn-list", controller.recoplearnlist);
 router.get("/project", controller.project);
-
+router.get("/detailpage", controller.detail);
 module.exports = router;

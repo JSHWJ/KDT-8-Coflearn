@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #fff7d4;
+  background-color: white;
 }
 
 #home_hi {
@@ -33,6 +33,7 @@ a {
   font-weight: bold;
   padding: 8px 12px;
   background-color: white;
+  box-shadow: 0px 0px 2.5px 0px #4c3d3d;
 }
 
 .navbar_menu_hi {

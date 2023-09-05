@@ -1,0 +1,55 @@
+#editor {
+  /* border : 1px solid; */
+  width: 90%;
+  margin: 0 auto 0 auto;
+  background-color: white;
+}
+#project_form_ch {
+  width: 100%;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+}
+#project_title_ch {
+  display: inline-block;
+  width: 90%;
+  height: 50px;
+  border: none;
+  margin: 10px auto 5px auto;
+  text-align: left;
+  outline: none;
+  font-size: 25px;
+  background-color: white;
+  border-bottom: 0.5px solid black;
+}
+#project_tag_ch {
+  width: 90%;
+  border: none;
+  height: 30px;
+  margin: 5px auto 10px auto;
+  text-align: left;
+  outline: none;
+  background-color: white;
+}
+#project_title_ch::placeholder {
+  font-size: 25px;
+}
+#project_upload_ch {
+  width: 15%;
+  padding: 10px 50px 10px 50px;
+  background-color: #ffd95a;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  position: relative;
+  margin: 5px auto;
+  display: inline-block;
+  cursor: pointer;
+}
+.videoSection_ch {
+  margin: 15px auto;
+}
+.tag_view_ch {
+  display: flex;
+  margin: 5px auto;
+}

@@ -4,7 +4,7 @@ const projectlist = (req, res) => {
 };
 // 리코프런리스트 페이지
 const recoplearnlist = (req, res) => {
-  res.render("recplearnlist");
+  res.render("recoplearn");
 };
 
 //프로젝트 업로드 페이지
@@ -14,9 +14,13 @@ const project = (req, res) => {
 const main = (req, res) => {
   res.render("main");
 };
+const detail = (req, res) => {
+  res.render("detailPage");
+};
 module.exports = {
   projectlist,
   recoplearnlist,
   project,
   main,
+  detail,
 };

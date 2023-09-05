@@ -24,5 +24,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function gotopageUpload() {
-  window.location.href = "/recoplearn-list";
+  window.location.href = "/project";
 }
