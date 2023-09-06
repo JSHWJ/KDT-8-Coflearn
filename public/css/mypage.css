@@ -1,0 +1,57 @@
+#nowlist_dj{
+    width: 100%;
+    height: 30px;
+    background-color: #FFD95A;
+}
+
+#nowlist_dj p{
+    font-weight: bold;
+    display: block;
+    color: white;
+    position: absolute;
+    font-size: x-large;
+    left: 20px;
+    margin-top: 5px;
+}
+
+/* 목록 */
+
+.content_dj{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.leftlist_dj{
+    position: absolute;
+    left: 50px;
+    top: 20%;
+}
+
+.left_dj{
+    width: 30%;
+    height: 100vh;
+}
+
+.leftlist_dj ul{
+    list-style: none;
+}
+
+.leftlist_dj p{
+    color: gray;
+}
+
+.rightcont_dj{
+    width: 70%;
+    height: 100vh;
+    margin: 0;
+}
+
+.leftlist_dj li.ison_dj .btn{
+    color: #FFD95A;
+    font-weight: bolder;
+}
+
+.content_dj .rightcont_dj .cont{
+    display: none;    
+} 
