@@ -47,60 +47,72 @@
         </ul>
       </nav>
     </header>
-    <!--  시작 -->
+
+    <!-- 반응형 이미지 배경 (웹용) -->
+    <img class="signup_back" src="/back_co.gif" alt="" />
+
+    <!-- 시작 ! -->
     <div class="signup_container">
-      <!-- 반응형 이미지 ( 웹용 ) -->
+      <!-- 반응형 이미지 아이콘 ( 웹용 ) -->
       <div class="img">
-        <img src="/coplearn_logo.png" alt="로고" />
+        <img src="/coplearn_logo.png" />
       </div>
 
-      <!-- 회원가입 폼 시작 -->
       <div class="signup_content">
-        <form id="signup_form" name="signup_register">
+        <!-- 로그인 폼 시작 -->
+        <form>
           <!-- 회원가입 상단 로고 이미지 -->
-          <img class="signup_logo" src="/coplearn_logo.png" alt="로고" />
+          <!-- <img
+            class="signup_logo"
+            src="./public/coplearn_logo.png"
+            alt="로고"
+          /> -->
+
           <h2 class="title">회원가입</h2>
 
-          <!-- 닉네임 (이름)-->
-          <div class="signup_input_div name">
-            <div class="i"><i class="fa-solid fa-id-badge"></i></div>
-            <div class="signup_div">
-              <h5>NAME</h5>
+          <!-- username -->
+          <div class="input_div name">
+            <div class="i">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="div">
+              <h5>USERNAME</h5>
               <input type="text" class="input" id="username" />
             </div>
           </div>
 
-          <!-- 이메일 -->
-          <div class="signup_input_div email">
-            <div class="i"><i class="fa-solid fa-envelope"></i></div>
-            <div class="signup_div">
+          <!-- email -->
+          <div class="input_div email">
+            <div class="i">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="div">
               <h5>EMAIL</h5>
               <input type="email" class="input" id="email" />
             </div>
           </div>
-          <!-- 인증번호 받기 버튼 -->
           <button id="send_email" onclick="send_email()">인증번호 받기</button>
 
           <!-- 인증번호 -->
-          <div class="signup_input_div cert">
-            <div class="i"><i class="fa-solid fa-key"></i></div>
-            <div class="signup_div">
-              <!-- 인증번호 입력 -->
+          <div class="input_div cert">
+            <div class="i">
+              <i class="fa-solid fa-key"></i>
+            </div>
+            <div class="div">
               <h5>CODE</h5>
-              <input type="text" class="input" id="cert_number" />
+              <input type="email" class="input" id="cert_number" />
             </div>
           </div>
-
-          <!-- 인증번호 승인 버튼 -->
           <button id="cert_email" onclick="cert_email()">인증하기</button>
-          <input type="hidden" id="cert_YN" value="false" />
 
-          <!-- 비밀번호 -->
-          <div class="signup_input_div pw">
-            <div class="i"><i class="fa-solid fa-lock"></i></div>
-            <div class="signup_div">
-              <h5>PASSWORD</h5>
-              <input type="password" class="input" id="pw" />
+          <!-- password -->
+          <div class="input_div pass">
+            <div class="i">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+              <h5>Password</h5>
+              <input type="password" class="input" />
             </div>
           </div>
 
@@ -112,7 +124,7 @@
       </div>
     </div>
 
-    <!-- 동작 JS -->
+    <!-- 기능 동작 JS -->
 
     <script>
       async function signup_register() {
@@ -139,32 +151,16 @@
       }
     </script>
 
-    <!-- <script>
-        const signup_form = document.getElementById("signup_form");
-
-        signup_form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const username = document.getElementById("username").value;
-          const email = document.getElementById("email");
-          const password = document.getElementById("pw").value;
-        });
-
-        // 이메일 인증
-        function send_email(){
-
-        }
-      </script> -->
-
     <!-- input 태그 media JS -->
     <script>
       const inputs = document.querySelectorAll(".input");
 
-      function add_cl() {
+      function addcl() {
         let parent = this.parentNode.parentNode;
         parent.classList.add("focus");
       }
 
-      function rem_cl() {
+      function remcl() {
         let parent = this.parentNode.parentNode;
         if (this.value == "") {
           parent.classList.remove("focus");
@@ -172,8 +168,8 @@
       }
 
       inputs.forEach((input) => {
-        input.addEventListener("focus", add_cl);
-        input.addEventListener("blur", rem_cl);
+        input.addEventListener("focus", addcl);
+        input.addEventListener("blur", remcl);
       });
     </script>
   </body>

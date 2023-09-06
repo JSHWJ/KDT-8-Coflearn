@@ -17,39 +17,49 @@ body {
   overflow: hidden;
 }
 
+.signup_back {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 60%;
+}
+
+.signup_container {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7rem;
+  padding: 0 2rem;
+}
+
 .img {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.img img {
-  width: 500px;
-}
-
-.signup_container {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  margin-top: 50px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 7rem;
-  padding: 0 2rem;
-}
-
 .signup_content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
+}
+
+.img img {
+  width: 500px;
 }
 
 form {
   width: 360px;
 }
-.signup_logo {
-  width: 150px;
-  height: 30px;
+
+.signup_content img {
+  height: 100px;
 }
 
 .signup_content h2 {
@@ -60,13 +70,17 @@ form {
   font-size: 2.9rem;
 }
 
-.signup_content .signup_input_div {
+.signup_content .input_div {
   position: relative;
   display: grid;
   grid-template-columns: 7% 93%;
   margin: 25px 0;
   padding: 5px 0;
-  border-bottom: 2px solid #d9d9d9;
+  border-bottom: 2px solid #bbbbbb;
+}
+
+.signup_content .input_div.name {
+  margin-top: 0;
 }
 
 .i {
@@ -74,30 +88,29 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
 }
 
 .i i {
   transition: 0.3s;
 }
 
-.signup_input_div > div {
+.input_div > div {
   position: relative;
-  height: 70px;
+  height: 45px;
 }
 
-.signup_input_div > div > h5 {
+.input_div > div > h5 {
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #d9d9d9;
+  color: #bbbbbb;
   font-size: 18px;
   transition: 0.3s;
 }
 
-.signup_input_div:before,
-.signup_input_div:after {
+.input_div:before,
+.input_div:after {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -107,30 +120,30 @@ form {
   transition: 0.4s;
 }
 
-.signup_input_div::before {
+.input_div:before {
   right: 50%;
 }
 
-.signup_input_div::after {
+.input_div:after {
   left: 50%;
 }
 
-.signup_input_div.focus:before,
-.signup_input_div.focus:after {
+.input_div.focus:before,
+.input_div.focus:after {
   width: 50%;
 }
 
-.signup_input_div.focus > div > h5 {
+.input_div.focus > div > h5 {
   top: -5px;
   font-size: 15px;
   color: #000000;
 }
 
-.signup_input_div.focus > .i > i {
+.input_div.focus > .i > i {
   color: #000000;
 }
 
-.signup_input_div > div > input {
+.input_div > div > input {
   position: absolute;
   left: 0;
   top: 0;
@@ -139,19 +152,24 @@ form {
   border: none;
   outline: none;
   background: none;
-  /* padding: 0.5rem 0.7rem; */
+  padding: 0.5rem 0.7rem;
   font-size: 1.2rem;
+  color: #555;
+  font-family: "poppins", sans-serif;
 }
 
-#cert_email {
+.input_div.pass {
+  margin-bottom: 4px;
+}
+
+#send_email {
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 5px;
+  border-radius: 25px;
   outline: none;
   border: none;
   background-image: linear-gradient(to right, #ababab, #d8d8d8);
-  /* background-color: #ffd95a; */
   background-size: 200%;
   font-size: 1.2rem;
   color: #fff;
@@ -162,15 +180,14 @@ form {
   transition: 0.5s;
 }
 
-#send_email {
+#cert_email {
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 5px;
+  border-radius: 25px;
   outline: none;
   border: none;
   background-image: linear-gradient(to right, #ababab, #d8d8d8);
-  /* background-color: #ffd95a; */
   background-size: 200%;
   font-size: 1.2rem;
   color: #fff;
@@ -185,11 +202,10 @@ form {
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 5px;
+  border-radius: 25px;
   outline: none;
   border: none;
   background-image: linear-gradient(to right, #ffd95a, #fff7d4);
-  /* background-color: #ffd95a; */
   background-size: 200%;
   font-size: 1.2rem;
   color: #fff;
@@ -199,7 +215,6 @@ form {
   cursor: pointer;
   transition: 0.5s;
 }
-
 button:hover {
   background-position: right;
 }
@@ -228,11 +243,15 @@ button:hover {
 }
 
 @media screen and (max-width: 900px) {
-  .container {
+  .signup_container {
     grid-template-columns: 1fr;
   }
 
   .img {
+    display: none;
+  }
+
+  .signup_back {
     display: none;
   }
 
