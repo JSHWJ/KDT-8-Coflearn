@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/detailPage.css" />
+    <link rel="stylesheet" href="/css/recoplearn.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/5286d2d6db.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Coplearn</title>
+
+    <style>
+      /* The Modal (background) */
+      .ck {
+        height: 80%;
+      }
+
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */ 
+        left: 0;
+        top: 0;
+        width: 100vw; /* Full width */
+        height: 100vh; /* Full height */
+        overflow-y: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: white;
+        margin: 5% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%; /* Could be more or less, depending on screen size */
+        height: 570px;
+      }
+      #editor {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap_ch">
+      <!-- header -->
+      <header>
+        <nav class="navbar_hi">
+          <div class="navbar_logo_hi">
+            <i class=""></i>
+            <a href="">Coplearn</a>
+          </div>
+
+          <ul class="navbar_menu_hi">
+            <li><a id="home_hi" href="#">HOME</a></li>
+            <li><a id="list_hi" href="/projectlist">프로젝트 목록</a></li>
+            <li>
+              <a id="list_hi" href="#"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></a>
+            </li>
+
+            <li><a id="login_hi" href="#">로그인</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- header -->
+
+      <section>
+        <div class="top_hi">
+          <iframe
+            class="video_hi"
+            src="https://www.youtube.com/embed/rsQmmIOpmfc?si=lRF-J82NNZm7K-Y9"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <div class="content_hi">
+            <h1>Koplearn</h1>
+            <div>
+              <i class="fa-solid fa-people-group"
+                >&nbsp; 황동준 장창현 조현익 서정현 서혜원</i
+              >
+            </div>
+            <div>#태그</div>
+            <div class="rs_hi">
+              <button id="rsBtn_hi" onclick="openrecoplearn()">Recoplearn Start</button>
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div class="tab_hi">
+          <ul class="tab_menu_hi">
+            <li class="tabs_hi"><a href="#tab01">프로젝트 소개</a></li>
+            <li class="tabs_hi"><a href="#tab02">후기</a></li>
+            <li class="tabs_hi"><a href="#tab03">커뮤니티</a></li>
+            <li class="tabs_hi"><a href="#tab04">현재 펀딩 상황</a></li>
+          </ul>
+
+          <div class="tabcontent_hi">
+            <div id="tab01">
+              <div id="date_hi">기간<span>yyyy,mm,dd ~ yyyy,mm,dd</span></div>
+              <div id="link_hi">
+                Link<a href="http://www.naver.com" target="_blank"
+                  >http://www.naver.com</a
+                >
+              </div>
+              <div id="service_hi"><label for="">서비스 소개</label></div>
+              <div id="ex_hi"><label for="">상세 설명</label></div>
+            </div>
+            <div id="tab02">
+              <div class="crewComment_hi"><label for="">장창현 크루</label></div>
+
+              <div class="crewComment_hi"><label for="">황동준 크루</label></div>
+
+              <div class="crewComment_hi"><textarea class="comment"></textarea><button class="writeComment_hi">작성하기</button></div>
+
+              
+            </div>
+            <div id="tab03">
+              <div class="communityContent">
+                <label for="">zzzzzzzzzz</label>
+              </div>
+
+              <div class="communityContent">
+                <label for="">gggggggggggg</label>
+              </div>
+
+              <div class="communityContent">
+                <label for="">vvvvvvvvvvvvvvvv</label>
+              </div>
+
+              <button id="show" class="comWrite_hi" onclick="commuBtn_hi()">
+                커뮤니티 작성하기
+              </button>
+            </div>
+
+                        <!-- 리코프런 오픈 모달 -->
+                        <div id="modalWrap_ch" style="display: none">
+                          <div id="modalContent_ch">
+                            <div id="modalBody_ch">
+                              <div id="modalnav_ch">
+                                <span>Re코프런 만들기</span>
+                                <span id="closeBtn_ch" onclick="closepop_ch()"
+                                  >&times;</span
+                                >
+                              </div>
+                              <form id="modalrecoplearn_ch">
+                                나의 역할
+                                <input type="radio" name="rule_ch" id="front_ch" checked />
+                                <label for="front_ch">프론트엔드</label>
+                                <input type="radio" name="rule_ch" id="back_ch" />
+                                <label for="back_ch">백엔드</label>
+                                <br />
+                                <div>
+                                  <span class="write_name_ch">프론트엔드 필요 능력</span>
+                                  <br />
+                                  <textarea
+                                    name=""
+                                    id=""
+                                    cols="50"
+                                    rows="5"
+                                    class="textarea_ch"
+                                  ></textarea
+                                  ><br />
+                                  <span class="write_name_ch">백엔드 필요 능력</span>
+                                  <br />
+                                  <textarea
+                                    name=""
+                                    id=""
+                                    cols="50"
+                                    rows="5"
+                                    class="textarea_ch"
+                                  ></textarea
+                                  ><br />
+                                  <span class="write_name_ch">Re코프런 목표</span>
+                                  <br />
+                                  <textarea
+                                    name=""
+                                    id=""
+                                    cols="50"
+                                    rows="5"
+                                    class="textarea_ch"
+                                  ></textarea>
+                                </div>
+                                <span class="write_name_ch">필수 참여인원</span>
+                                <div>DB가져오기</div>
+                                <span class="write_name_ch">다룰수 있는 기술스택</span>
+                                <div>
+                                  <form action="">
+                                    <div class="search_ch">
+                                      <input
+                                        type="text"
+                                        placeholder="태그형식으로 입력해주세요."
+                                      />
+                                      <button>
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                      </button>
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="submit_section_ch">
+                                  <button type="button" id="recoplearnStart_ch">
+                                    Re코프런 start!
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 리코프런 참여 모달 -->
+                        <div id="modalWrap2_ch" style="display: none">
+                          <div id="modalContent2_ch">
+                            <div id="modalBody2_ch">
+                              <div id="modalnav2_ch">
+                                <span>Re코프런 만들기</span>
+                                <span id="closeBtn2_ch" onclick="closepop2_ch()"
+                                  >&times;</span
+                                >
+                              </div>
+                              <form id="modalrecoplearn2_ch">
+                                나의 역할
+                                <input type="radio" name="rule_ch" id="front2_ch" checked />
+                                <label for="front2_ch">프론트엔드</label>
+                                <input type="radio" name="rule_ch" id="back2_ch" />
+                                <label for="back2_ch">백엔드</label>
+                                <br />
+                                <div>
+                                  <span class="write_name_ch">참여다짐</span>
+                                  <br />
+                                  <textarea
+                                    name=""
+                                    id=""
+                                    cols="50"
+                                    rows="5"
+                                    class="textarea_ch"
+                                  ></textarea>
+                                </div>
+                                <span class="write_name_ch">필수 참여인원</span>
+                                <div>DB가져오기</div>
+                                <span class="write_name_ch">다룰수 있는 기술스택</span>
+                                <div>
+                                  <form action="">
+                                    <div class="search_ch">
+                                      <input
+                                        type="text"
+                                        placeholder="태그형식으로 입력해주세요."
+                                      />
+                                      <button>
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                      </button>
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="submit_section_ch">
+                                  <button type="button" id="recoplearnStart_ch">
+                                    Re코프런 참여!
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+
+                          <!-- 리코프런 끝 -->
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <p style="text-align: center">
+                  <span style="font-size: 14pt"
+                    ><b
+                      ><span style="font-size: 18pt">커뮤니티 작성</span></b
+                    ></span
+                  >
+                  <div class="comHeader_div"><input type="text" id="comHeader" placeholder="제목을 입력해주세요."></div>
+                </p>
+
+                <form name="form_hi" method="POST" action="post_write">
+                  <div id="editor"></div>
+                  <button id="out_modal" type="button" onclick="out_hi()">
+                    나가기
+                  </button>
+                  <button id="WriteBtn_hi" type="button" onclick="">
+                    작성하기
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!--End Modal-->
+
+            <div id="tab04">
+              <div class="tab04_content"><label for="">프론트</label></div>
+
+              <div class="tab04_content"><label for="">백</label></div>
+
+              <div class="tab04_content"><label for="">목표</label></div>
+              <div id="in_container_ch">
+                <button id="in_ch" onclick="participate()">참여하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- footer -->
+      <footer>
+        <!-- 왼쪽 -->
+        <div class="left_ch">
+          <nav>
+            <img src="" alt="Coplearn" />
+          </nav>
+          <div>코푼사람들 : 황동준, 조현익, 장창현, 서정현, 서혜원</div>
+          <div>팀이름 : 코막혀's</div>
+          <div>Copyright 2023. coplearn. All Rights Reserved</div>
+        </div>
+        <!-- 오른쪽 -->
+        <div class="right_ch">
+          <a href="https://github.com/JSHWJ/KDT-8-Coflearn"
+            ><i class="fa-brands fa-github fa-2x"></i
+          ></a>
+          <a href="https://www.instagram.com/"
+            ><i class="fa-brands fa-instagram fa-2x"></i
+          ></a>
+          <a href="https://twitter.com/"
+            ><i class="fa-brands fa-twitter fa-2x"></i
+          ></a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      $(function () {
+        $(".tabcontent_hi > div").hide();
+        $(".tab_menu_hi a")
+          .click(function () {
+            $(".tabcontent_hi > div").hide().filter(this.hash).fadeIn();
+            $(".tab_menu_hi a").removeClass("active");
+            $(this).addClass("active");
+            return false;
+          })
+          .filter(":eq(0)")
+          .click();
+      });
+
+      const modal = document.getElementById("myModal");
+      const closeModalBtn = document.getElementById("out_modal");
+
+      function commuBtn_hi() {
+        jQuery(document).ready(function () {
+          $("#myModal").show();
+        });
+        //팝업 Close 기능
+      }
+
+      closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      $(document).on("click", "#close_btn", function (e) {
+        console.log("click event");
+        $("#modal").removeClass("show");
+      });
+      function createLastButton() {
+        const button = document.createElement("button");
+
+        button.className = "toastui-editor-toolbar-icons last";
+        button.style.backgroundImage = "none";
+        button.style.margin = "0";
+        button.innerHTML = `<i>B</i>`;
+        button.addEventListener("click", () => {
+          editor.exec("bold");
+        });
+
+        return button;
+      }
+
+      const editor = new toastui.Editor({
+        el: document.querySelector("#editor"),
+        previewStyle: "none",
+
+        height: "400px",
+        toolbarItems: [
+          ["heading", "bold", "italic", "strike"],
+          ["hr", "quote"],
+          ["ul", "ol", "task", "indent", "outdent"],
+          ["code", "codeblock"],
+          // Using Option: Customize the last button
+          [
+            {
+              el: createLastButton(),
+              command: "bold",
+              tooltip: "Custom Bold",
+            },
+          ],
+        ],
+      });
+
+      editor.insertToolbarItem(
+        { groupIndex: 0, itemIndex: 0 },
+        {
+          name: "myItem",
+          tooltip: "Custom Button",
+          command: "bold",
+          text: "@",
+          className: "toastui-editor-toolbar-icons first",
+          style: { backgroundImage: "none" },
+        }
+      );
+    </script>
+    <script src="/js/recoplearn.js"></script>
+  </body>
+</html>
