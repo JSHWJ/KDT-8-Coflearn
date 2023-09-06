@@ -122,7 +122,12 @@
   margin-bottom: 10px;
 }
 
-#tab04 div {
+#tab04 {
+  display: flex;
+  flex-direction: column;
+}
+
+#tab04 .tab04_content {
   width: 95%;
   height: 40vh;
   border: 2px solid #ffd95a;
