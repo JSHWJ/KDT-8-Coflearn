@@ -1,3 +1,5 @@
+const { User } = require("../models");
+
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
   res.render("projectlist");
@@ -11,9 +13,13 @@ const recoplearnlist = (req, res) => {
 const project = (req, res) => {
   res.render("project");
 };
+
+//메인페이지
 const main = (req, res) => {
   res.render("main");
 };
+
+//상세페이지
 const detail = (req, res) => {
   res.render("detailPage");
 };
