@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Small Window</title>
+    <script>
+      function openSmallWindow() {
+        // 새 창의 속성 설정
+        var windowFeatures = "width=500,height=600,left=100,top=100";
+
+        // 새 창 열기
+        var newWindow = window.open("", "", windowFeatures);
+
+        // 새 창에 내용 추가 (예: 새로운 웹 페이지 URL)
+        newWindow.location.href = "http://127.0.0.1:5500/views/chat.html";
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="openSmallWindow()">작은 창 열기</button>
+  </body>
+</html>
