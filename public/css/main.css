@@ -1,0 +1,259 @@
+/* 검색창 css */
+
+/* 맨 위 제목 */
+#search_title_dj{
+    text-align: center;
+    margin-top: 12%;
+    font-weight: bold;
+}
+
+/* ------------------------------------------ */
+/* 검색창을 감싸는 가장 큰 div */
+#sech_box_dj{
+    display: flex;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+/* 검색창 중간 정렬을 위해 만든 inbox */
+#sech_inbox_dj{
+    display: flex;
+    margin: auto;
+    background-color: white;
+
+    /* border: 2px solid #FFD95A; */
+    border-radius: 20px;
+}
+
+/* ------------------------------------------ */
+
+/* 검색 키워드 입력 input */
+#search_keyword_dj{
+    display: block;
+    width: 70vw;
+    height: 40px;
+    margin-left: 3%;
+
+    background-color: transparent;
+    border: none;
+    /* margin: auto; */
+
+}
+
+#search_keyword_dj:focus{
+    outline: none;
+}
+
+/* 검색 키워드 입력 btn */
+#sech_btn_dj{
+    margin: auto 0;
+    position: relative;
+    right: 7px;
+
+    background-color: transparent;
+    border: none;
+}
+
+/* ------------------------------------------ */
+/* 부트스트랩 적용할려하다가 보류 */
+/* .carousel-item{
+    width: 70%;
+    margin: auto;
+}
+
+#picon_dj{
+    background-color: #4C3D3D;
+    border-radius: 20px;
+}
+
+#nicon_dj{
+    background-color: #4C3D3D;
+    border-radius: 20px;
+} */
+
+/* 리스트로 태그 검색 창 구현 */
+
+
+#sech_tag_dj{
+    overflow: auto;
+    width: 85%;
+    margin: auto;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+#sech_tag_dj::-webkit-scrollbar{
+    display: none;
+}
+
+#tag_ul_dj{
+    list-style: none;
+    display: flex;
+}
+
+#tag_ul_dj p{
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ------------------------------------------ */
+
+/* 우리의 프로젝트 모아보기 */
+/* Re코프런 현황 */
+
+/* 헤더 */
+
+.list_bignemo_dj{
+    margin-top: 8%;
+}
+
+.proindex_dj{
+    margin-left: 3%;
+    width: 85%;
+    margin: auto;
+}
+
+.reindex_dj{
+    margin-left: 3%;
+    width: 85%;
+    margin: auto;
+    
+}
+
+
+
+
+.plist_box_dj{
+    display: flex;
+    overflow: auto;
+    -ms-overflow-style: none; 
+    /* 인터넷 익스플로러 */
+    scrollbar-width: none; 
+    /* 파이어폭스 */
+}
+
+.plist_box_dj::-webkit-scrollbar{
+    display: none;
+}
+
+.plist_box_dj a{
+    margin: 0 5px;
+    
+}
+
+.plist_box_dj iframe{
+    width: 220px;
+    height: 140px;
+}
+
+.relist_box_dj{
+    display: flex;
+    overflow: auto;
+
+    -ms-overflow-style: none; 
+    /* 인터넷 익스플로러 */
+    scrollbar-width: none; 
+    /* 파이어폭스 */
+}
+
+.relist_box_dj::-webkit-scrollbar{
+    display: none;
+}
+
+.relist_box_dj a{
+    margin: 0 5px;
+    
+}
+.relist_box_dj img{
+    width: 220px;
+    height: 140px;
+}
+
+
+
+
+#gotoPlist_dj{
+    display: flex;
+}
+#gotoRlist_dj{
+    display: flex;
+}
+
+
+
+
+#pro_title_dj{
+    font-weight: bold;
+}
+#re_title_dj{
+    font-weight: bold;
+}
+
+
+
+#list_icon_dj{
+    display: block;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+#listp_dj{
+    font-size: 14px;
+    color: gray;
+}
+
+
+/* ----------------------------------------------------- */
+
+/* 프로젝트 갯수와 후기 확인 */
+
+.pro_count_dj{
+    display: flex;
+    width: 90%;
+    height: 350px;
+    margin: auto;
+}
+
+.pro_num_dj{
+    width: 50%;
+}
+
+#pro_num_inbox_dj{
+    width: 80%;
+    margin-left: 15%;
+    margin-top: 8%;
+}
+
+#pro_num_inbox_dj h4{
+    font-weight: bold;
+
+}
+
+#pro_num_inbox_dj p{
+    font-weight: bold;
+
+}
+
+.pro_review_dj{
+    width: 50%;
+    
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.pro_review_dj::-webkit-scrollbar{
+    width: 5px;
+}
+
+
+.review{
+    width: 90%;
+    height: auto;
+    background-color: #FFD95A;
+    border-radius: 5px;
+    
+    margin: 5px 0;
+
+}

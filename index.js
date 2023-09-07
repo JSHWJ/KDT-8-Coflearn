@@ -1,4 +1,3 @@
-
 const express = require("express");
 const path = require("path");
 const db = require("./models");
@@ -9,6 +8,15 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.set(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get('/', (req, res) => {
+    res.render('main');
+})
+
+app.get('/mypage', (req, res) => {
+    res.render('mypage');
+})
 
 //router 분리
 const router = require("./routes/main");
