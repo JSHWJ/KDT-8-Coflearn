@@ -2,7 +2,9 @@ const express = require("express");
 const path = require("path");
 const db = require("./models");
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
+const nodemailer = require("nodemailer");
+
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
