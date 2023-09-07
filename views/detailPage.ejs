@@ -125,13 +125,12 @@
               <div id="ex_hi"><label for="">상세 설명</label></div>
             </div>
             <div id="tab02">
+            
               <div class="crewComment_hi"><label for="">장창현 크루</label></div>
 
               <div class="crewComment_hi"><label for="">황동준 크루</label></div>
 
               <div class="crewComment_hi"><textarea class="comment"></textarea><button class="writeComment_hi">작성하기</button></div>
-
-              
             </div>
             <div id="tab03">
               <div class="communityContent">
@@ -150,135 +149,133 @@
                 커뮤니티 작성하기
               </button>
             </div>
-
-                        <!-- 리코프런 오픈 모달 -->
-                        <div id="modalWrap_ch" style="display: none">
-                          <div id="modalContent_ch">
-                            <div id="modalBody_ch">
-                              <div id="modalnav_ch">
-                                <span>Re코프런 만들기</span>
-                                <span id="closeBtn_ch" onclick="closepop_ch()"
-                                  >&times;</span
-                                >
-                              </div>
-                              <form id="modalrecoplearn_ch">
-                                나의 역할
-                                <input type="radio" name="rule_ch" id="front_ch" checked />
-                                <label for="front_ch">프론트엔드</label>
-                                <input type="radio" name="rule_ch" id="back_ch" />
-                                <label for="back_ch">백엔드</label>
-                                <br />
-                                <div>
-                                  <span class="write_name_ch">프론트엔드 필요 능력</span>
-                                  <br />
-                                  <textarea
-                                    name=""
-                                    id=""
-                                    cols="50"
-                                    rows="5"
-                                    class="textarea_ch"
-                                  ></textarea
-                                  ><br />
-                                  <span class="write_name_ch">백엔드 필요 능력</span>
-                                  <br />
-                                  <textarea
-                                    name=""
-                                    id=""
-                                    cols="50"
-                                    rows="5"
-                                    class="textarea_ch"
-                                  ></textarea
-                                  ><br />
-                                  <span class="write_name_ch">Re코프런 목표</span>
-                                  <br />
-                                  <textarea
-                                    name=""
-                                    id=""
-                                    cols="50"
-                                    rows="5"
-                                    class="textarea_ch"
-                                  ></textarea>
-                                </div>
-                                <span class="write_name_ch">필수 참여인원</span>
-                                <div>DB가져오기</div>
-                                <span class="write_name_ch">다룰수 있는 기술스택</span>
-                                <div>
-                                  <form action="">
-                                    <div class="search_ch">
-                                      <input
-                                        type="text"
-                                        placeholder="태그형식으로 입력해주세요."
-                                      />
-                                      <button>
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                      </button>
-                                    </div>
-                                  </form>
-                                </div>
-                                <div class="submit_section_ch">
-                                  <button type="button" id="recoplearnStart_ch">
-                                    Re코프런 start!
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
+            <!-- 리코프런 오픈 모달 -->
+            <div id="modalWrap_ch" style="display: none">
+              <div id="modalContent_ch">
+                <div id="modalBody_ch">
+                  <div id="modalnav_ch">
+                    <span>Re코프런 만들기</span>
+                    <span id="closeBtn_ch" onclick="closepop_ch()"
+                      >&times;</span
+                    >
+                  </div>
+                  <form id="modalrecoplearn_ch">
+                    나의 역할
+                    <input type="radio" name="rule_ch" id="front_ch" checked />
+                    <label for="front_ch">프론트엔드</label>
+                    <input type="radio" name="rule_ch" id="back_ch" />
+                    <label for="back_ch">백엔드</label>
+                    <br />
+                    <div>
+                      <span class="write_name_ch">프론트엔드 필요 능력</span>
+                      <br />
+                      <textarea
+                        name=""
+                        id=""
+                        cols="50"
+                        rows="5"
+                        class="textarea_ch"
+                      ></textarea
+                      ><br />
+                      <span class="write_name_ch">백엔드 필요 능력</span>
+                      <br />
+                      <textarea
+                        name=""
+                        id=""
+                        cols="50"
+                        rows="5"
+                        class="textarea_ch"
+                      ></textarea
+                      ><br />
+                      <span class="write_name_ch">Re코프런 목표</span>
+                      <br />
+                      <textarea
+                        name=""
+                        id=""
+                        cols="50"
+                        rows="5"
+                        class="textarea_ch"
+                      ></textarea>
+                    </div>
+                    <span class="write_name_ch">필수 참여인원</span>
+                    <div>DB가져오기</div>
+                    <span class="write_name_ch">다룰수 있는 기술스택</span>
+                    <div>
+                      <form action="">
+                        <div class="search_ch">
+                          <input
+                            type="text"
+                            placeholder="검색어를 입력하세요"
+                          />
+                          <button>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                          </button>
                         </div>
-                        <!-- 리코프런 참여 모달 -->
-                        <div id="modalWrap2_ch" style="display: none">
-                          <div id="modalContent2_ch">
-                            <div id="modalBody2_ch">
-                              <div id="modalnav2_ch">
-                                <span>Re코프런 만들기</span>
-                                <span id="closeBtn2_ch" onclick="closepop2_ch()"
-                                  >&times;</span
-                                >
-                              </div>
-                              <form id="modalrecoplearn2_ch">
-                                나의 역할
-                                <input type="radio" name="rule_ch" id="front2_ch" checked />
-                                <label for="front2_ch">프론트엔드</label>
-                                <input type="radio" name="rule_ch" id="back2_ch" />
-                                <label for="back2_ch">백엔드</label>
-                                <br />
-                                <div>
-                                  <span class="write_name_ch">참여다짐</span>
-                                  <br />
-                                  <textarea
-                                    name=""
-                                    id=""
-                                    cols="50"
-                                    rows="5"
-                                    class="textarea_ch"
-                                  ></textarea>
-                                </div>
-                                <span class="write_name_ch">필수 참여인원</span>
-                                <div>DB가져오기</div>
-                                <span class="write_name_ch">다룰수 있는 기술스택</span>
-                                <div>
-                                  <form action="">
-                                    <div class="search_ch">
-                                      <input
-                                        type="text"
-                                        placeholder="태그형식으로 입력해주세요."
-                                      />
-                                      <button>
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                      </button>
-                                    </div>
-                                  </form>
-                                </div>
-                                <div class="submit_section_ch">
-                                  <button type="button" id="recoplearnStart_ch">
-                                    Re코프런 참여!
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
+                      </form>
+                    </div>
+                    <div class="submit_section_ch">
+                      <button type="button" id="recoplearnStart_ch">
+                        Re코프런 start!
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- 리코프런 참여 모달 -->
+            <div id="modalWrap2_ch" style="display: none">
+              <div id="modalContent2_ch">
+                <div id="modalBody2_ch">
+                  <div id="modalnav2_ch">
+                    <span>Re코프런 만들기</span>
+                    <span id="closeBtn2_ch" onclick="closepop2_ch()"
+                      >&times;</span
+                    >
+                  </div>
+                  <form id="modalrecoplearn2_ch">
+                    나의 역할
+                    <input type="radio" name="rule_ch" id="front2_ch" checked />
+                    <label for="front2_ch">프론트엔드</label>
+                    <input type="radio" name="rule_ch" id="back2_ch" />
+                    <label for="back2_ch">백엔드</label>
+                    <br />
+                    <div>
+                      <span class="write_name_ch">참여다짐</span>
+                      <br />
+                      <textarea
+                        name=""
+                        id=""
+                        cols="50"
+                        rows="5"
+                        class="textarea_ch"
+                      ></textarea>
+                    </div>
+                    <span class="write_name_ch">필수 참여인원</span>
+                    <div>DB가져오기</div>
+                    <span class="write_name_ch">다룰수 있는 기술스택</span>
+                    <div>
+                      <form action="">
+                        <div class="search_ch">
+                          <input
+                            type="text"
+                            placeholder="검색어를 입력하세요"
+                          />
+                          <button>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                          </button>
                         </div>
-
-                          <!-- 리코프런 끝 -->
+                      </form>
+                    </div>
+                    <div class="submit_section_ch">
+                      <button type="button" id="recoplearnStart_ch">
+                        Re코프런 참여!
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- 리코프런 끝 -->
             <!-- The Modal -->
             <div id="myModal" class="modal">
               <!-- Modal content -->
@@ -361,7 +358,7 @@
 
       const modal = document.getElementById("myModal");
       const closeModalBtn = document.getElementById("out_modal");
-
+      
       function commuBtn_hi() {
         jQuery(document).ready(function () {
           $("#myModal").show();
@@ -394,7 +391,6 @@
       const editor = new toastui.Editor({
         el: document.querySelector("#editor"),
         previewStyle: "none",
-
         height: "400px",
         toolbarItems: [
           ["heading", "bold", "italic", "strike"],

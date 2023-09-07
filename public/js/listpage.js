@@ -24,5 +24,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function gotopageUpload() {
-  window.location.href = "/";
+  window.location.href = "/project";
 }

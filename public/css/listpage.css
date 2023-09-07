@@ -16,11 +16,11 @@
 }
 .search_ch input {
   border: none;
-  background-color: #fff7d4;
+  background-color: white;
   outline: none;
 }
 .search_ch button {
-  background-color: #fff7d4;
+  background-color: white;
   border: none;
   cursor: pointer;
 }
@@ -76,4 +76,5 @@
   background-color: #fff7d4;
   border-radius: 8px;
   height: 35px;
+  cursor: pointer;
 }

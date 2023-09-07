@@ -33,6 +33,7 @@
   height: 30px;
   border-radius: 40px;
   background-color: #ffd95a;
+  cursor: pointer;
 }
 
 .tab_menu_hi {
@@ -120,6 +121,11 @@
   margin-bottom: 10px;
 }
 
+#tab04 {
+  display: flex;
+  flex-direction: column;
+}
+
 #tab04 .tab04_content {
   width: 95%;
   height: 40vh;
@@ -182,7 +188,6 @@
   border-radius: 10px;
   margin-bottom: 10px;
 }
-
 #out_modal {
   position: relative;
   background-color: #fff7d4;
@@ -210,3 +215,4 @@
 #comHeader:focus {
   outline: none;
 }
+
