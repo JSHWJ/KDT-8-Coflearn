@@ -19,5 +19,12 @@ router.get("/login_modal", controller.login_modal);
 //////////////////////////////////////////////////
 // POST
 
-/////////////////////////////////////////////////
+
+
+// 로그인 마이페이지
+
+// 상세페이지
+
+router.get("/detailPage", controller.detailPage);
+
 module.exports = router;

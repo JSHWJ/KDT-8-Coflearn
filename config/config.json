@@ -2,7 +2,7 @@
   "development": {
     "username": "user",
     "password": "1234",
-    "database": "coplearn_local",
+    "database": "cople",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

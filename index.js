@@ -10,6 +10,15 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.set(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get('/', (req, res) => {
+    res.render('main');
+})
+
+app.get('/mypage', (req, res) => {
+    res.render('mypage');
+})
 
 //router 분리
 const router = require("./routes/main");
@@ -19,6 +28,7 @@ app.use("/", router);
 app.use("*", (req, res) => {
   res.status(404).render("404");
 });
+
 
 db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
