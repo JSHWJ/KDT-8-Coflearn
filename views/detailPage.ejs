@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/detailPage.css" />
-    <link rel="stylesheet" href="/css/recoplearn.css" />
-
+    <link rel="stylesheet" href="/css/recoplearn.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <link
@@ -33,7 +32,7 @@
       .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
+        z-index: 1; /* Sit on top */ 
         left: 0;
         top: 0;
         width: 100vw; /* Full width */
@@ -46,11 +45,11 @@
       /* Modal Content/Box */
       .modal-content {
         background-color: white;
-        margin: 15% auto; /* 15% from the top and centered */
+        margin: 5% auto; /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-        height: 850px;
+        width: 50%; /* Could be more or less, depending on screen size */
+        height: 570px;
       }
       #editor {
         background-color: white;
@@ -69,7 +68,7 @@
 
           <ul class="navbar_menu_hi">
             <li><a id="home_hi" href="#">HOME</a></li>
-            <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+            <li><a id="list_hi" href="/projectlist">프로젝트 목록</a></li>
             <li>
               <a id="list_hi" href="#"
                 ><i class="fa-solid fa-magnifying-glass"></i
@@ -101,19 +100,17 @@
             </div>
             <div>#태그</div>
             <div class="rs_hi">
-              <button id="rsBtn_hi" onclick="openrecoplearn()">
-                Recoplearn Start
-              </button>
+              <button id="rsBtn_hi" onclick="openrecoplearn()">Recoplearn Start</button>
             </div>
           </div>
           <div></div>
         </div>
         <div class="tab_hi">
           <ul class="tab_menu_hi">
-            <li><a href="#tab01">프로젝트 소개</a></li>
-            <li><a href="#tab02">후기</a></li>
-            <li><a href="#tab03">커뮤니티</a></li>
-            <li><a href="#tab04">현재 펀딩 상황</a></li>
+            <li class="tabs_hi"><a href="#tab01">프로젝트 소개</a></li>
+            <li class="tabs_hi"><a href="#tab02">후기</a></li>
+            <li class="tabs_hi"><a href="#tab03">커뮤니티</a></li>
+            <li class="tabs_hi"><a href="#tab04">현재 펀딩 상황</a></li>
           </ul>
 
           <div class="tabcontent_hi">
@@ -128,13 +125,12 @@
               <div id="ex_hi"><label for="">상세 설명</label></div>
             </div>
             <div id="tab02">
-              <div><label for="">장창현 크루</label></div>
+            
+              <div class="crewComment_hi"><label for="">장창현 크루</label></div>
 
-              <div><label for="">황동준 크루</label></div>
+              <div class="crewComment_hi"><label for="">황동준 크루</label></div>
 
-              <input class="comment" type="text" />
-
-              <button class="writeComment_hi">후기 작성하기</button>
+              <div class="crewComment_hi"><textarea class="comment"></textarea><button class="writeComment_hi">작성하기</button></div>
             </div>
             <div id="tab03">
               <div class="communityContent">
@@ -279,6 +275,7 @@
                 </div>
               </div>
             </div>
+            <!-- 리코프런 끝 -->
             <!-- The Modal -->
             <div id="myModal" class="modal">
               <!-- Modal content -->
@@ -286,14 +283,17 @@
                 <p style="text-align: center">
                   <span style="font-size: 14pt"
                     ><b
-                      ><span style="font-size: 24pt">커뮤니티 작성</span></b
+                      ><span style="font-size: 18pt">커뮤니티 작성</span></b
                     ></span
                   >
+                  <div class="comHeader_div"><input type="text" id="comHeader" placeholder="제목을 입력해주세요."></div>
                 </p>
 
                 <form name="form_hi" method="POST" action="post_write">
                   <div id="editor"></div>
-                  <button id="out_hi" type="button" onclick="">나가기</button>
+                  <button id="out_modal" type="button" onclick="out_hi()">
+                    나가기
+                  </button>
                   <button id="WriteBtn_hi" type="button" onclick="">
                     작성하기
                   </button>
@@ -356,15 +356,20 @@
           .click();
       });
 
+      const modal = document.getElementById("myModal");
+      const closeModalBtn = document.getElementById("out_modal");
+      
       function commuBtn_hi() {
         jQuery(document).ready(function () {
           $("#myModal").show();
         });
         //팝업 Close 기능
       }
-      function close_pop(flag) {
-        $("#myModal").hide();
-      }
+
+      closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
       $(document).on("click", "#close_btn", function (e) {
         console.log("click event");
         $("#modal").removeClass("show");
@@ -386,7 +391,7 @@
       const editor = new toastui.Editor({
         el: document.querySelector("#editor"),
         previewStyle: "none",
-        height: "700px",
+        height: "400px",
         toolbarItems: [
           ["heading", "bold", "italic", "strike"],
           ["hr", "quote"],
