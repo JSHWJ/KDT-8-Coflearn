@@ -1,8 +1,12 @@
 body {
   margin: 0;
-  /* background-color: white; */
-  background-color: #FFF7D4;
+  background-color: white;
 }
+
+#main_body_dj{
+  margin: 0;
+  background-color: #FFF7D4;
+} 
 
 #mypage_body_dj{
   margin: 0;
@@ -33,6 +37,17 @@ a {
 
 .navbar_hi {
   display: flex;
+  height: 5vh;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 8px 12px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px #d6d6d4;
+}
+
+.navbar_dj {
+  display: flex;
   height: 7vh;
   justify-content: space-between;
   align-items: center;
@@ -41,6 +56,7 @@ a {
   background-color: white;
   box-shadow: 0px 0px 3px 0px #4C3D3D;
 }
+
 
 .navbar_menu_hi {
   list-style: none;
@@ -53,4 +69,3 @@ a {
 .navbar_menu_hi li {
   padding: 8px 30px;
 }
-

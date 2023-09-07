@@ -1,0 +1,79 @@
+.listsection_ch {
+  margin: 0 2%;
+}
+.searchsection_ch {
+  display: flex;
+  margin-bottom: 20px;
+}
+.searchsection_ch form {
+  margin-right: 15px;
+}
+.search_ch {
+  border: 2px solid #ffd95a;
+  display: inline-block;
+  border-radius: 8px;
+  padding: 5px;
+}
+.search_ch input {
+  border: none;
+  background-color: #fff7d4;
+  outline: none;
+}
+.search_ch button {
+  background-color: #fff7d4;
+  border: none;
+  cursor: pointer;
+}
+
+.tag_ch button {
+  height: 35px;
+  border: 2px solid #ffd95a;
+  background-color: #fff7d4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tag_ch .active {
+  border: 2px solid #c07f00;
+  background-color: #c07f00;
+}
+.searchctn_ch {
+  display: flex;
+}
+.content_ch {
+  width: 300px;
+  height: 225px;
+  text-align: center;
+}
+.content_ch img {
+  width: 240px;
+  height: 135px;
+}
+.contentTitle_ch {
+  font-weight: bold;
+}
+.contentContent_ch span {
+  color: red;
+  font-weight: bold;
+}
+
+#dropdown-button_ch {
+  margin-left: 15px;
+  border: 2px solid #ffd95a;
+  background-color: #fff7d4;
+  border-radius: 8px;
+  height: 35px;
+  cursor: pointer;
+}
+
+/* 프로젝트 리스트 페이지만 */
+.page_title_ch {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.page_title_ch #uploadBtn_ch {
+  border: 2px solid #ffd95a;
+  background-color: #fff7d4;
+  border-radius: 8px;
+  height: 35px;
+}
