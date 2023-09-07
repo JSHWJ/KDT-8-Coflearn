@@ -1,5 +1,10 @@
 const { User } = require("../models");
 
+//마이페이지
+const mypage = (req, res) => {
+  res.render("mypage");
+};
+
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
   res.render("projectlist");
@@ -23,17 +28,6 @@ const main = (req, res) => {
 const detail = (req, res) => {
   res.render("detailPage");
 };
-module.exports = {
-  projectlist,
-  recoplearnlist,
-  project,
-  main,
-  detail,
-  
-// 메인 페이지
-const main = (req, res) => {
-  res.render("main");
-};
 
 const signup = (req, res) => {
   res.render("signup");
@@ -45,16 +39,20 @@ const login_test = (req, res) => {
 
 const login_modal = (req, res) => {
   res.render("login_modal");
-
+};
 // 상세 페이지
 const detailPage = (req, res) => {
   res.render("detailPage");
 };
-
 module.exports = {
+  projectlist,
+  recoplearnlist,
+  project,
   main,
-  signup,
+  detail,
   login_test,
   login_modal,
   detailPage,
+  signup,
+  mypage,
 };

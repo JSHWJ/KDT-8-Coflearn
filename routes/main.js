@@ -7,6 +7,9 @@ const controller = require("../controller/Cmain");
 
 router.get("/", controller.main);
 
+//마이페이지
+router.get("/mypage", controller.mypage);
+
 // 회원가입
 router.get("/signup", controller.signup);
 
@@ -30,9 +33,6 @@ router.get("/detailPage", controller.detailPage);
 //////////////////////////////////////////////////
 // POST
 
-
-
 // 로그인 마이페이지
-
 
 module.exports = router;

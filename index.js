@@ -3,33 +3,16 @@ const app = express();
 var path = require("path");
 const db = require("./models");
 const PORT = 8000;
-
-app.set("view engine", "ejs");
-app.set(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-
-//라우터 분리
-const path = require("path");
-const db = require("./models");
-const app = express();
-const PORT = 8000;
 const nodemailer = require("nodemailer");
 
 app.set("view engine", "ejs");
-
-app.use(express.static(path.join(__dirname, "public")));
 app.set(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.render('main');
-})
-
-app.get('/mypage', (req, res) => {
-    res.render('mypage');
-})
+app.get("/mypage", (req, res) => {
+  res.render("mypage");
+});
 
 //router 분리
 const router = require("./routes/main");
