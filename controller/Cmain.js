@@ -1,5 +1,10 @@
 const { User } = require("../models");
 
+//마이페이지
+const mypage = (req, res) => {
+  res.render("mypage");
+};
+
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
   res.render("projectlist");
@@ -49,4 +54,5 @@ module.exports = {
   login_modal,
   detailPage,
   signup,
+  mypage,
 };

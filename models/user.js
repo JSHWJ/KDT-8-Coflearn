@@ -228,7 +228,7 @@ const Model = (sequelize) => {
     }
   );
 
-  // 유저 채팅방
+  // 유저 채팅방00
   const UserRoom = sequelize.define(
     "UserRoom",
     {

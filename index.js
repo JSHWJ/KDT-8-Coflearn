@@ -10,10 +10,6 @@ app.set(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.render("main");
-});
-
 app.get("/mypage", (req, res) => {
   res.render("mypage");
 });
