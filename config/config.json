@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "12345678",
+    "username": "user1",
+    "password": "12345",
     "database": "coplearn",
     "host": "localhost",
     "dialect": "mysql"

@@ -1,10 +1,15 @@
 /* 검색창 css */
 
+.sech{
+    margin: 0;
+}
+
 /* 맨 위 제목 */
 #search_title_dj{
     text-align: center;
     margin-top: 12%;
     font-weight: bold;
+    font-size: 30px;
 }
 
 /* ------------------------------------------ */
@@ -32,7 +37,7 @@
 #search_keyword_dj{
     display: block;
     width: 70vw;
-    height: 40px;
+    height: 50px;
     margin-left: 3%;
 
     background-color: transparent;
@@ -93,8 +98,18 @@
 }
 
 #tag_ul_dj p{
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
+}
+
+#tag_ul_dj a{
+    display: block;
+    width: 100px;
+}
+
+#tag_ul_dj img{
+    display: block;
+    margin: auto;
 }
 
 /* ------------------------------------------ */
@@ -105,7 +120,7 @@
 /* 헤더 */
 
 .list_bignemo_dj{
-    margin-top: 8%;
+    margin-top: 1%;
 }
 
 .proindex_dj{
@@ -143,8 +158,8 @@
 }
 
 .plist_box_dj iframe{
-    width: 220px;
-    height: 140px;
+    width: 330px;
+    height: 200px;
 }
 
 .relist_box_dj{
@@ -166,10 +181,14 @@
     
 }
 .relist_box_dj img{
-    width: 220px;
-    height: 140px;
+    width: 330px;
+    height: 200px;
 }
 
+.relist_box_dj p{
+    font-size: 20px;
+    
+}
 
 
 
@@ -185,9 +204,11 @@
 
 #pro_title_dj{
     font-weight: bold;
+    font-size: 26px;
 }
 #re_title_dj{
     font-weight: bold;
+    font-size: 26px;
 }
 
 
@@ -199,7 +220,7 @@
 }
 
 #listp_dj{
-    font-size: 14px;
+    font-size: 16px;
     color: gray;
 }
 
@@ -227,16 +248,19 @@
 
 #pro_num_inbox_dj h4{
     font-weight: bold;
+    font-size: 35px;
 
 }
 
 #pro_num_inbox_dj p{
     font-weight: bold;
+    font-size: 20px;
 
 }
 
 .pro_review_dj{
     width: 50%;
+    height: 500px;
     
     display: flex;
     flex-direction: column;

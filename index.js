@@ -10,9 +10,6 @@ app.set(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-app.get("/mypage", (req, res) => {
-  res.render("mypage");
-});
 
 //router 분리
 const router = require("./routes/main");
@@ -23,7 +20,7 @@ app.use("*", (req, res) => {
   res.status(404).render("404");
 });
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
   });

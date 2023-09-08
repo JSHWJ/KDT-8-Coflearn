@@ -48,7 +48,7 @@ a {
 
 .navbar_dj {
   display: flex;
-  height: 7vh;
+  height: 10vh;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;

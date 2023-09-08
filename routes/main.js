@@ -5,7 +5,9 @@ const controller = require("../controller/Cmain");
 //////////////////////////////////////////////////
 // GET
 
-router.get("/", controller.main);
+router.get("/main", controller.main);
+
+router.post("/main", controller.main_post);
 
 //마이페이지
 router.get("/mypage", controller.mypage);
