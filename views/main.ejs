@@ -225,7 +225,8 @@
     <br>
 
     <section class="list_bignemo_dj">
-      <section class="proindex_dj">        
+      <section class="proindex_dj">
+
         <div id='pro_header_dj'>
           <div id="header_inbox_dj">
               <a id="gotoPlist_dj" href="/api/project-list">
@@ -237,12 +238,22 @@
               <p id="listp_dj">포스코X코딩온 KDT에서 해온 프로젝트를 확인해보세요!</p>
           </div>
         </div>
+        
         <div class="plist_box_dj">
-          <a href="">
-            <iframe src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-            </iframe>
+          <!-- <a href="">
+            <div>
+              <video autoplay muted src="/testvideo.mp4"></video>
+            </div>
             <p style="font-size: 20px;">프로젝트 이름</p>
             <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
+
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 인원수</p>
+            <p style="font-size: 14px;">프로젝트 기간</p>
           </a>
 
           <a href="">
@@ -299,14 +310,7 @@
             </iframe>
             <p style="font-size: 20px;">프로젝트 이름</p>
             <p style="font-size: 14px;">프로젝트 설명 요약</p>
-          </a>
-
-          <a href="">
-            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-            </iframe>
-            <p style="font-size: 20px;">프로젝트 이름</p>
-            <p style="font-size: 14px;">프로젝트 설명 요약</p>
-          </a>
+          </a> -->
           
           
         </div>    
@@ -568,23 +572,6 @@
     </div>
   
   </div>
-    <script>
-
-      (async function (){
-        
-        const res = await axios({
-          method: "POST",
-          url: '/main',
-        });
-
-        console.log(res);
-      })();
-
-
-
-    
-    </script>
-      
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" 
       crossorigin="anonymous"></script>
       <script src="/js/main.js"></script>
