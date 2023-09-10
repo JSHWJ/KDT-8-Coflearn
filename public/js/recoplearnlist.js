@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     const response = await axios({
       method: "POST",
-      url: "/recoplearn-list",
+      url: "/api/recoplearn-list",
     });
     project = response.data.data.project;
     tags = response.data.data.tag;

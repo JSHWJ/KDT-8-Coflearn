@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     const response = await axios({
       method: "POST",
-      url: "/project-list",
+      url: "/api/project-list",
     });
     tags = response.data.data.tag;
     project = response.data.data.title;
@@ -79,10 +79,3 @@ const clickup = () => {
 function gotopageUpload() {
   window.location.href = "/project";
 }
-
-function a() {
-  function f() {
-    console.log(123);
-  }
-}
-a();
