@@ -343,7 +343,15 @@ const Model = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      font_goal_num: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
       back_num: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      back_goal_num: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
