@@ -42,18 +42,33 @@ document.addEventListener("DOMContentLoaded", async function () {
     let section = document.getElementsByClassName(count - 1 + "_ch");
     console.log(section);
     let content_ch = document.createElement("div");
-    content_ch.innerHTML = `
-    <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMMS0tZyqfTuSnDSIB6hSRZYfeBE7xsSxow&usqp=CAU"
-                alt="이미지"
-                class="sumnail_ch"
-              />
-              <div class="contentTitle_ch">${key}</div>
-              <div class="contentContent_ch"><span>${
-                (100 * project[key].current_num) / project[key].goal_num
-              }% </span> frontend : ${project[key].front_num} | backend : ${
-      project[key].back_num
-    }</div>`;
+    if (project[key].thumnail == null) {
+      content_ch.innerHTML = `
+      <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMMS0tZyqfTuSnDSIB6hSRZYfeBE7xsSxow&usqp=CAU"
+                  alt="이미지"
+                  class="sumnail_ch"
+                />
+                <div class="contentTitle_ch">${key}</div>
+                <div class="contentContent_ch"><span>${
+                  (100 * project[key].current_num) / project[key].goal_num
+                }% </span> frontend : ${project[key].front_num} | backend : ${
+        project[key].back_num
+      }</div>`;
+    } else {
+      content_ch.innerHTML = `
+      <img
+                  src="${project[key].thumnail}"
+                  alt="이미지"
+                  class="sumnail_ch"
+                />
+                <div class="contentTitle_ch">${key}</div>
+                <div class="contentContent_ch"><span>${
+                  (100 * project[key].current_num) / project[key].goal_num
+                }% </span> frontend : ${project[key].front_num} | backend : ${
+        project[key].back_num
+      }</div>`;
+    }
 
     content_ch.className = "content_ch";
     section[0].appendChild(content_ch);

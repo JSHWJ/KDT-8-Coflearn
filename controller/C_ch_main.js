@@ -1,8 +1,6 @@
 const db = require("../models");
 const models = db.User;
 
-console.log(models);
-
 //마이페이지
 const mypage = (req, res) => {
   res.render("mypage");
@@ -53,7 +51,7 @@ const recoplearnlist_post = async (req, res) => {
       models.Recoplearn.findAll({
         include: {
           model: models.Project,
-          attributes: ["title"],
+          attributes: ["title", "thumnail"],
         },
       }),
       models.Tag.findAll(),
@@ -64,6 +62,7 @@ const recoplearnlist_post = async (req, res) => {
         back_num: item.back_num,
         current_num: item.current_num,
         goal_num: item.goal_num,
+        thumnail: item.Project.thumnail,
       };
     });
     response[1].forEach((tag) => {
@@ -71,6 +70,7 @@ const recoplearnlist_post = async (req, res) => {
     });
     sendInfo.project = arr;
     sendInfo.tag = arr2;
+    console.log("이게뭐지2", sendInfo);
     res.json({ data: sendInfo });
   } catch (error) {
     console.error("Sequelize에러 발생: ", error);

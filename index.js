@@ -48,13 +48,13 @@ const upload = multer({
 const router = require("./routes/main");
 app.use("/", router);
 
+//s3 이미지 처리
 app.post("/api/project/img/write", upload.single("data"), (req, res) => {
-  // 업로드된 이미지의 URL을 클라이언트에게 반환
   res.json({ imageUrl: req.file.location });
 });
 
+//s3 비디오처리
 app.post("/api/project/video/upload", upload.single("file"), (req, res) => {
-  // 업로드된 이미지의 URL을 클라이언트에게 반환
   res.json({ imageUrl: req.file.location });
 });
 
