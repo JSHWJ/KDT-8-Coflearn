@@ -43,15 +43,25 @@ document.addEventListener("DOMContentLoaded", async function () {
     let section = document.getElementsByClassName(count - 1 + "_ch");
     console.log(section);
     let content_ch = document.createElement("div");
-    content_ch.innerHTML = `
+    if (project[key][1] == null) {
+      content_ch.innerHTML = `
     <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMMS0tZyqfTuSnDSIB6hSRZYfeBE7xsSxow&usqp=CAU"
                 alt="이미지"
                 class="sumnail_ch"
               />
               <div class="contentTitle_ch">${key}</div>
-              <div class="contentContent_ch">${project[key]}</div>`;
-
+              <div class="contentContent_ch">${project[key][0]}</div>`;
+    } else {
+      content_ch.innerHTML = `
+    <img
+                src="${project[key][1]}"
+                alt="이미지"
+                class="sumnail_ch"
+              />
+              <div class="contentTitle_ch">${key}</div>
+              <div class="contentContent_ch">${project[key][0]}</div>`;
+    }
     content_ch.className = "content_ch";
     section[0].appendChild(content_ch);
     count_ch += 1;

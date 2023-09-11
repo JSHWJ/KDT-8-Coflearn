@@ -24,7 +24,7 @@ const projectlist_post = async (req, res) => {
       models.Tag.findAll(),
     ]);
     response[0].forEach((project) => {
-      arr[project.title] = project.members;
+      arr[project.title] = [project.members, project.thumnail];
     });
     response[1].forEach((tag) => {
       arr2[tag.tag_id] = tag.tag_name;
@@ -84,16 +84,32 @@ const project = (req, res) => {
 
 //프로젝트 업로드 하기
 const project_upload = async (req, res) => {
+  const { title, content, video, period, member, git, tags, thumnail } =
+    req.body;
   try {
     const newProject = {
-      title: req.body.title,
-      content: req.body.content,
-      video: req.body.video,
-      pariod: req.body.period,
-      members: req.body.member,
-      git_link: req.body.git,
+      title: title,
+      content: content,
+      video: video,
+      period: period,
+      members: member,
+      git_link: git,
+      thumnail: thumnail,
     };
-    const response = await models.Project.create(newProject);
+    await models.Project.create(newProject);
+    let project = await models.Project.findOne({ where: { title: title } });
+    if (tags && tags.length > 0) {
+      for (const item of tags) {
+        let taged = await models.Tag.findOne({ where: { tag_name: item } });
+        if (!taged) {
+          taged = await models.Tag.create({ tag_name: item });
+        }
+        await models.ProjectTag.create({
+          project_id: project.project_id,
+          tag_id: taged.tag_id,
+        });
+      }
+    }
     console.log("새로운프로젝트가 추가되었습니다.");
     res.json({ result: true });
   } catch (error) {

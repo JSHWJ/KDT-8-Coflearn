@@ -11,12 +11,12 @@ const editor = new toastui.Editor({
     ["code", "codeblock"],
     ["scrollSync"],
   ],
-  placeholder: "당신의 작품들을 뽐내보세요.",
+  placeholder:
+    "당신의 작품들을 뽐내보세요.(첫번째 이미지는 프로젝트의 썸네일로 사용됩니다.)",
 });
 //에디터 이미지 업로드 처리
 let imageArr = []; //이미지 저장변수
 editor.addHook("addImageBlobHook", async (blob, cb) => {
-  console.log(blob);
   const formData = new FormData();
   formData.append("data", blob);
   try {
@@ -28,7 +28,7 @@ editor.addHook("addImageBlobHook", async (blob, cb) => {
       },
       data: formData,
     });
-    // imageArr.push(response.json());
+    imageArr.push(response.data.imageUrl);
     console.log(response.data.imageUrl);
     cb(response.data.imageUrl, "이미지");
   } catch (error) {
@@ -150,7 +150,8 @@ async function upload_ch() {
     form.project_member_ch.value,
     text,
     videoUrl,
-    tags
+    tags,
+    imageArr[0]
   );
   let data = {
     title: form.project_title_ch.value,
@@ -160,6 +161,7 @@ async function upload_ch() {
     member: form.project_member_ch.value,
     content: text,
     video: videoUrl,
+    thumnail: imageArr[0],
   };
   try {
     const response = await axios({

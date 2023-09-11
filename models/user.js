@@ -72,9 +72,13 @@ const Model = (sequelize) => {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
-      pariod: {
+      period: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      thumnail: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
       },
       members: {
         type: DataTypes.STRING(255),
