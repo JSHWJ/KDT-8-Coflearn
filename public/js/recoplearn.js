@@ -13,3 +13,34 @@ function participate() {
 function closepop2_ch() {
   modal2.style.display = "none";
 }
+
+function Start_ch() {
+  const form = document.forms["modalrecoplearn_ch"];
+  const radioGroup = document.getElementsByName("rule_ch");
+  let selectedValue = "";
+  for (const radioButton of radioGroup) {
+    if (radioButton.checked) {
+      selectedValue = radioButton.value;
+      break;
+    }
+  }
+  console.log(
+    selectedValue,
+    form.front_ability.value,
+    form.back_ability.value,
+    form.recoplearn_goal.value
+  );
+}
+
+function participate_ch() {
+  const form = document.forms["modalrecoplearn2_ch"];
+  const radioGroup = document.getElementsByName("rule_ch");
+  let selectedValue = "";
+  for (const radioButton of radioGroup) {
+    if (radioButton.checked) {
+      selectedValue = radioButton.value;
+      break;
+    }
+  }
+  console.log(selectedValue, form.promise_ch.value);
+}

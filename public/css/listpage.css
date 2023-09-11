@@ -68,7 +68,7 @@
   font-weight: bold;
 }
 
-#dropdown-button_ch {
+.dropBtn_ch {
   margin-left: 15px;
   border: 2px solid #ffd95a;
   background-color: #fff7d4;
