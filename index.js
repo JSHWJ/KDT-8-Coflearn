@@ -22,8 +22,7 @@ app.use("/", router);
 app.use("*", (req, res) => {
   res.status(404).render("404");
 });
-
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
   });
