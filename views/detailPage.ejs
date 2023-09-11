@@ -159,19 +159,19 @@
                       >&times;</span
                     >
                   </div>
-                  <form id="modalrecoplearn_ch">
+                  <form id="modalrecoplearn_ch" name="modalrecoplearn_ch">
                     나의 역할
-                    <input type="radio" name="rule_ch" id="front_ch" checked />
+                    <input type="radio" name="rule_ch" id="front_ch" value="front" checked />
                     <label for="front_ch">프론트엔드</label>
-                    <input type="radio" name="rule_ch" id="back_ch" />
+                    <input type="radio" name="rule_ch" id="back_ch" value="back"/>
                     <label for="back_ch">백엔드</label>
                     <br />
                     <div>
                       <span class="write_name_ch">프론트엔드 필요 능력</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="front_ability"
+                        id="front_ability"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
@@ -180,8 +180,8 @@
                       <span class="write_name_ch">백엔드 필요 능력</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="back_ability"
+                        id="back_ability"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
@@ -190,8 +190,8 @@
                       <span class="write_name_ch">Re코프런 목표</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="recoplearn_goal"
+                        id="recoplearn_goal"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
@@ -214,7 +214,8 @@
                       </form>
                     </div>
                     <div class="submit_section_ch">
-                      <button type="button" id="recoplearnStart_ch">
+                      <button type="button" id="recoplearnStart_ch"
+                      onclick="Start_ch()">
                         Re코프런 start!
                       </button>
                     </div>
@@ -243,15 +244,13 @@
                       <span class="write_name_ch">참여다짐</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="promise_ch"
+                        id="promise_ch"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
                       ></textarea>
                     </div>
-                    <span class="write_name_ch">필수 참여인원</span>
-                    <div>DB가져오기</div>
                     <span class="write_name_ch">다룰수 있는 기술스택</span>
                     <div>
                       <form action="">
@@ -267,7 +266,7 @@
                       </form>
                     </div>
                     <div class="submit_section_ch">
-                      <button type="button" id="recoplearnStart_ch">
+                      <button type="button" id="recoplearnStart_ch" onclick="participate_ch()">
                         Re코프런 참여!
                       </button>
                     </div>

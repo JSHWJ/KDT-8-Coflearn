@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controller/Cmain");
+const controller = require("../controller/C_ch_main");
 
 //////////////////////////////////////////////////
 // GET
 
+//메인페이지
 router.get("/", controller.main);
 
 //마이페이지
@@ -14,7 +15,7 @@ router.get("/mypage", controller.mypage);
 router.get("/signup", controller.signup);
 
 // 로그인
-router.get("/login_test", controller.login_test);
+// router.get("/login_test", controller.login_test);
 
 // 로그인 모달
 router.get("/login_modal", controller.login_modal);
@@ -32,6 +33,15 @@ router.get("/project", controller.project);
 router.get("/detailPage", controller.detailPage);
 //////////////////////////////////////////////////
 // POST
+
+//프로젝트 목록 페이지 데이터 가져오기
+router.post("/api/project-list", controller.projectlist_post);
+
+//리코프런 목록 페이지 데이터 가져오기
+router.post("/api/recoplearn-list", controller.recoplearnlist_post);
+
+//프로젝트 업로드
+router.post("/api/project/write", controller.project_upload);
 
 // 로그인 마이페이지
 
