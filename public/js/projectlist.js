@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   const tag_ch = document.querySelector(".tag_ch");
 
-
   //태그 목록 가져와 태그 만들기
 
   function addTag(tagname, i) {
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   for (let i = 1; i <= Object.keys(tags).length; i++) {
     addTag("#" + tags[i], i);
   }
-
 
   //프로젝트 목록가져와 프로젝트 목록만들기
 
@@ -77,7 +75,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
-
 //태그 목록 화살표 위로변경
 
 const clickdown = () => {
@@ -89,7 +86,6 @@ const clickdown = () => {
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickup()");
 };
 
-
 //태그 목록 화살표 아래로 변경
 
 const clickup = () => {
@@ -100,7 +96,6 @@ const clickup = () => {
   document.querySelector(".fa-angle-up").className = "fa-solid fa-angle-down";
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickdown()");
 };
-
 
 //프로젝트 목록
 function gotopageUpload() {
@@ -116,7 +111,8 @@ function movedetail(n) {
 const search = document.querySelector("#searchcontent_ch");
 search.addEventListener("keydown", async function (e) {
   if (e.key === "Enter") {
-    window.location.replace(`/search?value=${search.value}`);
+    console.log("ddddd");
+    //document.location.href = "/";
+    window.location.href = `/search?value=${search.value}`;
   }
 });
-
