@@ -19,6 +19,7 @@ let imageArr = []; //이미지 저장변수
 editor.addHook("addImageBlobHook", async (blob, cb) => {
   const formData = new FormData();
   formData.append("data", blob);
+  console.log(formData);
   try {
     const response = await axios({
       method: "POST",
@@ -148,6 +149,8 @@ async function upload_ch() {
     form.project_period_ch.value,
     form.project_git_ch.value,
     form.project_member_ch.value,
+    form.front_num_ch.value,
+    form.back_num_ch.value,
     text,
     videoUrl,
     tags,
@@ -162,6 +165,8 @@ async function upload_ch() {
     content: text,
     video: videoUrl,
     thumnail: imageArr[0],
+    front_num: form.front_num_ch.value,
+    back_num: form.back_num_ch.value,
   };
   try {
     const response = await axios({

@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", async function () {
+  const currentUrl = window.location.href;
+  let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
   const commentWrite = document.querySelector(".comment");
 
   const res = await axios({
     method: "GET",
-    url: "/detailPage/review",
+    url: `/detailPage/${num}/review`,
   });
   //console.log(res.data.data);
 
@@ -28,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     method: "GET",
     url: "/detailPage/community/write",
   });
-  console.log(commures.data.data);
   for (let i = commures.data.data.length - 1; i >= 0; i--) {
     const divTag = document.createElement("div");
     const p = document.createElement("p");

@@ -110,11 +110,7 @@
                 담기
               </button>
             </div>
-            <div class="rs_hi">
-              <button id="rsBtn_hi" onclick="openrecoplearn()">
-                Recoplearn Start
-              </button>
-            </div>
+            <div class="rs_hi"></div>
           </div>
           <div></div>
         </div>
@@ -184,9 +180,20 @@
                   </div>
                   <form id="modalrecoplearn_ch" name="modalrecoplearn_ch">
                     나의 역할
-                    <input type="radio" name="rule_ch" id="front_ch" value="front" checked />
+                    <input
+                      type="radio"
+                      name="rule_ch"
+                      id="front_ch"
+                      value="front"
+                      checked
+                    />
                     <label for="front_ch">프론트엔드</label>
-                    <input type="radio" name="rule_ch" id="back_ch" value="back"/>
+                    <input
+                      type="radio"
+                      name="rule_ch"
+                      id="back_ch"
+                      value="back"
+                    />
                     <label for="back_ch">백엔드</label>
                     <br />
                     <div>
@@ -221,24 +228,13 @@
                       ></textarea>
                     </div>
                     <span class="write_name_ch">필수 참여인원</span>
-                    <div>DB가져오기</div>
-                    <span class="write_name_ch">다룰수 있는 기술스택</span>
-                    <div>
-                      <form action="">
-                        <div class="search_ch">
-                          <input
-                            type="text"
-                            placeholder="검색어를 입력하세요"
-                          />
-                          <button>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                    <div class="allnum_ch"></div>
                     <div class="submit_section_ch">
-                      <button type="button" id="recoplearnStart_ch"
-                      onclick="Start_ch()">
+                      <button
+                        type="button"
+                        id="recoplearnStart_ch"
+                        onclick="Start_ch()"
+                      >
                         Re코프런 start!
                       </button>
                     </div>
@@ -274,22 +270,12 @@
                         class="textarea_ch"
                       ></textarea>
                     </div>
-                    <span class="write_name_ch">다룰수 있는 기술스택</span>
-                    <div>
-                      <form action="">
-                        <div class="search_ch">
-                          <input
-                            type="text"
-                            placeholder="검색어를 입력하세요"
-                          />
-                          <button>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
                     <div class="submit_section_ch">
-                      <button type="button" id="recoplearnStart_ch" onclick="participate_ch()">
+                      <button
+                        type="button"
+                        id="recoplearnStart_ch"
+                        onclick="participate_ch()"
+                      >
                         Re코프런 참여!
                       </button>
                     </div>
@@ -454,7 +440,7 @@
         }
       );
     </script>
-    <script src="js/detailPage.js"></script>
+    <script src="/js/detailPage.js"></script>
     <script src="/js/recoplearn.js"></script>
   </body>
 </html>
