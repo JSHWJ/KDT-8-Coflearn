@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-
 const Model = (sequelize) => {
   //마이프로필
   const MyProfile = sequelize.define(
@@ -20,9 +19,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "MyProfile",
+      timestamps: false,
     }
   );
-
   // 유저
   const User = sequelize.define(
     "User",
@@ -48,9 +47,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "User",
+      timestamps: false,
     }
   );
-
   // 프로젝트
   const Project = sequelize.define(
     "Project",
@@ -73,12 +72,24 @@ const Model = (sequelize) => {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
+      pariod: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      members: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      git_link: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
     },
     {
       tableName: "Project",
+      timestamps: false,
     }
   );
-
   // 커뮤니티
   const Community = sequelize.define(
     "Community",
@@ -104,9 +115,37 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Community",
+      timestamps: false,
     }
   );
-
+  //후기
+  const Review = sequelize.define(
+    "Review",
+    {
+      review_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      review_content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "Review",
+      timestamps: false,
+    }
+  );
   // 카트
   const Cart = sequelize.define(
     "Cart",
@@ -124,9 +163,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Cart",
+      timestamps: false,
     }
   );
-
   // 태그
   const Tag = sequelize.define(
     "Tag",
@@ -144,9 +183,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Tag",
+      timestamps: false,
     }
   );
-
   // 이미지
   const Img = sequelize.define(
     "Img",
@@ -168,9 +207,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Img",
+      timestamps: false,
     }
   );
-
   // 채팅방
   const Room = sequelize.define(
     "Room",
@@ -188,9 +227,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Room",
+      timestamps: false,
     }
   );
-
   // 메세지
   const Messages = sequelize.define(
     "Messages",
@@ -225,10 +264,10 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Messages",
+      timestamps: false,
     }
   );
-
-  // 유저 채팅방00
+  // 유저 채팅방
   const UserRoom = sequelize.define(
     "UserRoom",
     {
@@ -243,9 +282,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "UserRoom",
+      timestamps: false,
     }
   );
-
   // 유저 리코프런
   const UserRecoplearn = sequelize.define(
     "UserRecoplearn",
@@ -261,9 +300,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "UserRecoplearn",
+      timestamps: false,
     }
   );
-
   // 프로젝트 태그
   const ProjectTag = sequelize.define(
     "ProjectTag",
@@ -279,9 +318,9 @@ const Model = (sequelize) => {
     },
     {
       tableName: "ProjectTag",
+      timestamps: false,
     }
   );
-
   // 리코프런
   const Recoplearn = sequelize.define(
     "Recoplearn",
@@ -296,6 +335,14 @@ const Model = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      font_num: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      back_num: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
       current_num: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -307,35 +354,28 @@ const Model = (sequelize) => {
     },
     {
       tableName: "Recoplearn",
+      timestamps: false,
     }
   );
-
   // 관계 정의
   MyProfile.belongsTo(User, { foreignKey: "user_id" }); // 마이프로필 -> 유저
   MyProfile.belongsTo(Project, { foreignKey: "project_id" }); // 마이프로필 -> 프로젝트
   MyProfile.belongsTo(Cart, { foreignKey: "cart_id" }); // 마이프로필 -> 카트
-
   Community.belongsTo(User, { foreignKey: "user_id" }); // 커뮤니티 -> 유저
   Community.belongsTo(Project, { foreignKey: "project_id" }); // 커뮤니티 -> 프로젝트
-
+  Review.belongsTo(User, { foreignKey: "user_id" }); // 후기 -> 유저
+  Review.belongsTo(Project, { foreignKey: "project_id" }); // 후기 -> 프로젝트
   Cart.belongsTo(Project, { foreignKey: "project_id" }); // 카트 -> 프로젝트
-
   Img.belongsTo(Project, { foreignKey: "project_id" }); // 이미지 -> 프로젝트
-
   Messages.belongsTo(User, { foreignKey: "user_id" }); // 메세지 -> 유저
   Messages.belongsTo(Room, { foreignKey: "room_id" }); // 메세지 -> 채팅방
-
   UserRoom.belongsTo(Room, { foreignKey: "room_id" }); // 유저 채팅방 -> 채팅방
   UserRoom.belongsTo(User, { foreignKey: "user_id" }); // 유저 채팅방 -> 유저
-
   UserRecoplearn.belongsTo(User, { foreignKey: "user_id" }); // 유저 리코프런 -> 유저
   UserRecoplearn.belongsTo(Recoplearn, { foreignKey: "Recoplearn_id" }); // 유저 리코프런 -> 리코프런
-
   ProjectTag.belongsTo(Project, { foreignKey: "project_id" }); // 프로젝트 태그 -> 프로젝트
   ProjectTag.belongsTo(Tag, { foreignKey: "tag_id" }); // 프로젝트 태그 -> 태그
-
   Recoplearn.belongsTo(Project, { foreignKey: "project_id" }); // 리코프런 -> 프로젝트
-
   return {
     MyProfile,
     User,
@@ -350,7 +390,7 @@ const Model = (sequelize) => {
     UserRecoplearn,
     ProjectTag,
     Recoplearn,
+    Review,
   };
 };
-
 module.exports = Model;

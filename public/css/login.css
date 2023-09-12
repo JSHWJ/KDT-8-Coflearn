@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "NanumSquareNeo-Variable";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
-    format("woff2");
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -10,7 +10,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "NanumSquareNeo-Variable";
 }
 
 .login_container {
@@ -25,13 +24,13 @@
 
 form {
   width: 360px;
-  margin-left: 50px;
+  margin-left: 90px;
 }
 
 .login_logo {
   width: 150px;
   height: 30px;
-  margin-left: 100px;
+  margin-left: 60px;
 }
 
 .login_content h2 {
@@ -40,7 +39,7 @@ form {
   text-shadow: 2px 2px #ffd95a;
   text-transform: uppercase;
   font-size: 2.9rem;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .login_content .login_input_div {

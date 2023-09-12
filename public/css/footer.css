@@ -17,10 +17,13 @@ section {
 footer {
   width: 100%;
   height: 110px; /* 내용물에 따라 알맞는 값 설정 */
-  bottom: 0px;
-  position: absolute;
+  bottom: 0;
+  position: fixed; /* 화면 하단에 고정시키기 위해 position을 fixed로 변경 */
   background-color: #4c3d3d;
   display: flex;
+  justify-content: space-between; /* 오른쪽과 왼쪽 요소 사이 간격을 최대로 설정 */
+  align-items: center; /* 수직 중앙 정렬을 위해 추가 */
+  padding: 0 15px; /* 좌우 여백 추가 */
 }
 .left_ch {
   width: 50%;

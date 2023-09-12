@@ -18,6 +18,7 @@ router.get("/login_test", controller.login_test);
 
 // 로그인 모달
 router.get("/login_modal", controller.login_modal);
+router.get("/header_login", controller.header_login);
 
 //프로젝트 목록페이지
 router.get("/project-list", controller.projectlist);
@@ -30,8 +31,18 @@ router.get("/project", controller.project);
 
 // 상세페이지
 router.get("/detailPage", controller.detailPage);
+
 //////////////////////////////////////////////////
 // POST
+
+// 회원가입 정보 저장
+router.post("/signup", controller.post_signup);
+
+// 이메일 전송
+router.post("/signup", controller.post_email);
+
+// 로그인 정보
+router.post("/header_login", controller.post_signin);
 
 // 로그인 마이페이지
 
