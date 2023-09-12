@@ -1,9 +1,54 @@
+const currentUrl = window.location.href;
+let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
+
 document.addEventListener("DOMContentLoaded", async function () {
   const commentWrite = document.querySelector(".comment");
 
+  // 프로젝트 소개 탭
+  const projectDetail = await axios({
+    method: "GET",
+    url: `/detailPage/${num}/intro`,
+    data: { num },
+  });
+
+  const title = document.querySelector("#project_title");
+  const member = document.querySelector("#member_hi");
+  const period = document.querySelector("#period_hi");
+  const link = document.createElement("a");
+  const content = document.querySelector("#exContent_hi");
+  const link_hi = document.querySelector("#link_hi");
+  link.setAttribute("id", "gitlink_hi");
+  link.setAttribute("href", `Link ${projectDetail.data.git_link}`);
+  link.setAttribute("target", "_blank");
+  title.textContent = projectDetail.data.title;
+  member.textContent = projectDetail.data.members;
+  period.textContent = projectDetail.data.period + "일";
+  link.textContent = projectDetail.data.git_link;
+  content.innerHTML = projectDetail.data.content;
+
+  link_hi.appendChild(link);
+
+  // 태그 GET
+  const tagres = await axios({
+    method: "GET",
+    url: `/detailPage/${num}/tags`,
+    data: { num },
+  });
+
+  console.log(tagres.data.tagName);
+
+  const tag = document.querySelector("#tag_hi");
+  const tagSpan = document.createElement("span");
+
+  for (let i = 0; i < tagres.data.tagName.length; i++) {
+    tag.textContent = "#" + tagres.data.tagName[i];
+  }
+
+  // 리뷰 탭 GET
   const res = await axios({
     method: "GET",
-    url: "/detailPage/review",
+    url: `/detailPage/${num}/review`,
+    data: { num },
   });
   //console.log(res.data.data);
 
@@ -26,7 +71,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const commures = await axios({
     method: "GET",
-    url: "/detailPage/community/write",
+    url: `/detailPage/${num}/community/write`,
+    data: { num },
   });
   console.log(commures.data.data);
   for (let i = commures.data.data.length - 1; i >= 0; i--) {
@@ -59,8 +105,11 @@ async function reviewFunc() {
   try {
     const res = await axios({
       method: "POST",
-      url: "/detailPage/review",
-      data: { commentWrite: commentWrite.value },
+      url: `/detailPage/${num}/review`,
+      data: {
+        project_id: num,
+        commentWrite: commentWrite.value,
+      },
     });
     commentWrite.value = "";
 
@@ -99,7 +148,7 @@ async function writeCommunity_hi() {
   allcom.prepend(divTag);
   const res = await axios({
     method: "POST",
-    url: "/detailPage/community/write",
+    url: `/detailPage/${num}/community/write`,
     data: {
       community: text,
     },

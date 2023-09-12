@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("axios에러", error);
   }
   const tag_ch = document.querySelector(".tag_ch");
-
   function addTag(tagname, i) {
     const tag_div = document.createElement("button");
     tag_div.textContent = tagname;
@@ -28,11 +27,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     tag_ch.appendChild(tag_div);
   }
-
   for (let i = 1; i <= Object.keys(tags).length; i++) {
     addTag("#" + tags[i], i);
   }
-
   for (const key in project) {
     if (count_ch % 5 == 0) {
       let searchctn_ch = document.createElement("div");
@@ -63,11 +60,12 @@ document.addEventListener("DOMContentLoaded", async function () {
               <div class="contentContent_ch">${project[key][0]}</div>`;
     }
     content_ch.className = "content_ch";
+    content_ch.setAttribute("onclick", `movedetail(${project[key][2]})`);
+    content_ch.style.cursor = "pointer";
     section[0].appendChild(content_ch);
     count_ch += 1;
   }
 });
-
 const clickdown = () => {
   for (let i = 8; i <= Object.keys(tags).length; i++) {
     let changedisplay = document.getElementsByClassName("#" + tags[i] + "_ch");
@@ -76,7 +74,6 @@ const clickdown = () => {
   document.querySelector(".fa-angle-down").className = "fa-solid fa-angle-up";
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickup()");
 };
-
 const clickup = () => {
   for (let i = 8; i <= Object.keys(tags).length; i++) {
     let changedisplay = document.getElementsByClassName("#" + tags[i] + "_ch");
@@ -85,7 +82,9 @@ const clickup = () => {
   document.querySelector(".fa-angle-up").className = "fa-solid fa-angle-down";
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickdown()");
 };
-
 function gotopageUpload() {
   window.location.href = "/project";
+}
+function movedetail(n) {
+  window.location.href = `/detailPage/${n}`;
 }

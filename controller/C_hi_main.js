@@ -8,20 +8,6 @@ const mypage = (req, res) => {
   res.render("mypage");
 };
 
-// 프로젝트리스트 페이지
-const projectlist = (req, res) => {
-  res.render("projectlist");
-};
-// 리코프런리스트 페이지
-const recoplearnlist = (req, res) => {
-  res.render("recoplearn");
-};
-
-//프로젝트 업로드 페이지
-const project = (req, res) => {
-  res.render("project");
-};
-
 //메인페이지
 const main = (req, res) => {
   res.render("main");
@@ -35,9 +21,45 @@ const detail = (req, res) => {
   });
 };
 
+const detailPage_tags = async (req, res) => {
+  const tagName = [];
+  const project_id = req.params.id;
+  console.log(project_id);
+  const tags = await models.ProjectTag.findAll({
+    where: { project_id },
+    include: {
+      model: models.Tag,
+      attributes: ["tag_name"],
+    },
+  });
+  tags.forEach((item) => {
+    tagName.push(item.Tag.tag_name);
+  });
+  res.json({ tagName });
+};
+
+// 프로젝트 소개
+const detailGet_intro = async (req, res) => {
+  const project_id = req.params.id;
+
+  const project = await models.Project.findOne({
+    where: { project_id },
+  });
+
+  res.json({
+    title: project.title,
+    period: project.period,
+    git_link: project.git_link,
+    content: project.content,
+    members: project.members,
+  });
+};
+
+// 리뷰
+
 const detailPost_review = (req, res) => {
-  const projectid = 1;
   const userid = 1;
+  const projectid = req.body.project_id;
   const review_content = req.body.commentWrite;
 
   //console.log(review_content);
@@ -48,17 +70,25 @@ const detailPost_review = (req, res) => {
     review_content,
   });
   //console.log(review_content);
-  res.json({ data: review_content });
+  res.json({ data: review_content, project_id: projectid });
 };
 
 const detailGet_review = async (req, res) => {
-  const allReview = await models.Review.findAll({});
+  console.log(req.params);
+  const projectid = req.params.id;
+
+  const allReview = await models.Review.findAll({
+    where: { project_id: projectid },
+    attributes: ["review_content"],
+  });
   console.log(allReview);
   res.json({ data: allReview });
 };
 
+// 커뮤니티
+
 const detailPost_community = (req, res) => {
-  const projectid = 1;
+  const projectid = req.params.id;
   const userid = 1;
   const community_content = req.body.community;
 
@@ -68,11 +98,16 @@ const detailPost_community = (req, res) => {
     community_content,
   });
   //console.log(community_content);
-  res.json({ community_content: community_content });
+  res.json({ community_content: community_content, project_id: projectid });
 };
 
 const detailGet_community = async (req, res) => {
-  const allCommunity = await models.Community.findAll({});
+  const projectid = req.params.id;
+
+  const allCommunity = await models.Community.findAll({
+    where: { project_id: projectid },
+    attributes: ["community_content"],
+  });
   console.log(allCommunity);
   res.json({ data: allCommunity });
 };
@@ -85,14 +120,13 @@ const login_modal = (req, res) => {
   res.render("login_modal");
 };
 module.exports = {
-  projectlist,
-  recoplearnlist,
-  project,
   main,
   detail,
   login_modal,
   signup,
   mypage,
+  detailPage_tags,
+  detailGet_intro,
   detailPost_review,
   detailGet_review,
   detailPost_community,
