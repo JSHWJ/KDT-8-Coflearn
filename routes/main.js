@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controller/C_ch_main");
+const ch_controller = require("../controller/C_ch_main");
 const hi_controller = require("../controller/C_hi_main");
 
 //////////////////////////////////////////////////
@@ -20,16 +20,16 @@ router.get("/signup", hi_controller.signup);
 router.get("/login_modal", hi_controller.login_modal);
 
 //프로젝트 목록페이지
-router.get("/project-list", controller_ch.projectlist);
+router.get("/project-list", ch_controller.projectlist);
 
 //프로젝트 목록 페이지에서 검색
-router.get("projectlist/search?value=:value", controller_ch.porjectlist_search);
+router.get("projectlist/search?value=:value", ch_controller.porjectlist_search);
 
 //리코프런 목록페이지
-router.get("/recoplearn-list", controller_ch.recoplearnlist);
+router.get("/recoplearn-list", ch_controller.recoplearnlist);
 
 //프로젝트업로드 페이지
-router.get("/project", controller_ch.project);
+router.get("/project", ch_controller.project);
 
 // 상세페이지
 
@@ -39,7 +39,6 @@ router.get("/detailPage/:id/tags", hi_controller.detailPage_tags);
 
 // 상세페이지 프로젝트 소개
 router.get("/detailPage/:id/intro", hi_controller.detailGet_intro);
-
 
 // 상세페이지 후기
 router.get("/detailPage/:id/review", hi_controller.detailGet_review);
@@ -58,25 +57,25 @@ router.post(
 );
 
 //상세페이지별 리코프런 버튼 수정하기
-router.post("/api/detailpage/recoplearnBtn", controller_ch.updatebtn);
+router.post("/api/detailpage/recoplearnBtn", ch_controller.updatebtn);
 
 //프로젝트 리코프런 필수인원 정보 가져오기
 router.post(
   "/api/detailPage/:id/recplearn/info",
-  controller_ch.makerrecoplearn_post
+  ch_controller.makerrecoplearn_post
 );
 
 //프로젝트 리코프런 등록하기
-router.post("/api/detailpage/recoplearn/make", controller_ch.makerecoplearn);
+router.post("/api/detailpage/recoplearn/make", ch_controller.makerecoplearn);
 
 //프로젝트 목록 페이지 데이터 가져오기
-router.post("/api/project-list", controller_ch.projectlist_post);
+router.post("/api/project-list", ch_controller.projectlist_post);
 
 //리코프런 목록 페이지 데이터 가져오기
-router.post("/api/recoplearn-list", controller_ch.recoplearnlist_post);
+router.post("/api/recoplearn-list", ch_controller.recoplearnlist_post);
 
 //프로젝트 업로드
-router.post("/api/project/write", controller_ch.project_upload);
+router.post("/api/project/write", ch_controller.project_upload);
 
 // 로그인 마이페이지
 

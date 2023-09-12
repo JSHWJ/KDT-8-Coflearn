@@ -21,7 +21,6 @@ const detail = (req, res) => {
   });
 };
 
-
 const detailPage_tags = async (req, res) => {
   const tagName = [];
   const project_id = req.params.id;
@@ -57,14 +56,9 @@ const detailGet_intro = async (req, res) => {
 };
 
 // 리뷰
-
 const detailPost_review = (req, res) => {
   const userid = 1;
   const projectid = req.body.project_id;
-
-const detailPost_review = (req, res) => {
-  const projectid = 1;
-  const userid = 1;
 
   const review_content = req.body.commentWrite;
 
@@ -89,16 +83,9 @@ const detailGet_review = async (req, res) => {
     attributes: ["review_content"],
   });
 
-  res.json({ data: review_content });
-};
-
-const detailGet_review = async (req, res) => {
-  const allReview = await models.Review.findAll({});
-
   console.log(allReview);
   res.json({ data: allReview });
 };
-
 
 // 커뮤니티
 
