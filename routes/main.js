@@ -1,22 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const controller_ch = require("../controller/C_ch_main");
-const controller = require("../controller/C_hi_main");
+
+const controller = require("../controller/C_ch_main");
+const hi_controller = require("../controller/C_hi_main");
 
 //////////////////////////////////////////////////
 // GET
 
 //메인페이지
-router.get("/", controller.main);
+router.get("/", hi_controller.main);
 
 //마이페이지
-router.get("/mypage", controller.mypage);
+router.get("/mypage", hi_controller.mypage);
 
 // 회원가입
-router.get("/signup", controller.signup);
+router.get("/signup", hi_controller.signup);
 
 // 로그인 모달
-router.get("/login_modal", controller.login_modal);
+router.get("/login_modal", hi_controller.login_modal);
 
 //프로젝트 목록페이지
 router.get("/project-list", controller_ch.projectlist);
@@ -31,16 +32,30 @@ router.get("/recoplearn-list", controller_ch.recoplearnlist);
 router.get("/project", controller_ch.project);
 
 // 상세페이지
-router.get("/detailPage/:id", controller.detail);
 
-router.get("/detailPage/:id/review", controller.detailGet_review);
+router.get("/detailPage/:id", hi_controller.detail);
 
-router.get("/detailPage/community/write", controller.detailGet_community);
+router.get("/detailPage/:id/tags", hi_controller.detailPage_tags);
+
+// 상세페이지 프로젝트 소개
+router.get("/detailPage/:id/intro", hi_controller.detailGet_intro);
+
+
+// 상세페이지 후기
+router.get("/detailPage/:id/review", hi_controller.detailGet_review);
+// 상세페이지 커뮤니티detailGet_review
+router.get(
+  "/detailPage/:id/community/write",
+  hi_controller.detailGet_community
+);
 //////////////////////////////////////////////////
 // POST
-router.post("/detailPage/review", controller.detailPost_review);
+router.post("/detailPage/:id/review", hi_controller.detailPost_review);
 
-router.post("/detailPage/community/write", controller.detailPost_community);
+router.post(
+  "/detailPage/:id/community/write",
+  hi_controller.detailPost_community
+);
 
 //상세페이지별 리코프런 버튼 수정하기
 router.post("/api/detailpage/recoplearnBtn", controller_ch.updatebtn);

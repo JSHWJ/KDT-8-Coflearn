@@ -97,14 +97,12 @@
           ></iframe>
 
           <div class="content_hi">
-            <h1>Koplearn</h1>
+            <h1 id="project_title"></h1>
 
-            <div>
-              <i class="fa-solid fa-people-group"
-                >&nbsp; 황동준 장창현 조현익 서정현 서혜원</i
-              >
+            <div id="member_hi">
+              <i class="fa-solid fa-people-group">&nbsp;</i>
             </div>
-            <div>#태그</div>
+            <div id="tag_hi"></div>
             <div class="Cartdiv">
               <button id="CartBtn" type="button" onclick="CartFunc()">
                 담기
@@ -125,15 +123,17 @@
           <div class="tabcontent_hi">
             <div id="tab01">
               <div id="date_hi">
-                <label for="">기간</label><span>yyyy,mm,dd ~ yyyy,mm,dd</span>
+                <label for="">기간</label><span id="period_hi"></span>
               </div>
               <div id="link_hi">
-                Link<a href="http://www.naver.com" target="_blank"
-                  >http://www.naver.com</a
-                >
+                <label for="">Link</label>
               </div>
 
-              <div id="ex_hi"><label for="">상세 설명</label></div>
+              <div id="ex_hi">
+                <label for="">상세 설명</label>
+                <hr />
+                <span id="exContent_hi"></span>
+              </div>
             </div>
             <div id="tab02" class="slide-container">
               <div class="allComment_hi"></div>

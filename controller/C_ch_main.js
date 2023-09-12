@@ -6,7 +6,6 @@ const models = db.User;
 const projectlist = (req, res) => {
   res.render("projectlist");
 };
-
 //프로젝트 목록 페이지 데이터 가져오기
 const projectlist_post = async (req, res) => {
   try {
@@ -34,12 +33,10 @@ const projectlist_post = async (req, res) => {
     console.error("Sequelize에러 발생: ", error);
   }
 };
-
 // 리코프런리스트 페이지
 const recoplearnlist = (req, res) => {
   res.render("recoplearn");
 };
-
 //리코프런 목록 페이지 데이터 가져오기
 const recoplearnlist_post = async (req, res) => {
   try {
@@ -74,12 +71,10 @@ const recoplearnlist_post = async (req, res) => {
     console.error("Sequelize에러 발생: ", error);
   }
 };
-
 //프로젝트 업로드 페이지
 const project = (req, res) => {
   res.render("project");
 };
-
 //프로젝트 업로드 하기
 const project_upload = async (req, res) => {
   const {
@@ -126,6 +121,7 @@ const project_upload = async (req, res) => {
     console.log("프로젝트 추가중 오류 발생", error);
   }
 };
+
 
 //리코프런 DB정보가져오기
 const makerrecoplearn_post = async (req, res) => {
@@ -184,6 +180,7 @@ const updatebtn = async (req, res) => {
 };
 const porjectlist_search = async (req, res) => {};
 
+
 module.exports = {
   projectlist,
   projectlist_post,
@@ -191,8 +188,10 @@ module.exports = {
   recoplearnlist_post,
   project_upload,
   project,
+
   makerrecoplearn_post,
   makerecoplearn,
   updatebtn,
   porjectlist_search,
+
 };

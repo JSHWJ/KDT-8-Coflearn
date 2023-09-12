@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   const tag_ch = document.querySelector(".tag_ch");
 
+
   //태그 목록 가져와 태그 만들기
+
   function addTag(tagname, i) {
     const tag_div = document.createElement("button");
     tag_div.textContent = tagname;
@@ -31,12 +33,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     tag_ch.appendChild(tag_div);
   }
-
   for (let i = 1; i <= Object.keys(tags).length; i++) {
     addTag("#" + tags[i], i);
   }
 
+
   //프로젝트 목록가져와 프로젝트 목록만들기
+
   for (const key in project) {
     if (count_ch % 5 == 0) {
       let searchctn_ch = document.createElement("div");
@@ -74,7 +77,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+
 //태그 목록 화살표 위로변경
+
 const clickdown = () => {
   for (let i = 8; i <= Object.keys(tags).length; i++) {
     let changedisplay = document.getElementsByClassName("#" + tags[i] + "_ch");
@@ -84,7 +89,9 @@ const clickdown = () => {
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickup()");
 };
 
+
 //태그 목록 화살표 아래로 변경
+
 const clickup = () => {
   for (let i = 8; i <= Object.keys(tags).length; i++) {
     let changedisplay = document.getElementsByClassName("#" + tags[i] + "_ch");
@@ -93,6 +100,7 @@ const clickup = () => {
   document.querySelector(".fa-angle-up").className = "fa-solid fa-angle-down";
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickdown()");
 };
+
 
 //프로젝트 목록
 function gotopageUpload() {
@@ -111,3 +119,4 @@ search.addEventListener("keydown", async function (e) {
     window.location.replace(`/search?value=${search.value}`);
   }
 });
+
