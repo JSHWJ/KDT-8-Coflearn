@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/detailPage.css" />
-    <link rel="stylesheet" href="/css/recoplearn.css">
+    <link rel="stylesheet" href="/css/recoplearn.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
@@ -21,6 +23,8 @@
       src="https://kit.fontawesome.com/5286d2d6db.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <title>Coplearn</title>
 
     <style>
@@ -32,7 +36,7 @@
       .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */ 
+        z-index: 1; /* Sit on top */
         left: 0;
         top: 0;
         width: 100vw; /* Full width */
@@ -67,7 +71,7 @@
           </div>
 
           <ul class="navbar_menu_hi">
-            <li><a id="home_hi" href="#">HOME</a></li>
+            <li><a id="home_hi" href="main">HOME</a></li>
             <li><a id="list_hi" href="/projectlist">프로젝트 목록</a></li>
             <li>
               <a id="list_hi" href="#"
@@ -75,7 +79,7 @@
               ></a>
             </li>
 
-            <li><a id="login_hi" href="#">로그인</a></li>
+            <li><a id="login_hi" href="">로그인</a></li>
           </ul>
         </nav>
       </header>
@@ -91,17 +95,20 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
+
           <div class="content_hi">
-            <h1>Koplearn</h1>
-            <div>
-              <i class="fa-solid fa-people-group"
-                >&nbsp; 황동준 장창현 조현익 서정현 서혜원</i
-              >
+            <h1 id="project_title"></h1>
+
+            <div id="member_hi">
+              <i class="fa-solid fa-people-group">&nbsp;</i>
             </div>
-            <div>#태그</div>
-            <div class="rs_hi">
-              <button id="rsBtn_hi" onclick="openrecoplearn()">Recoplearn Start</button>
+            <div id="tag_hi"></div>
+            <div class="Cartdiv">
+              <button id="CartBtn" type="button" onclick="CartFunc()">
+                담기
+              </button>
             </div>
+            <div class="rs_hi"></div>
           </div>
           <div></div>
         </div>
@@ -115,40 +122,52 @@
 
           <div class="tabcontent_hi">
             <div id="tab01">
-              <div id="date_hi">기간<span>yyyy,mm,dd ~ yyyy,mm,dd</span></div>
-              <div id="link_hi">
-                Link<a href="http://www.naver.com" target="_blank"
-                  >http://www.naver.com</a
-                >
+              <div id="date_hi">
+                <label for="">기간</label><span id="period_hi"></span>
               </div>
-              <div id="service_hi"><label for="">서비스 소개</label></div>
-              <div id="ex_hi"><label for="">상세 설명</label></div>
+              <div id="link_hi">
+                <label for="">Link</label>
+              </div>
+
+              <div id="ex_hi">
+                <label for="">상세 설명</label>
+                <hr />
+                <span id="exContent_hi"></span>
+              </div>
             </div>
-            <div id="tab02">
-            
-              <div class="crewComment_hi"><label for="">장창현 크루</label></div>
+            <div id="tab02" class="slide-container">
+              <div class="allComment_hi"></div>
 
-              <div class="crewComment_hi"><label for="">황동준 크루</label></div>
-
-              <div class="crewComment_hi"><textarea class="comment"></textarea><button class="writeComment_hi">작성하기</button></div>
+              <div class="crewCommentWrite_hi">
+                <textarea
+                  class="comment"
+                  placeholder="후기를 작성해주세요."
+                ></textarea
+                ><button class="writeComment_hi" onclick="reviewFunc()">
+                  작성하기
+                </button>
+              </div>
             </div>
             <div id="tab03">
-              <div class="communityContent">
-                <label for="">zzzzzzzzzz</label>
-              </div>
-
-              <div class="communityContent">
-                <label for="">gggggggggggg</label>
-              </div>
-
-              <div class="communityContent">
-                <label for="">vvvvvvvvvvvvvvvv</label>
-              </div>
+              <div class="allCommunity"></div>
 
               <button id="show" class="comWrite_hi" onclick="commuBtn_hi()">
                 커뮤니티 작성하기
               </button>
             </div>
+
+            <!-- 답글 작성 모달 창 -->
+            <div id="replyModal" class="modal">
+              <div class="modal-content">
+                <p style="text-align: center"><b>답글 작성</b></p>
+                <div>
+                  <textarea id="replyContent" cols="50" rows="5"></textarea>
+                  <button onclick="submitReply()">작성하기</button>
+                  <button onclick="closeReplyModal()">취소</button>
+                </div>
+              </div>
+            </div>
+
             <!-- 리코프런 오픈 모달 -->
             <div id="modalWrap_ch" style="display: none">
               <div id="modalContent_ch">
@@ -159,19 +178,30 @@
                       >&times;</span
                     >
                   </div>
-                  <form id="modalrecoplearn_ch">
+                  <form id="modalrecoplearn_ch" name="modalrecoplearn_ch">
                     나의 역할
-                    <input type="radio" name="rule_ch" id="front_ch" checked />
+                    <input
+                      type="radio"
+                      name="rule_ch"
+                      id="front_ch"
+                      value="front"
+                      checked
+                    />
                     <label for="front_ch">프론트엔드</label>
-                    <input type="radio" name="rule_ch" id="back_ch" />
+                    <input
+                      type="radio"
+                      name="rule_ch"
+                      id="back_ch"
+                      value="back"
+                    />
                     <label for="back_ch">백엔드</label>
                     <br />
                     <div>
                       <span class="write_name_ch">프론트엔드 필요 능력</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="front_ability"
+                        id="front_ability"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
@@ -180,8 +210,8 @@
                       <span class="write_name_ch">백엔드 필요 능력</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="back_ability"
+                        id="back_ability"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
@@ -190,31 +220,21 @@
                       <span class="write_name_ch">Re코프런 목표</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="recoplearn_goal"
+                        id="recoplearn_goal"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
                       ></textarea>
                     </div>
                     <span class="write_name_ch">필수 참여인원</span>
-                    <div>DB가져오기</div>
-                    <span class="write_name_ch">다룰수 있는 기술스택</span>
-                    <div>
-                      <form action="">
-                        <div class="search_ch">
-                          <input
-                            type="text"
-                            placeholder="검색어를 입력하세요"
-                          />
-                          <button>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                    <div class="allnum_ch"></div>
                     <div class="submit_section_ch">
-                      <button type="button" id="recoplearnStart_ch">
+                      <button
+                        type="button"
+                        id="recoplearnStart_ch"
+                        onclick="Start_ch()"
+                      >
                         Re코프런 start!
                       </button>
                     </div>
@@ -243,31 +263,19 @@
                       <span class="write_name_ch">참여다짐</span>
                       <br />
                       <textarea
-                        name=""
-                        id=""
+                        name="promise_ch"
+                        id="promise_ch"
                         cols="50"
                         rows="5"
                         class="textarea_ch"
                       ></textarea>
                     </div>
-                    <span class="write_name_ch">필수 참여인원</span>
-                    <div>DB가져오기</div>
-                    <span class="write_name_ch">다룰수 있는 기술스택</span>
-                    <div>
-                      <form action="">
-                        <div class="search_ch">
-                          <input
-                            type="text"
-                            placeholder="검색어를 입력하세요"
-                          />
-                          <button>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
                     <div class="submit_section_ch">
-                      <button type="button" id="recoplearnStart_ch">
+                      <button
+                        type="button"
+                        id="recoplearnStart_ch"
+                        onclick="participate_ch()"
+                      >
                         Re코프런 참여!
                       </button>
                     </div>
@@ -286,15 +294,26 @@
                       ><span style="font-size: 18pt">커뮤니티 작성</span></b
                     ></span
                   >
-                  <div class="comHeader_div"><input type="text" id="comHeader" placeholder="제목을 입력해주세요."></div>
                 </p>
+
+                <div class="comHeader_div">
+                  <input
+                    type="text"
+                    id="comHeader"
+                    placeholder="제목을 입력해주세요."
+                  />
+                </div>
 
                 <form name="form_hi" method="POST" action="post_write">
                   <div id="editor"></div>
                   <button id="out_modal" type="button" onclick="out_hi()">
                     나가기
                   </button>
-                  <button id="WriteBtn_hi" type="button" onclick="">
+                  <button
+                    id="WriteBtn_hi"
+                    type="button"
+                    onclick="writeCommunity_hi()"
+                  >
                     작성하기
                   </button>
                 </form>
@@ -315,33 +334,32 @@
           </div>
         </div>
       </section>
-
-      <!-- footer -->
-      <footer>
-        <!-- 왼쪽 -->
-        <div class="left_ch">
-          <nav>
-            <img src="" alt="Coplearn" />
-          </nav>
-          <div>코푼사람들 : 황동준, 조현익, 장창현, 서정현, 서혜원</div>
-          <div>팀이름 : 코막혀's</div>
-          <div>Copyright 2023. coplearn. All Rights Reserved</div>
-        </div>
-        <!-- 오른쪽 -->
-        <div class="right_ch">
-          <a href="https://github.com/JSHWJ/KDT-8-Coflearn"
-            ><i class="fa-brands fa-github fa-2x"></i
-          ></a>
-          <a href="https://www.instagram.com/"
-            ><i class="fa-brands fa-instagram fa-2x"></i
-          ></a>
-          <a href="https://twitter.com/"
-            ><i class="fa-brands fa-twitter fa-2x"></i
-          ></a>
-        </div>
-      </footer>
     </div>
+    <!-- footer -->
+    <footer>
+      <!-- 왼쪽 -->
+      <div class="left_ch">
+        <nav>
+          <img src="" alt="Coplearn" />
+        </nav>
+        <div>코푼사람들 : 황동준, 조현익, 장창현, 서정현, 서혜원</div>
+        <div>팀이름 : 코막혀's</div>
+        <div>Copyright 2023. coplearn. All Rights Reserved</div>
+      </div>
 
+      <!-- 오른쪽 -->
+      <div class="right_ch">
+        <a href="https://github.com/JSHWJ/KDT-8-Coflearn"
+          ><i class="fa-brands fa-github fa-2x"></i
+        ></a>
+        <a href="https://www.instagram.com/"
+          ><i class="fa-brands fa-instagram fa-2x"></i
+        ></a>
+        <a href="https://twitter.com/"
+          ><i class="fa-brands fa-twitter fa-2x"></i
+        ></a>
+      </div>
+    </footer>
     <script>
       $(function () {
         $(".tabcontent_hi > div").hide();
@@ -358,7 +376,7 @@
 
       const modal = document.getElementById("myModal");
       const closeModalBtn = document.getElementById("out_modal");
-      
+
       function commuBtn_hi() {
         jQuery(document).ready(function () {
           $("#myModal").show();
@@ -420,6 +438,7 @@
         }
       );
     </script>
+    <script src="/js/detailPage.js"></script>
     <script src="/js/recoplearn.js"></script>
   </body>
 </html>

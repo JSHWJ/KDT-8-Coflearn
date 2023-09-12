@@ -31,6 +31,45 @@
   outline: none;
   background-color: white;
 }
+#project_period_ch {
+  width: 90%;
+  border: none;
+  height: 30px;
+  margin: 5px auto 10px auto;
+  text-align: left;
+  outline: none;
+  background-color: white;
+}
+#project_git_ch {
+  width: 90%;
+  border: none;
+  height: 30px;
+  margin: 5px auto 10px auto;
+  text-align: left;
+  outline: none;
+  background-color: white;
+}
+#project_member_ch {
+  width: 90%;
+  border: none;
+  height: 30px;
+  margin: 5px auto 10px auto;
+  text-align: left;
+  outline: none;
+  background-color: white;
+}
+
+.developnum_ch {
+  display: flex;
+  width: 90%;
+  border: none;
+  height: 30px;
+  margin: 5px auto 10px auto;
+  text-align: left;
+  outline: none;
+  background-color: white;
+}
+
 #project_title_ch::placeholder {
   font-size: 25px;
 }
@@ -52,4 +91,16 @@
 .tag_view_ch {
   display: flex;
   margin: 5px auto;
+}
+#front_num_ch {
+  width: 50%;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+#back_num_ch {
+  width: 50%;
+  height: 100%;
+  border: none;
+  outline: none;
 }

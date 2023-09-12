@@ -72,8 +72,20 @@ const Model = (sequelize) => {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
-      pariod: {
+      period: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      thumnail: {
         type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      frontnum: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      backnum: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       members: {
@@ -335,11 +347,19 @@ const Model = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      font_num: {
+      front_num: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      front_goal_num: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
       back_num: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      back_goal_num: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
@@ -349,6 +369,18 @@ const Model = (sequelize) => {
       },
       goal_num: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      frontability: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      backability: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      recoplearn_goal: {
+        type: DataTypes.STRING(255),
         allowNull: false,
       },
     },

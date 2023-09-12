@@ -8,8 +8,9 @@
     <link rel="stylesheet" type="text/css" href="/css/upload.css" />
     <link
       rel="stylesheet"
-      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
       src="https://kit.fontawesome.com/5286d2d6db.js"
       crossorigin="anonymous"
@@ -53,14 +54,38 @@
             size="20"
             placeholder="태그를 입력하세요."
           />
+          <input
+            type="number"
+            id="project_period_ch"
+            size="20"
+            placeholder="일수를 입력하세요.(숫자만 입력)"
+          />
+          <input
+            type="url"
+            id="project_git_ch"
+            size="20"
+            placeholder="github링크를 입력하세요."
+          />
+          <input
+            type="text"
+            id="project_member_ch"
+            size="20"
+            placeholder="참가한 개발자들을 입력하세요."
+          />
+          <div class="developnum_ch">
+            <input
+              type="number"
+              id="front_num_ch"
+              placeholder="프론트엔드 개발자 수를 적어주세요.(숫자만)"
+            /><input
+              type="number"
+              id="back_num_ch"
+              placeholder="백엔드 개발자 수를 적어주세요.(숫자만)"
+            />
+          </div>
           <div id="editor"></div>
           <div class="videoSection_ch">
-            <input
-              type="file"
-              accept="video/*, image/*"
-              id="video-upload"
-              multiple
-            />
+            <input type="file" accept="video/*" id="video-upload" />
             <span id="video-list"></span>
           </div>
           <button type="button" id="project_upload_ch" onclick="upload_ch()">
@@ -94,6 +119,6 @@
       </footer>
     </div>
   </body>
-  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.js"></script>
   <script src="js/project.js"></script>
 </html>
