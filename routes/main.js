@@ -17,7 +17,8 @@ router.get("/mypage", hi_controller.mypage);
 router.get("/signup", hi_controller.signup);
 
 // 로그인 모달
-router.get("/login_modal", hi_controller.login_modal);
+router.get("/login_modal", controller.login_modal);
+router.get("/header_login", controller.header_login);
 
 //프로젝트 목록페이지
 router.get("/project-list", ch_controller.projectlist);
@@ -33,6 +34,7 @@ router.get("/project", ch_controller.project);
 
 // 상세페이지
 
+
 router.get("/detailPage/:id", hi_controller.detail);
 
 router.get("/detailPage/:id/tags", hi_controller.detailPage_tags);
@@ -47,6 +49,7 @@ router.get(
   "/detailPage/:id/community/write",
   hi_controller.detailGet_community
 );
+
 //////////////////////////////////////////////////
 // POST
 router.post("/detailPage/:id/review", hi_controller.detailPost_review);
@@ -76,6 +79,15 @@ router.post("/api/recoplearn-list", ch_controller.recoplearnlist_post);
 
 //프로젝트 업로드
 router.post("/api/project/write", ch_controller.project_upload);
+
+// 회원가입 정보 저장
+router.post("/signup", controller.post_signup);
+
+// 이메일 전송
+router.post("/signup", controller.post_email);
+
+// 로그인 정보
+router.post("/header_login", controller.post_signin);
 
 // 로그인 마이페이지
 

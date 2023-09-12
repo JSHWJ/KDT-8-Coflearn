@@ -28,7 +28,6 @@
     <title>SignUp</title>
   </head>
   <body>
-    <!-- header -->
     <%- include('header_login') %>
 
     <!-- 반응형 이미지 배경 (웹용) -->
@@ -42,12 +41,17 @@
       </div>
 
       <div class="signup_content">
-        <!-- 회원가입 폼 시작 -->
-        <form id="signup_form" name="signup_register">
+        <!-- 로그인 폼 시작 -->
+        <form
+          id="signup_form"
+          action="/signup"
+          name="signup_register"
+          method="post"
+        >
           <h2 class="title">회원가입</h2>
 
           <!-- username -->
-          <div class="input_div name">
+          <div class="input_div signup_name">
             <div class="i">
               <i class="fas fa-user"></i>
             </div>
@@ -58,38 +62,43 @@
           </div>
 
           <!-- email -->
-          <div class="input_div email">
+          <div class="input_div signup_email">
             <div class="i">
               <i class="fa-solid fa-envelope"></i>
             </div>
             <div class="div">
               <h5>EMAIL</h5>
-              <input type="email" class="input" name="email" id="email" />
+              <input
+                type="email"
+                class="input"
+                name="email"
+                id="signup_email"
+              />
             </div>
           </div>
-          <button id="send_code" onclick="sendVerificationCode()">
+          <button id="send_code" onclick="sendVerificationCode">
             인증번호 받기
           </button>
 
           <!-- 인증번호 -->
-          <div class="input_div cert">
+          <div class="input_div signup_cert">
             <div class="i">
               <i class="fa-solid fa-key"></i>
             </div>
             <div class="div">
               <h5>CODE</h5>
               <input
-                type="email"
+                type="text"
                 class="input"
                 id="cert_code"
                 name="cert_code"
               />
             </div>
           </div>
-          <button id="verify_code">인증하기</button>
+          <button id="verify_code" onclick="cert_email()">인증하기</button>
 
           <!-- password -->
-          <div class="input_div pass">
+          <div class="input_div signup_pass">
             <div class="i">
               <i class="fas fa-lock"></i>
             </div>
@@ -109,7 +118,7 @@
             type="submit"
             class="signup_btn"
             id="signup_btn"
-            onclick="signup_registerFunc()"
+            onclick="signup_test_register()"
           >
             가입하기
           </button>
@@ -117,22 +126,19 @@
       </div>
     </div>
 
-    <!-- footer -->
-    <%- include('footer') %>
-
-    <!-- 회원가입 기능 동작 JS -->
+    <%- include('footer')%>
 
     <script>
-      const form = document.forms["signup_register"];
+      const form = document.forms["signup_test_register"];
 
       // 인증번호 받기 버튼 클릭 시 동작 함수
       async function sendVerificationCode() {
         try {
           const res = await axios({
             method: "POST",
-            url: "/signup",
+            url: "/signup_test",
             data: {
-              email: form.email.value,
+              email: form.signup_email.value,
             },
           });
 
@@ -147,18 +153,18 @@
       // 인증하기 버튼 클릭 시 동작 함수
 
       // 회원가입 버튼 클릭시 동작 함수
-      async function signup_registerFunc() {
+      async function signup_register() {
         try {
           const res = await axios({
             method: "POST",
-            url: "/signup",
+            url: "/signup_test",
             data: {
-              nick_name: form.username.value,
-              email: form.email.value,
-              pw: form.password.value,
+              username: form.username.value,
+              email: form.signup_email.value,
+              pw: form.pw.value,
             },
           });
-          if (res.data) {
+          if (res.data.result) {
             alert("회원가입을 축하드립니다.");
             document.location.href = "/";
           }
@@ -187,6 +193,13 @@
       inputs.forEach((input) => {
         input.addEventListener("focus", addcl);
         input.addEventListener("blur", remcl);
+      });
+    </script>
+
+    <!-- header -->
+    <script>
+      $(document).ready(function () {
+        $("#header").load("./header_login.ejs");
       });
     </script>
   </body>
