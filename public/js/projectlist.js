@@ -2,6 +2,8 @@ let tags;
 let project;
 let count_ch = 0;
 let count = 1;
+
+//render전 데이터 가져오기
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     const response = await axios({
@@ -14,6 +16,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("axios에러", error);
   }
   const tag_ch = document.querySelector(".tag_ch");
+
+
+  //태그 목록 가져와 태그 만들기
+
   function addTag(tagname, i) {
     const tag_div = document.createElement("button");
     tag_div.textContent = tagname;
@@ -30,6 +36,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   for (let i = 1; i <= Object.keys(tags).length; i++) {
     addTag("#" + tags[i], i);
   }
+
+
+  //프로젝트 목록가져와 프로젝트 목록만들기
+
   for (const key in project) {
     if (count_ch % 5 == 0) {
       let searchctn_ch = document.createElement("div");
@@ -66,6 +76,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     count_ch += 1;
   }
 });
+
+
+//태그 목록 화살표 위로변경
+
 const clickdown = () => {
   for (let i = 8; i <= Object.keys(tags).length; i++) {
     let changedisplay = document.getElementsByClassName("#" + tags[i] + "_ch");
@@ -74,6 +88,10 @@ const clickdown = () => {
   document.querySelector(".fa-angle-down").className = "fa-solid fa-angle-up";
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickup()");
 };
+
+
+//태그 목록 화살표 아래로 변경
+
 const clickup = () => {
   for (let i = 8; i <= Object.keys(tags).length; i++) {
     let changedisplay = document.getElementsByClassName("#" + tags[i] + "_ch");
@@ -82,9 +100,23 @@ const clickup = () => {
   document.querySelector(".fa-angle-up").className = "fa-solid fa-angle-down";
   document.querySelector(".dropBtn_ch").setAttribute("onclick", "clickdown()");
 };
+
+
+//프로젝트 목록
 function gotopageUpload() {
   window.location.href = "/project";
 }
+
+//프로젝트별 상세목록 가기
 function movedetail(n) {
   window.location.href = `/detailPage/${n}`;
 }
+
+// 검색기능 구현하기
+const search = document.querySelector("#searchcontent_ch");
+search.addEventListener("keydown", async function (e) {
+  if (e.key === "Enter") {
+    window.location.replace(`/search?value=${search.value}`);
+  }
+});
+

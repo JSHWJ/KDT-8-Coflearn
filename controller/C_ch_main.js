@@ -1,5 +1,7 @@
+const { escape } = require("mysql");
 const db = require("../models");
 const models = db.User;
+
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
   res.render("projectlist");
@@ -26,7 +28,6 @@ const projectlist_post = async (req, res) => {
     });
     sendInfo.title = arr;
     sendInfo.tag = arr2;
-    console.log("이게뭐지", sendInfo);
     res.json({ data: sendInfo });
   } catch (error) {
     console.error("Sequelize에러 발생: ", error);
@@ -53,7 +54,7 @@ const recoplearnlist_post = async (req, res) => {
     ]);
     response[0].forEach((item) => {
       arr[item.Project.title] = {
-        front_num: item.font_num,
+        front_num: item.front_num,
         back_num: item.back_num,
         current_num: item.current_num,
         goal_num: item.goal_num,
@@ -65,7 +66,6 @@ const recoplearnlist_post = async (req, res) => {
     });
     sendInfo.project = arr;
     sendInfo.tag = arr2;
-    console.log("이게뭐지2", sendInfo);
     res.json({ data: sendInfo });
   } catch (error) {
     console.error("Sequelize에러 발생: ", error);
@@ -77,8 +77,18 @@ const project = (req, res) => {
 };
 //프로젝트 업로드 하기
 const project_upload = async (req, res) => {
-  const { title, content, video, period, member, git, tags, thumnail } =
-    req.body;
+  const {
+    title,
+    content,
+    video,
+    period,
+    member,
+    git,
+    tags,
+    thumnail,
+    front_num,
+    back_num,
+  } = req.body;
   try {
     const newProject = {
       title: title,
@@ -88,6 +98,8 @@ const project_upload = async (req, res) => {
       members: member,
       git_link: git,
       thumnail: thumnail,
+      frontnum: front_num,
+      backnum: back_num,
     };
     await models.Project.create(newProject);
     let project = await models.Project.findOne({ where: { title: title } });
@@ -109,6 +121,66 @@ const project_upload = async (req, res) => {
     console.log("프로젝트 추가중 오류 발생", error);
   }
 };
+
+
+//리코프런 DB정보가져오기
+const makerrecoplearn_post = async (req, res) => {
+  console.log(req.body.num);
+  const project = await models.Project.findOne({
+    where: {
+      project_id: req.body.num,
+    },
+  });
+  let frontnum = project.frontnum;
+  let backnum = project.backnum;
+  res.json({ frontnum, backnum });
+};
+
+//리코프런 만들기
+const makerecoplearn = async (req, res) => {
+  const {
+    project_id,
+    front_num,
+    back_num,
+    front_goal_num,
+    back_goal_num,
+    current_num,
+    goal_num,
+    frontability,
+    backability,
+    recoplearn_goal,
+  } = req.body;
+
+  const newRecoplearn = {
+    project_id: project_id,
+    front_num: front_num,
+    front_goal_num: front_goal_num,
+    back_num: back_num,
+    back_goal_num: back_goal_num,
+    current_num: current_num,
+    goal_num: goal_num,
+    frontability: frontability,
+    backability: backability,
+    recoplearn_goal: recoplearn_goal,
+  };
+  await models.Recoplearn.create(newRecoplearn);
+  res.json({ result: true });
+};
+
+const updatebtn = async (req, res) => {
+  const response = await models.Recoplearn.findOne({
+    where: { project_id: req.body.num },
+  });
+  console.log("무슨값이 올까?", response);
+  if (response == null) {
+    res.json({ result: true });
+  } else {
+    res.json({ result: false });
+  }
+};
+const porjectlist_search = async (req, res) => {};
+
+
 module.exports = {
   projectlist,
   projectlist_post,
@@ -116,4 +188,10 @@ module.exports = {
   recoplearnlist_post,
   project_upload,
   project,
+
+  makerrecoplearn_post,
+  makerecoplearn,
+  updatebtn,
+  porjectlist_search,
+
 };

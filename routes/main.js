@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
+
 const controller = require("../controller/C_ch_main");
 const hi_controller = require("../controller/C_hi_main");
+
 //////////////////////////////////////////////////
 // GET
 
@@ -18,21 +20,26 @@ router.get("/signup", hi_controller.signup);
 router.get("/login_modal", hi_controller.login_modal);
 
 //프로젝트 목록페이지
-router.get("/project-list", controller.projectlist);
+router.get("/project-list", controller_ch.projectlist);
+
+//프로젝트 목록 페이지에서 검색
+router.get("projectlist/search?value=:value", controller_ch.porjectlist_search);
 
 //리코프런 목록페이지
-router.get("/recoplearn-list", controller.recoplearnlist);
+router.get("/recoplearn-list", controller_ch.recoplearnlist);
 
 //프로젝트업로드 페이지
-router.get("/project", controller.project);
+router.get("/project", controller_ch.project);
 
 // 상세페이지
+
 router.get("/detailPage/:id", hi_controller.detail);
 
 router.get("/detailPage/:id/tags", hi_controller.detailPage_tags);
 
 // 상세페이지 프로젝트 소개
 router.get("/detailPage/:id/intro", hi_controller.detailGet_intro);
+
 
 // 상세페이지 후기
 router.get("/detailPage/:id/review", hi_controller.detailGet_review);
@@ -50,14 +57,26 @@ router.post(
   hi_controller.detailPost_community
 );
 
+//상세페이지별 리코프런 버튼 수정하기
+router.post("/api/detailpage/recoplearnBtn", controller_ch.updatebtn);
+
+//프로젝트 리코프런 필수인원 정보 가져오기
+router.post(
+  "/api/detailPage/:id/recplearn/info",
+  controller_ch.makerrecoplearn_post
+);
+
+//프로젝트 리코프런 등록하기
+router.post("/api/detailpage/recoplearn/make", controller_ch.makerecoplearn);
+
 //프로젝트 목록 페이지 데이터 가져오기
-router.post("/api/project-list", controller.projectlist_post);
+router.post("/api/project-list", controller_ch.projectlist_post);
 
 //리코프런 목록 페이지 데이터 가져오기
-router.post("/api/recoplearn-list", controller.recoplearnlist_post);
+router.post("/api/recoplearn-list", controller_ch.recoplearnlist_post);
 
 //프로젝트 업로드
-router.post("/api/project/write", controller.project_upload);
+router.post("/api/project/write", controller_ch.project_upload);
 
 // 로그인 마이페이지
 

@@ -47,10 +47,19 @@
 
 #rsBtn_hi {
   position: absolute;
-  width: 120px;
-  height: 30px;
+  padding: 7px 15px 7px 15px;
   border-radius: 40px;
   background-color: #ffd95a;
+  border: none;
+  cursor: pointer;
+}
+#rsBtn_ch {
+  position: absolute;
+  padding: 7px 15px 7px 15px;
+  border: none;
+  border-radius: 40px;
+  background-color: #47a992;
+  color: white;
   cursor: pointer;
 }
 

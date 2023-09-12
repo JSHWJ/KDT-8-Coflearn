@@ -2,6 +2,8 @@ const currentUrl = window.location.href;
 let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
 
 document.addEventListener("DOMContentLoaded", async function () {
+  const currentUrl = window.location.href;
+  let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
   const commentWrite = document.querySelector(".comment");
 
   // 프로젝트 소개 탭
@@ -48,7 +50,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   const res = await axios({
     method: "GET",
     url: `/detailPage/${num}/review`,
+
     data: { num },
+
   });
   //console.log(res.data.data);
 
@@ -74,7 +78,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     url: `/detailPage/${num}/community/write`,
     data: { num },
   });
-  console.log(commures.data.data);
   for (let i = commures.data.data.length - 1; i >= 0; i--) {
     const divTag = document.createElement("div");
     const p = document.createElement("p");
