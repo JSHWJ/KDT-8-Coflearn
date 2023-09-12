@@ -23,7 +23,7 @@ router.get("/login_modal", hi_controller.login_modal);
 router.get("/project-list", ch_controller.projectlist);
 
 //프로젝트 목록 페이지에서 검색
-router.get("projectlist/search?value=:value", ch_controller.porjectlist_search);
+router.get("/projectlist/search", ch_controller.porjectlist_search);
 
 //리코프런 목록페이지
 router.get("/recoplearn-list", ch_controller.recoplearnlist);

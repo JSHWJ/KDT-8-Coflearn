@@ -1,24 +1,20 @@
-.footer {
-  width: 100%;
-  height: 110px; /* 내용물에 따라 알맞는 값 설정 */
-  bottom: 0px;
-  /* position: absolute; */
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+#wrap_ch {
+  min-height: 100%;
+  width: 100%;
+}
 section {
-  padding-bottom: 110px; /* footer의 height값과 동일 */
 }
 footer {
-  width: 100%;
-  height: 110px; /* 내용물에 따라 알맞는 값 설정 */
-  bottom: 0px;
-  position: absolute;
+  width: 100%; /* 내용물에 따라 알맞는 값 설정 */
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #4c3d3d;
   display: flex;
 }
@@ -47,10 +43,4 @@ footer {
 .right_ch i {
   color: white;
   margin-right: 1%;
-}
-
-#wrap_ch {
-  min-height: 100%;
-  position: relative;
-  width: 100%;
 }
