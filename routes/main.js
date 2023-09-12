@@ -3,6 +3,7 @@ const router = express.Router();
 
 const ch_controller = require("../controller/C_ch_main");
 const hi_controller = require("../controller/C_hi_main");
+const jh_controller = require("../controller/C_jh_main");
 
 //////////////////////////////////////////////////
 // GET
@@ -14,11 +15,11 @@ router.get("/", hi_controller.main);
 router.get("/mypage", hi_controller.mypage);
 
 // 회원가입
-router.get("/signup", hi_controller.signup);
+router.get("/signup", jh_controller.signup);
 
 // 로그인 모달
-router.get("/login_modal", controller.login_modal);
-router.get("/header_login", controller.header_login);
+router.get("/login_modal", jh_controller.login_modal);
+router.get("/header_login", jh_controller.header_login);
 
 //프로젝트 목록페이지
 router.get("/project-list", ch_controller.projectlist);
@@ -33,7 +34,6 @@ router.get("/recoplearn-list", ch_controller.recoplearnlist);
 router.get("/project", ch_controller.project);
 
 // 상세페이지
-
 
 router.get("/detailPage/:id", hi_controller.detail);
 
@@ -81,13 +81,13 @@ router.post("/api/recoplearn-list", ch_controller.recoplearnlist_post);
 router.post("/api/project/write", ch_controller.project_upload);
 
 // 회원가입 정보 저장
-router.post("/signup", controller.post_signup);
+router.post("/signup", jh_controller.post_signup);
 
 // 이메일 전송
-router.post("/signup", controller.post_email);
+router.post("/signup", jh_controller.post_email);
 
 // 로그인 정보
-router.post("/header_login", controller.post_signin);
+router.post("/header_login", jh_controller.post_signin);
 
 // 로그인 마이페이지
 
