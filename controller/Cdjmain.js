@@ -57,7 +57,8 @@ const main_post = async (req, res) => {
      ptitle: projectData[i].title,
      pcontent: projectData[i].content,
      pvideo: projectData[i].video,
-     pPeriod: projectData[i].pariod,
+     pPeriod: projectData[i].period,
+     pthumnail: projectData[i].thumnail,
      pmembers: projectData[i].members,
      plink: projectData[i].link,
      }
@@ -68,13 +69,15 @@ const main_post = async (req, res) => {
     proJsonall[i] = 
     { 
       project_id: projDataAll[i].project_id,
-     ptitle: projDataAll[i].title,
-     pcontent: projDataAll[i].content,
-     pvideo: projDataAll[i].video,
-     pPeriod: projDataAll[i].pariod,
-     pmembers: projDataAll[i].members,
-     plink: projDataAll[i].link,
-     }
+      ptitle: projDataAll[i].title,
+      pcontent: projDataAll[i].content,
+      pvideo: projDataAll[i].video,
+      pPeriod: projDataAll[i].period,
+      pthumnail: projDataAll[i].thumnail,
+      pmembers: projDataAll[i].members,
+      plink: projDataAll[i].link,
+
+    }
   }
 
      // 리코프런 데이터 객체 만들기
@@ -84,9 +87,9 @@ const main_post = async (req, res) => {
 
       recop_id: copData[i].Recoplearn_id,
       project_id: copData[i].project_id,
-      front_num: copData[i].font_num,
+      front_num: copData[i].front_num,
       back_num: copData[i].back_num,
-      front_goal_num: copData[i].font_goal_num,
+      front_goal_num: copData[i].front_goal_num,
       back_goal_num: copData[i].back_goal_num,
       crr_num: copData[i].current_num,
       goal_num: copData[i].goal_num,
@@ -201,7 +204,8 @@ const myproj_data = async (req, res) => {
           ptitle: uproj_detail_basis[i].title,
           pcontent: uproj_detail_basis[i].content,
           pvideo: uproj_detail_basis[i].video,
-          pPeriod: uproj_detail_basis[i].pariod,
+          pPeriod: uproj_detail_basis[i].period,
+          pthumnail: uproj_detail_basis[i].thumnail,
           pmembers: uproj_detail_basis[i].members,
           plink: uproj_detail_basis[i].link,
         };
@@ -285,7 +289,8 @@ const likepro_data = async (req, res) => {
           ptitle: pro_basis[i].title,
           pcontent: pro_basis[i].content,
           pvideo: pro_basis[i].video,
-          pPeriod: pro_basis[i].pariod,
+          pPeriod: pro_basis[i].period,
+          pthumnail: pro_basis[i].thumnail,
           pmembers: pro_basis[i].members,
           plink: pro_basis[i].link,
         };
@@ -318,7 +323,7 @@ const recop_data = async (req, res) => {
     }
   }
 
-  console.log(reid);
+  console.log('유저리코프런에서 가져온 리코프런 아이디', reid);
 
 
   const recop_basis = await models.Recoplearn.findAll({});
@@ -327,7 +332,7 @@ const recop_data = async (req, res) => {
   console.log(recop_basis.length);
   console.log(reid[0].recop_id);
 
-
+// 사용자와 매치되는 리코프런 데베 가지고 오기
   const recopJson = {};
   console.log(recop.length);
   for(let j = 0; j < recop.length; j++){
@@ -337,9 +342,9 @@ const recop_data = async (req, res) => {
         recopJson[j] = {
           recop_id: reid[j].recop_id,
           proj_id: recop_basis[i].project_id,
-          front_num: recop_basis[i].font_num,
+          front_num: recop_basis[i].front_num,
           back_num: recop_basis[i].back_num,
-          frontG_num: recop_basis[i].font_goal_num,
+          frontG_num: recop_basis[i].front_goal_num,
           backG_num: recop_basis[i].back_goal_num,
           crr_num: recop_basis[i].current_num,
           goal: recop_basis[i].goal_num,
@@ -348,9 +353,37 @@ const recop_data = async (req, res) => {
     };
   }
 
-  console.log('리코프런 사용자 데이터',recopJson);
+  //사용자 리코프런 아이디와 매치되는 프로젝트 데이터 베이스 가지고 오기
+  
+  const proj_basis = await models.Project.findAll({});
+  const reproJson = {};
+  console.log('리코프런 현황 프로젝트 베이스', proj_basis);
+  
+  console.log(Object.keys(recopJson).length);
+  console.log(proj_basis.length);
 
-  res.json({ recop : recopJson })
+  
+  for(let j = 0; j < Object.keys(recopJson).length; j++){
+    for(let i = 0; i<proj_basis.length; i++){
+      
+      if (recopJson[j].proj_id === proj_basis[i].project_id){
+        reproJson[j] = {
+          reproj_id: recopJson[j].proj_id,
+          pthumnail: proj_basis[i].thumnail,
+          ptitle: proj_basis[i].title,
+          pmembers : proj_basis[i].members,
+          front_num: proj_basis[i].frontnum,
+          back_num: proj_basis[i].backnum,
+        };
+      };
+    };
+  }
+
+
+  console.log('리코프런 사용자 데이터',recopJson);
+  console.log('리코프런 사용자 프로젝트 데이터',reproJson);
+
+  res.json({ recop : recopJson, proj : reproJson })
 
 }
 
