@@ -28,9 +28,6 @@
     <title>SignUp</title>
   </head>
   <body>
-    <!-- header -->
-    <%- include('header_login') %>
-
     <!-- 반응형 이미지 배경 (웹용) -->
     <img class="signup_back" src="/back_co.gif" alt="" />
 
@@ -79,7 +76,7 @@
             <div class="div">
               <h5>CODE</h5>
               <input
-                type="email"
+                type="text"
                 class="input"
                 id="cert_code"
                 name="cert_code"
@@ -123,26 +120,26 @@
     <!-- 회원가입 기능 동작 JS -->
 
     <script>
-      const form = document.forms["signup_register"];
+      const signup_form = document.forms["signup_register"];
 
       // 인증번호 받기 버튼 클릭 시 동작 함수
-      async function sendVerificationCode() {
-        try {
-          const res = await axios({
-            method: "POST",
-            url: "/signup",
-            data: {
-              email: form.email.value,
-            },
-          });
+      // async function sendVerificationCode() {
+      //   try {
+      //     const res = await axios({
+      //       method: "POST",
+      //       url: "/signup",
+      //       data: {
+      //         email: form.email.value,
+      //       },
+      //     });
 
-          if (res.data.result) {
-            alert("인증번호가 이메일로 전송되었습니다.");
-          }
-        } catch (error) {
-          console.log("인증번호 전송 오류:", err);
-        }
-      }
+      //     if (res.data.result) {
+      //       alert("인증번호가 이메일로 전송되었습니다.");
+      //     }
+      //   } catch (error) {
+      //     console.log("인증번호 전송 오류:", err);
+      //   }
+      // }
 
       // 인증하기 버튼 클릭 시 동작 함수
 
@@ -153,14 +150,14 @@
             method: "POST",
             url: "/signup",
             data: {
-              nick_name: form.username.value,
-              email: form.email.value,
-              pw: form.password.value,
+              nick_name: signup_form.username.value,
+              email: signup_form.email.value,
+              pw: signup_form.password.value,
             },
           });
           if (res.data) {
             alert("회원가입을 축하드립니다.");
-            document.location.href = "/";
+            document.location.href = "/main";
           }
         } catch (error) {
           console.log("회원가입 오류:", err);

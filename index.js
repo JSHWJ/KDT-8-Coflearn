@@ -32,6 +32,10 @@ app.use(express.static(path.join(__dirname, "public")));
 //body-parser
 app.use(express.json());
 
+app.use(cookieParser());
+
+app.use(cookieParser());
+
 //view engine
 app.set("view engine", "ejs");
 
@@ -52,7 +56,6 @@ aws.config.update({
 const router = require("./routes/main");
 app.use("/", router);
 
-// S3 이미지 처리
 const upload = multer({
   storage: multerS3({
     s3: s3,
@@ -69,6 +72,15 @@ const upload = multer({
   }),
 });
 
+//s3 이미지 처리
+app.post("/api/project/img/write", upload.single("data"), (req, res) => {
+  res.json({ imageUrl: req.file.location });
+});
+
+//s3 비디오처리
+app.post("/api/project/video/upload", upload.single("file"), (req, res) => {
+  res.json({ imageUrl: req.file.location });
+});
 // 오류 처리
 app.use("*", (req, res) => {
   res.status(404).render("404");
