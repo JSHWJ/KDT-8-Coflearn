@@ -52,7 +52,7 @@
       <div id="loginContent_jh">
         <div id="loginBody_jh">
           <div class="closesection">
-            <button id="closeBtn_jh" onclick="closepop_ch()">&times;</button>
+            <button id="closeBtn_jh" onclick="closepop_jh()">&times;</button>
           </div>
           <!-- 로그인 폼 시작 -->
           <div class="login_content">
@@ -92,7 +92,7 @@
               type="button"
               class="sign_btn"
               data-bs-dismiss="modal"
-              onclick="location.href='./signup'"
+              onclick="location.href='/signup'"
             >
               회원가입
             </button>
@@ -118,7 +118,7 @@
           console.log(res);
           if (res.data.result) {
             alert("로그인 성공!");
-            document.location.href = "/";
+            document.location.href = "/main";
           }
         } catch (error) {
           console.log("로그인 하는 중 에러", err);
@@ -135,7 +135,7 @@
         loginmodal.style.display = "block";
       }
 
-      function closepop_ch() {
+      function closepop_jh() {
         loginmodal.style.display = "none";
       }
 

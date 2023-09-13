@@ -2,10 +2,8 @@
   "development": {
     "username": "user",
     "password": "1234",
-
-    "database": "coplearn_local",
-    "host": "127.0.0.1",
-
+    "database": "cople",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

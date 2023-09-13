@@ -155,6 +155,24 @@ const detailGet_recoplearn = async (req, res) => {
   });
   res.json({ data: recoplearn });
 };
+
+// 상세페이지 유저 불러오기
+const detailGet_user = async (req, res) => {
+  const user_id = 1;
+  //const user_id = req.params.id;
+  const user = await models.User.findOne({
+    where: { user_id },
+  });
+  const userJson = {
+    user_id: user.user_id,
+    nick_name: user.nick_name,
+    email: user.email,
+    pw: user.pw,
+  };
+  console.log(userJson);
+  res.json({ user: userJson });
+};
+
 /////////////////////////////////
 const signup = (req, res) => {
   res.render("signup");
@@ -179,4 +197,5 @@ module.exports = {
   detailPost_community,
   detailGet_community,
   detailPost_reply,
+  detailGet_user,
 };
