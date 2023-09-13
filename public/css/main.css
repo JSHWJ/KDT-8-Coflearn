@@ -112,6 +112,7 @@
 #tag_ul_dj p{
     font-size: 14px;
     text-align: center;
+    margin-top: 5px;
 }
 
 #tag_ul_dj a{
@@ -122,6 +123,8 @@
 #tag_ul_dj img{
     display: block;
     margin: auto;
+    width: 72px;
+    height: 73px;
 }
 
 /* ------------------------------------------ */

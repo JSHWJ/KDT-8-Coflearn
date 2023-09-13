@@ -13,9 +13,13 @@ router.get("/main", controller.main);
 
 //마이페이지
 router.get("/mypage/:id", controller.mypage);
+//마이페이지 나에 대한 정보 가져오기
 router.get("/api/mypage/:id", controller.mypage_data);
+//마이페이지 나의 프로젝트 가지고 오기
 router.get("/api/mypage/project/:id", controller.myproj_data);
+//마이페이지 내가 담은 프로젝트 가지고 오기
 router.get("/api/mypage/cart/:id", controller.likepro_data);
+//마이페이지 리코프런 가지고 오기
 router.get("/api/mypage/recoplearn/:id", controller.recop_data);
 
 // 로그인 모달
@@ -51,6 +55,10 @@ router.get(
 );
 //////////////////////////////////////////////////
 // POST
+
+//메인 페이지 정보 가져오기
+router.post("/main", controller.main_post);
+
 router.post("/detailPage/:id/review", hi_controller.detailPost_review);
 
 router.post(
