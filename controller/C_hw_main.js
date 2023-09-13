@@ -15,7 +15,7 @@ const chat = async (req, res) => {
   const roomId = req.params.roomId;
 
   try {
-    const room = await db.Room.findByPk(roomId);
+    const room = await models.Room.findByPk(roomId);
 
     if (!room) {
       console.log(`room_id ${roomId}에 해당하는 레코드가 없습니다.`);
@@ -33,7 +33,7 @@ const chat = async (req, res) => {
       const userId = decodedToken.userId; // 토큰에서 유저 아이디 추출
       const userNickname = decodedToken.userNickname; // 토큰에서 닉네임 추출
 
-      const userRoom = await db.User.UserRoom.findOne({
+      const userRoom = await models.UserRoom.findOne({
         where: { user_id: userId, room_id: roomId },
       });
 
@@ -62,12 +62,12 @@ const room_info = async (req, res) => {
   const roomId = req.params.roomId;
 
   try {
-    const userList = await db.UserRoom.findAll({
-      include: db.User,
+    const userList = await models.UserRoom.findAll({
+      include: models.User,
       where: { room_id: roomId },
     });
 
-    const room = await db.Room.findByPk(roomId);
+    const room = await models.Room.findByPk(roomId);
 
     if (!room) {
       console.log(`room_id ${roomId}에 해당하는 레코드가 없습니다.`);
