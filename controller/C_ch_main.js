@@ -206,20 +206,21 @@ const porjectlist_search = async (req, res) => {
   });
 };
 
+// 태그 검색
 const tag_search = async (req, res) => {
-  // const tag_result=await models.
-  const tagNames = req.query.value.split(","); // 태그 이름 배열
-  console.log(tagNames);
-  // Sequelize를 사용하여 태그 값을 가지고 있는 프로젝트 검색
-  const projects = await models.ProjectTag.findAll({
+  const projectTags = await models.ProjectTag.findAll({
     include: [
       {
-        model: models.Tag,
-        where: { tag_name: tagNames },
+        model: models.Project, // Project 모델과 inner join
+        attributes: ["project_id", "title", "members"], // 필요한 Project 모델의 속성을 선택
+      },
+      {
+        model: models.Tag, // Tag 모델과 inner join
+        attributes: ["tag_id", "tag_name"], // 필요한 Tag 모델의 속성을 선택
       },
     ],
   });
-  console.log(projects.length);
+  res.json({ result: projectTags });
 };
 module.exports = {
   projectlist,

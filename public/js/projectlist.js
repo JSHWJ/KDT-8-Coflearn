@@ -33,9 +33,12 @@ document.addEventListener("DOMContentLoaded", async function () {
           selectedTag.push(tagname);
           clickTag(selectedTag);
         } else {
-          let index = selectedTag.indexOf(e.currentTarget);
+          let index = selectedTag.indexOf(
+            e.currentTarget.innerText.replace("#", " ").trim()
+          );
+          console.log(index);
           selectedTag.splice(index, 1);
-          unclickTag(selectedTag);
+          clickTag(selectedTag);
         }
       });
       4;
@@ -51,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     //프로젝트 목록가져와 프로젝트 목록만들기
-
     for (const key in project) {
       if (count_ch % 5 == 0) {
         let searchctn_ch = document.createElement("div");
@@ -188,18 +190,131 @@ function hasClass(element, className) {
   }
 }
 
+// 태그 클릭할때마다 이벤트
 async function clickTag(selectedTag) {
-  console.log(selectedTag);
-  let response = await axios({
-    method: "GET",
-    url: `/project-list/tag?value=${selectedTag}`,
-    data: {
-      data: selectedTag,
-    },
-  });
-  console.log(response);
+  if (selectedTag.length != 0) {
+    let response = await axios({
+      method: "GET",
+      url: `/project-list/tag?value=${selectedTag}`,
+    });
+    let result = response.data.result;
+    let includetag = [];
+    for (let i in result) {
+      for (let j in selectedTag) {
+        if (result[i].Tag.tag_name.includes(selectedTag[j])) {
+          if (includetag.indexOf(i) == -1) {
+            includetag.push(result[i].project_id);
+          }
+        }
+      }
+    }
+    includetag = filterarr(includetag, selectedTag.length);
+    //요소삭제
+    const elementsToRemove = document.querySelectorAll(".searchctn_ch");
+    elementsToRemove.forEach((element) => {
+      element.remove(); // 요소 삭제
+    });
+    count = 0;
+    count_ch = 0;
+    for (let i of includetag) {
+      for (let key in project) {
+        if (project[key][2] == i) {
+          if (count_ch % 5 == 0) {
+            let searchctn_ch = document.createElement("div");
+            searchctn_ch.classList.add("searchctn_ch", count + "_ch");
+            document.querySelector("section").appendChild(searchctn_ch);
+            count += 1;
+          }
+          let section = document.getElementsByClassName(count - 1 + "_ch");
+          let content_ch = document.createElement("div");
+          if (project[key][1] == null) {
+            content_ch.innerHTML = `
+          <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMMS0tZyqfTuSnDSIB6hSRZYfeBE7xsSxow&usqp=CAU"
+                      alt="이미지"
+                      class="sumnail_ch"
+                    />
+                    <div class="contentTitle_ch">${key}</div>
+                    <div class="contentContent_ch">${project[key][0]}</div>`;
+          } else {
+            content_ch.innerHTML = `
+          <img
+                      src="${project[key][1]}"
+                      alt="이미지"
+                      class="sumnail_ch"
+                    />
+                    <div class="contentTitle_ch">${key}</div>
+                    <div class="contentContent_ch">${project[key][0]}</div>`;
+          }
+          content_ch.className = "content_ch";
+          content_ch.setAttribute("onclick", `movedetail(${project[key][2]})`);
+          content_ch.style.cursor = "pointer";
+          section[0].appendChild(content_ch);
+          count_ch += 1;
+        }
+      }
+    }
+  } else {
+    //요소삭제
+    const elementsToRemove = document.querySelectorAll(".searchctn_ch");
+    elementsToRemove.forEach((element) => {
+      element.remove(); // 요소 삭제
+    });
+    count = 0;
+    count_ch = 0;
+    for (const key in project) {
+      if (count_ch % 5 == 0) {
+        let searchctn_ch = document.createElement("div");
+        searchctn_ch.classList.add("searchctn_ch", count + "_ch");
+        document.querySelector("section").appendChild(searchctn_ch);
+        count += 1;
+      }
+      let section = document.getElementsByClassName(count - 1 + "_ch");
+      let content_ch = document.createElement("div");
+      if (project[key][1] == null) {
+        content_ch.innerHTML = `
+      <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLMMS0tZyqfTuSnDSIB6hSRZYfeBE7xsSxow&usqp=CAU"
+                  alt="이미지"
+                  class="sumnail_ch"
+                />
+                <div class="contentTitle_ch">${key}</div>
+                <div class="contentContent_ch">${project[key][0]}</div>`;
+      } else {
+        content_ch.innerHTML = `
+      <img
+                  src="${project[key][1]}"
+                  alt="이미지"
+                  class="sumnail_ch"
+                />
+                <div class="contentTitle_ch">${key}</div>
+                <div class="contentContent_ch">${project[key][0]}</div>`;
+      }
+      content_ch.className = "content_ch";
+      content_ch.setAttribute("onclick", `movedetail(${project[key][2]})`);
+      content_ch.style.cursor = "pointer";
+      section[0].appendChild(content_ch);
+      count_ch += 1;
+    }
+  }
 }
-async function unclickTag(selectedTag) {
-  let response = await axios({});
-  console.log(selectedTag);
+
+//태그 검색시 사용
+//includetag길이 만큼 나오는지 확인하는 함슈
+function filterarr(arr, leng) {
+  let result = arr.reduce((acc, curr) => {
+    if (acc.get(curr) === undefined) {
+      acc.set(curr, 1);
+    } else {
+      acc.set(curr, acc.get(curr) + 1);
+    }
+    return acc;
+  }, new Map());
+  let filtered_array = [];
+  for (let [key, value] of result.entries()) {
+    if (value >= leng) {
+      filtered_array.push(key);
+    }
+  }
+  return filtered_array;
 }
