@@ -30,16 +30,11 @@
       <nav class="navbar_hi">
         <div class="navbar_logo_hi">
           <i class=""></i>
-          <a href="">Coplean</a>
+          <a href="">Coplearn</a>
         </div>
         <ul class="navbar_menu_hi">
           <li><a id="home_hi" href="#">HOME</a></li>
           <li><a id="list_hi" href="#">프로젝트 목록</a></li>
-          <li>
-            <a id="list_hi" href="#"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></a>
-          </li>
           <li>
             <a
               id="login_hi"
@@ -69,7 +64,7 @@
                 <div class="i"><i class="fa-solid fa-envelope"></i></div>
                 <div class="login_div">
                   <h5>EMAIL</h5>
-                  <input type="email" class="login_input" id="email" />
+                  <input type="email" class="login_input" id="login_email" />
                 </div>
               </div>
 
@@ -85,7 +80,12 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="login_btn" data-bs-dismiss="modal">
+            <button
+              type="button"
+              class="login_btn"
+              data-bs-dismiss="modal"
+              onclick="loginFunc()"
+            >
               로그인
             </button>
             <button
@@ -102,9 +102,30 @@
     </div>
 
     <!-- 로그인 기능 동작 JS -->
-    <!-- 작업 중 ... 추가 예정 -->
+    <script>
+      async function loginFunc() {
+        const form = document.forms["login_form"];
 
-    <!-- input 태그 media JS -->
+        try {
+          const res = await axios({
+            method: "POST",
+            url: "/header_login",
+            data: {
+              email: form.login_email.value,
+              pw: form.pw.value,
+            },
+          });
+          console.log(res);
+          if (res.data.result) {
+            alert("로그인 성공!");
+            document.location.href = "/";
+          }
+        } catch (error) {
+          console.log("로그인 하는 중 에러", err);
+        }
+      }
+    </script>
+
     <script>
       const loginmodal = document.querySelector(".loginmodal");
       loginmodal.style.display = "none";
@@ -118,6 +139,7 @@
         loginmodal.style.display = "none";
       }
 
+      // input 태그 media JS
       const inputs2 = document.querySelectorAll(".login_input");
 
       function add_cl2() {
