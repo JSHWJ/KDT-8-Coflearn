@@ -24,7 +24,7 @@ const detail = (req, res) => {
 const detailPage_tags = async (req, res) => {
   const tagName = [];
   const project_id = req.params.id;
-  console.log(project_id);
+  //console.log(project_id);
   const tags = await models.ProjectTag.findAll({
     where: { project_id },
     include: {
@@ -40,6 +40,7 @@ const detailPage_tags = async (req, res) => {
 
 // 프로젝트 소개
 const detailGet_intro = async (req, res) => {
+  console.log("debug", req.body);
   const project_id = req.params.id;
 
   const project = await models.Project.findOne({
@@ -75,7 +76,7 @@ const detailPost_review = (req, res) => {
 };
 
 const detailGet_review = async (req, res) => {
-  console.log(req.params);
+  //console.log(req.params);
   const projectid = req.params.id;
 
   const allReview = await models.Review.findAll({
@@ -83,7 +84,7 @@ const detailGet_review = async (req, res) => {
     attributes: ["review_content"],
   });
 
-  console.log(allReview);
+  //console.log(allReview);
   res.json({ data: allReview });
 };
 
@@ -102,19 +103,77 @@ const detailPost_community = (req, res) => {
   });
   //console.log(community_content);
 
-  res.json({ community_content: community_content, project_id: projectid });
+  res.json({
+    community_content: community_content,
+    project_id: projectid,
+  });
 };
 const detailGet_community = async (req, res) => {
   const projectid = req.params.id;
 
   const allCommunity = await models.Community.findAll({
     where: { project_id: projectid },
-    attributes: ["community_content"],
+    attributes: ["community_content", "community_id"],
   });
-  console.log(allCommunity);
+  //console.log(allCommunity);
   res.json({ data: allCommunity });
 };
 
+///// 답글
+
+const detailGet_reply = async (req, res) => {
+  const project_id = req.params.id;
+
+  const allReply = await models.Reply.findAll({
+    where: { project_id: project_id },
+  });
+
+  res.json({ data: allReply });
+};
+
+const detailPost_reply = (req, res) => {
+  const user_id = 1;
+  const project_id = req.params.id;
+  const reply_content = req.body.reply_content;
+  const community_id = req.body.community_id;
+
+  models.Reply.create({
+    user_id: user_id,
+    project_id: project_id,
+    reply_content,
+    community_id,
+  });
+  res.json({ data: reply_content });
+};
+
+const detailGet_recoplearn = async (req, res) => {
+  const project_id = req.params.id;
+  console.log("플젝 id:", project_id);
+  const recoplearn = await models.Recoplearn.findAll({
+    where: { project_id },
+    attributes: ["frontability", "backability", "recoplearn_goal"],
+  });
+  res.json({ data: recoplearn });
+};
+
+// 상세페이지 유저 불러오기
+const detailGet_user = async (req, res) => {
+  const user_id = 1;
+  //const user_id = req.params.id;
+  const user = await models.User.findOne({
+    where: { user_id },
+  });
+  const userJson = {
+    user_id: user.user_id,
+    nick_name: user.nick_name,
+    email: user.email,
+    pw: user.pw,
+  };
+  console.log(userJson);
+  res.json({ user: userJson });
+};
+
+/////////////////////////////////
 const signup = (req, res) => {
   res.render("signup");
 };
@@ -129,12 +188,14 @@ module.exports = {
   login_modal,
   signup,
   mypage,
-
+  detailGet_recoplearn,
   detailPage_tags,
   detailGet_intro,
-
+  detailGet_reply,
   detailPost_review,
   detailGet_review,
   detailPost_community,
   detailGet_community,
+  detailPost_reply,
+  detailGet_user,
 };

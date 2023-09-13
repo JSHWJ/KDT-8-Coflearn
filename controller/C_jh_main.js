@@ -28,7 +28,20 @@ const login_modal = (req, res) => {
 };
 
 const header_login = (req, res) => {
-  res.render("header_login");
+  //   if (req.cookies) {
+  //     res.render("header_login", { cookie: true, userName: req.body.nick_name });
+  //   } else {
+  //     res.render("header_login", { cookie: false });
+  //   }
+  //   res.send(req.cookies);
+
+  if (req.cookies.isLoggedIn) {
+    res.render("header_login", { cookie: true });
+    console.log("쿠키값 전달 true");
+  } else {
+    res.render("header_login", { cookie: false });
+    console.log("쿠키값 전달 false");
+  }
 };
 
 //////////////////////////////////////////////////
@@ -60,7 +73,6 @@ const post_signup = async (req, res) => {
     }).then(() => {
       console.log("post_signup");
       console.log("res", res);
-      console.log("res.data", res.data);
 
       res.json({ result: true });
     });
@@ -103,20 +115,30 @@ const post_signin = async (req, res) => {
     where: { email },
   });
 
-  console.log(user);
+  console.log("user 정보", user);
 
   if (user) {
     const result = await compareFunc(pw, user.pw);
 
     // 사용자 존재 O
     if (result) {
-      res.cookie("Loggin", true, cookieConfig);
+      res.cookie("isLoggedIn", true, cookieConfig);
 
-      const token = jwt.sign({ email: user.email }, SECRET);
+      const token = jwt.sign(
+        {
+          user_id: user.user_id,
+          email: user.email,
+          nick_name: user.nick_name,
+        },
+        SECRET
+      );
 
+      res.cookie("jwt", token);
       res.json({ result: true, token, data: user });
 
       console.log("token", token);
+      console.log("cookie 값 확인", req.cookies.isLoggedIn);
+      console.log("jwt cookie", req.cookies.jwt);
       console.log("로그인 성공");
     } else {
       // 비밀번호 틀릴 경우

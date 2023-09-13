@@ -22,6 +22,9 @@ router.get("/api/mypage/cart/:id", controller.likepro_data);
 //마이페이지 리코프런 가지고 오기
 router.get("/api/mypage/recoplearn/:id", controller.recop_data);
 
+// 회원가입
+router.get("/signup", jh_controller.signup);
+
 // 로그인 모달
 router.get("/login_modal", jh_controller.login_modal);
 router.get("/header_login", jh_controller.header_login);
@@ -31,6 +34,9 @@ router.get("/project-list", ch_controller.projectlist);
 
 //프로젝트 목록 페이지에서 검색
 router.get("/project-list/search", ch_controller.porjectlist_search);
+
+//프로젝트 목록 페이지 태그 검색
+router.get("/project-list/tag", ch_controller.tag_search);
 
 //리코프런 목록페이지
 router.get("/recoplearn-list", ch_controller.recoplearnlist);
@@ -53,6 +59,10 @@ router.get(
   "/detailPage/:id/community/write",
   hi_controller.detailGet_community
 );
+
+router.get("/detailPage/:id/community/reply", hi_controller.detailGet_reply);
+
+router.get("/detailPage/:id/recoplearn", hi_controller.detailGet_recoplearn);
 //////////////////////////////////////////////////
 // POST
 
@@ -65,6 +75,10 @@ router.post(
   "/detailPage/:id/community/write",
   hi_controller.detailPost_community
 );
+
+router.post("/detailPage/:id/community/reply", hi_controller.detailPost_reply);
+
+router.get("/detailPage/:id/user", hi_controller.detailGet_user);
 
 //상세페이지별 리코프런 버튼 수정하기
 router.post("/api/detailpage/recoplearnBtn", ch_controller.updatebtn);

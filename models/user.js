@@ -23,43 +23,43 @@ const Model = (sequelize) => {
     }
   );
 
-    //프로필_나의 프로젝트
-    const MyProject = sequelize.define(
-      "MyProject",
-      {
-        user_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        project_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
+  //프로필_나의 프로젝트
+  const MyProject = sequelize.define(
+    "MyProject",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
-      {
-        tableName: "MyProject",
-        timestamps: false,
-      }
-    );
-  
-      //프로필_나의카트
-      const Mycart = sequelize.define(
-        "Mycart",
-        {
-          user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
-          cart_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
-        },
-        {
-          tableName: "Mycart",
-          timestamps: false,
-        }
-      );
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "MyProject",
+      timestamps: false,
+    }
+  );
+
+  //프로필_나의카트
+  const Mycart = sequelize.define(
+    "Mycart",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      cart_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "Mycart",
+      timestamps: false,
+    }
+  );
 
   // 유저
   const User = sequelize.define(
@@ -169,34 +169,67 @@ const Model = (sequelize) => {
       timestamps: false,
     }
   );
-    //후기
-    const Review = sequelize.define(
-      "Review",
-      {
-        review_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-          primaryKey: true,
-          autoIncrement: true,
-        },
-        user_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        project_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        review_content: {
-          type: DataTypes.TEXT,
-          allowNull: false,
-        },
+
+  // 커뮤니티
+  const Reply = sequelize.define(
+    "CommunityReply",
+    {
+      reply_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
       },
-      {
-        tableName: "Review",
-        timestamps: false,
-      }
-    );
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      community_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      reply_content: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "CommunityReply",
+      timestamps: false,
+    }
+  );
+  //후기
+  const Review = sequelize.define(
+    "Review",
+    {
+      review_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      review_content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "Review",
+      timestamps: false,
+    }
+  );
 
   // 카트
   const Cart = sequelize.define(
@@ -454,6 +487,10 @@ const Model = (sequelize) => {
   ProjectTag.belongsTo(Project, { foreignKey: "project_id" }); // 프로젝트 태그 -> 프로젝트
   ProjectTag.belongsTo(Tag, { foreignKey: "tag_id" }); // 프로젝트 태그 -> 태그
   Recoplearn.belongsTo(Project, { foreignKey: "project_id" }); // 리코프런 -> 프로젝트
+  Reply.belongsTo(Community, { foreignKey: "community_id" });
+  Reply.belongsTo(User, { foreignKey: "user_id" });
+  Reply.belongsTo(Project, { foreignKey: "project_id" });
+  Community.hasMany(Reply, { foreignKey: "community_id" });
   return {
     MyProfile,
     MyProject,
@@ -461,6 +498,7 @@ const Model = (sequelize) => {
     User,
     Project,
     Community,
+    Reply,
     Cart,
     Tag,
     Img,
