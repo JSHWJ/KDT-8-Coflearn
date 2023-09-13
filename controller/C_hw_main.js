@@ -1,5 +1,6 @@
 const db = require("../models");
 const models = db.User;
+const { SECRET_KEY } = process.env;
 
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
@@ -25,13 +26,13 @@ const chat = async (req, res) => {
 
     const roomName = room.get("room_name");
 
-    const token = req.cookies.token;
+    const token = req.cookies.jwt;
 
     try {
       const decodedToken = jwt.verify(token, SECRET_KEY);
 
-      const userId = decodedToken.userId; // 토큰에서 유저 아이디 추출
-      const userNickname = decodedToken.userNickname; // 토큰에서 닉네임 추출
+      const userId = decodedToken.user_id; // 토큰에서 유저 아이디 추출
+      const userNickname = decodedToken.nick_name; // 토큰에서 닉네임 추출
 
       const userRoom = await models.UserRoom.findOne({
         where: { user_id: userId, room_id: roomId },
@@ -44,8 +45,6 @@ const chat = async (req, res) => {
         res.status(403).json({ error: "채팅방에 참여할 권한이 없습니다." });
         return;
       }
-
-      // EJS 템플릿을 렌더링하고 클라이언트로 전송
       res.render("chat");
     } catch (err) {
       console.log("토큰 검증 실패");

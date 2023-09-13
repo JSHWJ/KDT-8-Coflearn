@@ -87,23 +87,31 @@ io.on("connection", (socket) => {
   console.log("사용자가 연결되었습니다.");
 
   socket.on("load previous messages", async (roomId) => {
+    console.log(
+      `클라이언트가 채팅방 ${roomId}에 이전 메시지 로드 요청을 보냈습니다.`
+    );
     try {
-      const previousMessages = await db.Messages.findAll({
+      const previousMessages = await db.User.Messages.findAll({
         where: { room_id: roomId },
         order: [["send_at", "DESC"]],
       });
-      socket.emit("previous messages", previousMessages.reverse());
+      if (previousMessages && previousMessages.length > 0) {
+        socket.emit("previous messages", previousMessages.reverse());
+      }
     } catch (error) {
       console.error("이전 메시지 조회 오류:", error);
     }
   });
 
-  socket.join(room_id);
+  socket.on("join room", (roomId) => {
+    console.log(`클라이언트가 채팅방 ${roomId}에 조인 요청을 보냈습니다.`);
+    socket.join(roomId);
+  });
 
-  io.to(room_id).emit(
-    "chat message",
-    `${decodedToken.username} 님이 입장하셨습니다.`
-  );
+  // io.to(room_id).emit(
+  //   "chat message",
+  //   `${decodedToken.username} 님이 입장하셨습니다.`
+  // );
   socket.on("sendMessage", async (room_id, token, message, send_at) => {
     try {
       const decodedToken = jwt.verify(token, "your-secret-key"); // 토큰 검증

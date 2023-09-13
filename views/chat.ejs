@@ -18,6 +18,8 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
     <title>Koflearn</title>
     <style></style>
@@ -27,12 +29,12 @@
       <div class="header-container">
         <div id="title"><div>
         <div class="title-content">
-          <!-- <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAA3klEQVRIDbXBAQEAAAABIP6PzgpAAAACpS6aZKAAAANNDgYz1RnF2SAQAAAABJRU5ErkJggg=="
+          <img
+            src="/user.png"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             id="image_button"
-          /> -->
+          />
           <div id="user_num">4</div>
         </div>
       </div>
@@ -90,8 +92,6 @@
         </form>
       </div>
     </div>
-    <script type="module" src="/auth.js"></script>
-
     <script>
       console.log("시작");
       const roomId = window.location.pathname.split("/").pop();
@@ -110,14 +110,44 @@
 
       const chatForm = document.querySelector("#chatForm");
 
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const messageInput = document.querySelector("#message");
+        const message = messageInput.value;
+        const token = getCookie("jwt");
+        if (message) {  
+
+          const send_at = new Date().toISOString();  // ISO 형식으로 변환
+ 
+        socket.emit('sendMessage', roomId, token, message, send_at);
+        }
+
+        messageInput.value = "";
+      });
+
+      function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+          const [cookieName, cookieValue] = cookie.trim().split('=');
+          if (cookieName === name) {
+            return cookieValue;
+          }
+        }
+        return null;
+
+      }
 
       function loadPreviousMessages(roomId) {
         socket.emit("load previous messages", roomId);
       }
-
       socket.on("previous messages", (messages) => {
-        displayPreviousMessages(messages);
-      });
+        if (messages && messages.length > 0) {
+          displayPreviousMessages(messages);
+  } else {
+    console.log("이전 메시지가 없습니다.");
+  }
+});
+
 
       function displayPreviousMessages(messages) {
         const chatMessages = document.querySelector("#chat-messages");
@@ -145,35 +175,6 @@
         });
       }
 
-      chatForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const messageInput = document.querySelector("#message");
-        const message = messageInput.value;
-        const token = getCookie("Login");
-        if (message) {  
-
-          const send_at = new Date().toISOString();  // ISO 형식으로 변환
- 
-        socket.emit('sendMessage', roomId, token, message, send_at);
-        }
-
-        messageInput.value = "";
-      });
-
-      function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (const cookie of cookies) {
-          const [cookieName, cookieValue] = cookie.trim().split('=');
-          if (cookieName === name) {
-            return cookieValue;
-          }
-        }
-        return null;
-
-      }
-
-
-
       document.addEventListener("DOMContentLoaded", async function () {
         try {
           const roomId = window.location.pathname.split("/").pop();
@@ -187,14 +188,15 @@
             nick_name=data.userNickname
             user_id=data.user_id;
 
-            const myModal = document.getElementById("exampleModal");
-            const myInput = document.getElementById("myInput");
-
-            myModal.addEventListener("shown.bs.modal", () => {
-              myInput.focus();
-              updateUserList(data.userList,nick_name);});
+            // const myModal = document.getElementById("exampleModal");
             joinChatRoom(roomId); // 채팅방에 조인
-            loadPreviousMessages(roomId);}
+            loadPreviousMessages(roomId);
+
+            // myModal.addEventListener("shown.bs.modal", () => {
+        
+            //   updateUserList(data.userList,nick_name);
+            // });
+          }
           else {
             console.log("roomId가 없습니다.");
           }
