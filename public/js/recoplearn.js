@@ -106,6 +106,7 @@ async function Start_ch() {
   }
 }
 
+// 참여하기 버튼
 function participate_ch() {
   const form = document.forms["modalrecoplearn2_ch"];
   const radioGroup = document.getElementsByName("rule_ch");
@@ -118,6 +119,7 @@ function participate_ch() {
   }
   console.log(selectedValue, form.promise_ch.value);
 }
+
 function alertrecoplearn() {
   alert("이미 리코프런이 생성된 프로젝트 입니다.");
 }

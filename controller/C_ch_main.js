@@ -2,6 +2,7 @@ const db = require("../models");
 const models = db.User;
 const { Op } = require("sequelize");
 
+console.log(models);
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
   res.render("projectlist");
@@ -162,10 +163,13 @@ const makerecoplearn = async (req, res) => {
     backability: backability,
     recoplearn_goal: recoplearn_goal,
   };
+
   await models.Recoplearn.create(newRecoplearn);
+  // await models.UserRecoplearn.create();
   res.json({ result: true });
 };
 
+//리코프런 버튼 수정 하기
 const updatebtn = async (req, res) => {
   const response = await models.Recoplearn.findOne({
     where: { project_id: req.body.num },
@@ -178,6 +182,7 @@ const updatebtn = async (req, res) => {
   }
 };
 
+// 검색창 데이터베이스 가져오기
 const porjectlist_search = async (req, res) => {
   const projects = await models.Project.findAll({
     where: {
@@ -201,7 +206,21 @@ const porjectlist_search = async (req, res) => {
   });
 };
 
-
+const tag_search = async (req, res) => {
+  // const tag_result=await models.
+  const tagNames = req.query.value.split(","); // 태그 이름 배열
+  console.log(tagNames);
+  // Sequelize를 사용하여 태그 값을 가지고 있는 프로젝트 검색
+  const projects = await models.ProjectTag.findAll({
+    include: [
+      {
+        model: models.Tag,
+        where: { tag_name: tagNames },
+      },
+    ],
+  });
+  console.log(projects.length);
+};
 module.exports = {
   projectlist,
   projectlist_post,
@@ -213,4 +232,5 @@ module.exports = {
   makerecoplearn,
   updatebtn,
   porjectlist_search,
+  tag_search,
 };

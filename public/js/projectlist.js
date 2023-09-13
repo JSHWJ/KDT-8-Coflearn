@@ -2,6 +2,7 @@ let tags;
 let project;
 let count_ch = 0;
 let count = 1;
+let selectedTag = [];
 
 //render전 데이터 가져오기
 document.addEventListener("DOMContentLoaded", async function () {
@@ -24,11 +25,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     function addTag(tagname, i) {
       const tag_div = document.createElement("button");
-      tag_div.textContent = tagname;
+      tag_div.textContent = "# " + tagname;
       tag_div.className = tagname + "_ch";
       tag_div.addEventListener("click", function (e) {
         e.currentTarget.classList.toggle("active");
+        if (hasClass(e.currentTarget, "active")) {
+          selectedTag.push(tagname);
+          clickTag(selectedTag);
+        } else {
+          let index = selectedTag.indexOf(e.currentTarget);
+          selectedTag.splice(index, 1);
+          unclickTag(selectedTag);
+        }
       });
+      4;
       tag_div.style.padding = "2px 3px";
       tag_div.style.marginRight = "5px";
       if (i >= 8) {
@@ -37,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       tag_ch.appendChild(tag_div);
     }
     for (let i = 1; i <= Object.keys(tags).length; i++) {
-      addTag("# " + tags[i], i);
+      addTag(tags[i], i);
     }
 
     //프로젝트 목록가져와 프로젝트 목록만들기
@@ -164,4 +174,32 @@ async function searchOp_ch() {
   } catch (error) {
     console.log("프로젝트 리스트 검색 도중 에러", error);
   }
+}
+
+// 태그 검색시 실행함수
+// 클래스이름 확인
+function hasClass(element, className) {
+  if (element.classList) {
+    return element.classList.contains(className);
+  } else {
+    return !!element.className.match(
+      new RegExp("(\\s|^)" + className + "(\\s|$)")
+    );
+  }
+}
+
+async function clickTag(selectedTag) {
+  console.log(selectedTag);
+  let response = await axios({
+    method: "GET",
+    url: `/project-list/tag?value=${selectedTag}`,
+    data: {
+      data: selectedTag,
+    },
+  });
+  console.log(response);
+}
+async function unclickTag(selectedTag) {
+  let response = await axios({});
+  console.log(selectedTag);
 }

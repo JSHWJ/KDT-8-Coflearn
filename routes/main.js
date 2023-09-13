@@ -31,6 +31,9 @@ router.get("/project-list", ch_controller.projectlist);
 //프로젝트 목록 페이지에서 검색
 router.get("/project-list/search", ch_controller.porjectlist_search);
 
+//프로젝트 목록 페이지 태그 검색
+router.get("/project-list/tag", ch_controller.tag_search);
+
 //리코프런 목록페이지
 router.get("/recoplearn-list", ch_controller.recoplearnlist);
 

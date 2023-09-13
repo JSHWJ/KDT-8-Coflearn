@@ -63,27 +63,7 @@
   <body>
     <div id="wrap_ch">
       <!-- header -->
-      <header>
-        <nav class="navbar_hi">
-          <div class="navbar_logo_hi">
-            <i class=""></i>
-            <a href="">Coplearn</a>
-          </div>
-
-          <ul class="navbar_menu_hi">
-            <li><a id="home_hi" href="main">HOME</a></li>
-            <li><a id="list_hi" href="/projectlist">프로젝트 목록</a></li>
-            <li>
-              <a id="list_hi" href="#"
-                ><i class="fa-solid fa-magnifying-glass"></i
-              ></a>
-            </li>
-
-            <li><a id="login_hi" href="">로그인</a></li>
-          </ul>
-        </nav>
-      </header>
-      <!-- header -->
+      <%- include('header_login') %>
 
       <section>
         <div class="top_hi">
@@ -156,7 +136,7 @@
               </button>
             </div>
             <!-- 답글 작성 모달 창 -->
-            <div id="replyModal" class="modal" >
+            <div id="replyModal" class="modal">
               <div class="modal-content">
                 <p style="text-align: center"><b>답글 작성</b></p>
                 <div>

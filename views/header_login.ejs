@@ -92,7 +92,7 @@
               type="button"
               class="sign_btn"
               data-bs-dismiss="modal"
-              onclick="location.href='./signup'"
+              onclick="movesingup()"
             >
               회원가입
             </button>
@@ -158,6 +158,10 @@
         input.addEventListener("focus", add_cl2);
         input.addEventListener("blur", rem_cl2);
       });
+
+      function movesingup() {
+        location.href = "http://localhost:8000/signup";
+      }
     </script>
   </body>
 </html>
