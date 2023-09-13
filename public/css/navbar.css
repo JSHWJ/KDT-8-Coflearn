@@ -68,4 +68,28 @@ a {
 
 .navbar_menu_hi li {
   padding: 8px 30px;
+
+  position: relative;
+}
+
+#dropdown_menu_jh {
+  list-style: none;
+  display: none;
+  z-index: 999;
+}
+
+.navbar_menu_hi > li:hover #dropdown_menu_jh {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  text-align: left;
+  width: 200%;
+  height: 200%;
+  background-color: #ffd95a;
+  border-radius: 10px;
+}
+
+#dropdown_menu_jh > li > a:hover {
+  color: #ffffff;
 }

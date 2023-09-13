@@ -21,6 +21,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(cookieParser());
+
 // aws설정
 aws.config.update({
   accessKeyId: S3_ACCESS_KEY_ID,
