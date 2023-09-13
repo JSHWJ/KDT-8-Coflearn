@@ -1,8 +1,9 @@
 // const { User } = require("../models");
+const { consumers } = require('nodemailer/lib/xoauth2');
 const db = require('../models');
 const models = db.User;
 
-let proj, recop, revw, proj_all;
+let proj, recop, revw, proj_all, mypageData;
 
 const main_set = async () => {
   proj = await models.Project.findAll({
@@ -114,13 +115,258 @@ const main_post = async (req, res) => {
   res.json({ project : proJson, projAll : proJsonall, recop : recopJson, revw : revwJson});
 };
 
+
+// const my_set = async () => {
+//   mypageData = await models.User.findAll({});
+// }
+
+/////////////////////////////////////////////////////////////////
 //마이페이지
+
+// const my_set = async () => {
+  
+//   proj_all = await models.Project.findAll({}); 
+
+//   recop = await models.Recoplearn.findAll({});  
+
+// }
+
+
 const mypage = (req, res) => {
   res.render("mypage");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+const mypage_data = async (req, res) => {
+  
+  console.log(req.params);
+  
+  //유저 데이터 가져오기
+  const user_id = req.params.id;
+  const user = await models.User.findOne({
+    where: { user_id },
+  });
+  const userJson = {
+    user_id: user.user_id,
+    nick_name: user.nick_name,
+    email: user.email,
+    pw: user.pw,
+  };
+
+  console.log(userJson);
+
+  res.json({userD : userJson});
 };
+
+////////////////////////////////////////////////////////////////////////////
+
+const myproj_data = async (req, res) => {
+  
+  console.log('내 프로젝트',req.params);
+
+  const user_id = req.params.id;
+  const user = await models.User.findOne({
+    where: { user_id },
+  });
+
+  const user_proj = await models.MyProject.findAll({
+    where: {user_id},
+  });
+  const uprojJson = {};
+  for(let i = 0; i<user_proj.length; i++){
+    uprojJson[i] = {
+      uproj_id : user_proj[i].project_id,
+    }
+  }
+
+  console.log(uprojJson[0].uproj_id);
+  console.log(uprojJson[1].uproj_id);
+  console.log(uprojJson[2].uproj_id);
+  console.log(user_proj.length);
+
+  
+
+  const uproj_detail = {};
+  const uproj_detail_basis = await models.Project.findAll({});
+
+  for(let j=0; j<user_proj.length; j++){
+    for(let i=0; i<uproj_detail_basis.length; i++){
+      let uproj_id_val = uprojJson[j].uproj_id;//유저가 만든 프로젝트의 아이디 
+      // console.log('접속 유저가 만든 프로젝트의 아이디', uproj_id_val);
+      // console.log('비교할 전체 프로젝트의 아이디', uproj_detail_basis[i].project_id);
+      if (uproj_id_val === uproj_detail_basis[i].project_id){
+        uproj_detail[j] = {
+          project_id: uproj_id_val,
+          ptitle: uproj_detail_basis[i].title,
+          pcontent: uproj_detail_basis[i].content,
+          pvideo: uproj_detail_basis[i].video,
+          pPeriod: uproj_detail_basis[i].pariod,
+          pmembers: uproj_detail_basis[i].members,
+          plink: uproj_detail_basis[i].link,
+        };
+      };
+    }
+  }
+
+  console.log('나의 프로젝트 유저',user);
+  console.log('나의 프로젝트',user_proj);
+  console.log('프로젝트 찾아오기', uproj_detail);
+
+
+  res.json({userProject : uproj_detail});
+
+}
+
+
+
+
+const likepro_data = async (req, res) => {
+  console.log('내가 담은 프로젝트', req.params);
+
+  const user_id = req.params.id;
+  const user = await models.User.findOne({
+    where: { user_id },
+  });
+
+  const like_cart = await models.Mycart.findAll({
+    where: {user_id},
+  });
+
+  console.log(user);
+  console.log(like_cart);
+
+
+  const LprojJson ={};
+
+  for(let i = 0; i<like_cart.length; i++){
+      LprojJson[i] = {
+        cart_id : like_cart[i].cart_id,
+      }
+  }
+
+  console.log('카트 가져오기 위한 json',LprojJson);
+  const CartId = {};
+  const Cbasis = await models.Cart.findAll({});
+
+  console.log(LprojJson[0].cart_id);
+  console.log(Cbasis[0].cart_id)
+  console.log(like_cart.length);
+
+  for(let j=0; j<like_cart.length; j++){
+    for(let i=0; i<Cbasis.length; i++){
+      let cart_id_val = LprojJson[j].cart_id;
+      // console.log(cart_id_val);
+      // console.log('카트 비교',Cbasis[i].cart_id);
+      
+      if (cart_id_val === Cbasis[i].cart_id){
+        CartId[j] = {
+          cart_id : cart_id_val,
+          proj_id_C : Cbasis[i].project_id 
+        };
+      };
+    };
+  }
+
+  console.log(CartId);
+  console.log(CartId[0].proj_id_C);
+
+  const capro_detail = {};
+  const pro_basis = await models.Project.findAll({});
+
+  for(let j=0; j<like_cart.length; j++){
+    for(let i=0; i<pro_basis.length; i++){
+      let like_id_val = CartId[j].proj_id_C;//유저가 만든 프로젝트의 아이디 
+      // console.log('접속 유저가 만든 프로젝트의 아이디', uproj_id_val);
+      // console.log('비교할 전체 프로젝트의 아이디', pro_basis[i].project_id);
+      if (like_id_val === pro_basis[i].project_id){
+        capro_detail[j] = {
+          project_id: like_id_val,
+          ptitle: pro_basis[i].title,
+          pcontent: pro_basis[i].content,
+          pvideo: pro_basis[i].video,
+          pPeriod: pro_basis[i].pariod,
+          pmembers: pro_basis[i].members,
+          plink: pro_basis[i].link,
+        };
+      };
+    };
+  }
+
+  console.log('카트에 맞는 프로젝트',capro_detail);
+  res.json({cartProj : capro_detail });
+
+
+}
+
+const recop_data = async (req, res) => {
+
+  console.log('리코프런',req.params);
+  
+  const user_id = req.params.id;
+  const recop = await models.UserRecoplearn.findAll({
+    where: { user_id },
+  });
+
+  console.log(recop.length);
+
+
+  const reid = {};
+  for(let i=0; i<recop.length; i++){
+    reid[i] = {
+      recop_id : recop[i].Recoplearn_id,
+    }
+  }
+
+  console.log(reid);
+
+
+  const recop_basis = await models.Recoplearn.findAll({});
+
+  console.log(recop.length);
+  console.log(recop_basis.length);
+  console.log(reid[0].recop_id);
+
+
+  const recopJson = {};
+  console.log(recop.length);
+  for(let j = 0; j < recop.length; j++){
+    for(let i = 0; i<recop_basis.length; i++){
+      
+      if (reid[j].recop_id === recop_basis[i].Recoplearn_id){
+        recopJson[j] = {
+          recop_id: reid[j].recop_id,
+          proj_id: recop_basis[i].project_id,
+          front_num: recop_basis[i].font_num,
+          back_num: recop_basis[i].back_num,
+          frontG_num: recop_basis[i].font_goal_num,
+          backG_num: recop_basis[i].back_goal_num,
+          crr_num: recop_basis[i].current_num,
+          goal: recop_basis[i].goal_num,
+        };
+      };
+    };
+  }
+
+  console.log('리코프런 사용자 데이터',recopJson);
+
+  res.json({ recop : recopJson })
+
+}
+
+
+//마이페이지 데이터 받기
+// const mypage_post = (req, res) => {
+
+// };
 
 module.exports = {
   main,
   main_post,
   mypage,
+  mypage_data,
+  myproj_data,
+  likepro_data,
+  recop_data,
+  // mypage_post,
 };

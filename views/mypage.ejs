@@ -17,6 +17,7 @@
       src="https://kit.fontawesome.com/5286d2d6db.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 <body id="mypage_body_dj">
@@ -69,13 +70,400 @@
 
 
         <div class="rightcont_dj">
-            <div style="display: block;" id="prof_dj" class="cont">프로필</div>
+            <div style="display: block;" id="prof_dj" class="cont">
+              <div id="prof_dj_inbox">
+                <img src="https://t1.daumcdn.net/cfile/tistory/23075943521EA9282E" alt="">
+              
+                <table id="prof_table">
+                  <tr style="border-bottom: 3px solid #FFD95A;">
+                    <td>닉네임</td>
+                    <td> : </td>
+                    <td><span id="nick_dj">dong</span></td>
+                  </tr>
+                  <tr style="border-bottom: 3px solid #FFD95A;">
+                    <td>이메일</td>
+                    <td> : </td>
+                    <td><span id="email_dj">dong@naver.com</span></td>
+                  </tr>
+                  <tr style="border-bottom: 3px solid #FFD95A;">
+                    <td>패스워드</td>
+                    <td> : </td>
+                    <td><span id="pw_dj">1334</span></td>
+                  </tr>
+                </table>
+              </div>        
+            </div>
             
-            <div id="myprof_dj" class="cont"> 내 프로젝트</div>
-            <div id="likeprof_dj" class="cont">담은 프로젝트</div>
+            <div id="myprof_dj" class="cont">
+              <div class="mypro">
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                <a href="">
+                  <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                  alt="">
+                  <p>Re코프런 공고 이름</p>
+                  <div>
+                    <span style="font-size: 14px;">
+                      필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                    </span>
+                    <br>
+                    <span style="font-size: 14px;">
+                      모집 현황(모집 완료, 모집 중)
+                    </span>
+                  </div>
+                </a>
+                  
+              </div>
+            </div>
+            
+            <div id="likeprof_dj" class="cont">
+              <table class="mypro_ta">
+                <tr>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                </tr>
 
-            <div id="re_now_dj" class="cont">리코프런 현황</div>
-            <div id="re_chat_dj" class="cont">리코프런 채팅방</div>
+                <tr>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+
+            <div id="re_now_dj" class="cont">
+              <table class="mypro_ta">
+                <tr>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">
+                      <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+                      alt="">
+                      <p>Re코프런 공고 이름</p>
+                      <div>
+                        <span style="font-size: 14px;">
+                          필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+                        </span>
+                        <br>
+                        <span style="font-size: 14px;">
+                          모집 현황(모집 완료, 모집 중)
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+            
+            <div id="re_chat_dj" class="cont">
+              리코프런 채팅방
+            </div>
         </div>
       </section>
 
