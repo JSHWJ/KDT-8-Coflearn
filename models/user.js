@@ -19,6 +19,7 @@ const Model = (sequelize) => {
     },
     {
       tableName: "MyProfile",
+      timestamps: false,
     }
   );
 
