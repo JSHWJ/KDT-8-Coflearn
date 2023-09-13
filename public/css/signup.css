@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "NanumSquareNeo-Variable";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
-    format("woff2");
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -10,11 +10,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "NanumSquareNeo-Variable";
-}
-
-body {
-  overflow: hidden;
+  font-family: "GmarketSansMedium";
 }
 
 .signup_back {
@@ -162,7 +158,7 @@ form {
   margin-bottom: 4px;
 }
 
-#send_email {
+#send_code {
   display: block;
   width: 100%;
   height: 50px;
@@ -180,7 +176,7 @@ form {
   transition: 0.5s;
 }
 
-#cert_email {
+#verify_code {
   display: block;
   width: 100%;
   height: 50px;
