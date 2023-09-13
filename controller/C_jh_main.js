@@ -154,7 +154,7 @@ const compareFunc = (password, dbpass) => bcrypt.compare(password, dbpass);
 //쿠키 설정 함수
 const cookieConfig = {
   httpOnly: true,
-  maxAge: 60 * 1000, //1분
+  maxAge: 60 * 1000 * 10, // 60 * 1000 = 1분
 };
 
 const SECRET = "mySecret";
