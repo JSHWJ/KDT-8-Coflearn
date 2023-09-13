@@ -42,8 +42,8 @@
       </div>
 
       <div class="signup_content">
-        <!-- 회원가입 폼 시작 -->
-        <form id="signup_form" name="signup_register">
+        <!-- 로그인 폼 시작 -->
+        <form>
           <h2 class="title">회원가입</h2>
 
           <!-- username -->
@@ -53,7 +53,7 @@
             </div>
             <div class="div">
               <h5>USERNAME</h5>
-              <input type="text" class="input" id="username" name="username" />
+              <input type="text" class="input" id="username" />
             </div>
           </div>
 
@@ -64,12 +64,10 @@
             </div>
             <div class="div">
               <h5>EMAIL</h5>
-              <input type="email" class="input" name="email" id="email" />
+              <input type="email" class="input" id="email" />
             </div>
           </div>
-          <button id="send_code" onclick="sendVerificationCode()">
-            인증번호 받기
-          </button>
+          <button id="send_email" onclick="send_email()">인증번호 받기</button>
 
           <!-- 인증번호 -->
           <div class="input_div cert">
@@ -78,15 +76,10 @@
             </div>
             <div class="div">
               <h5>CODE</h5>
-              <input
-                type="email"
-                class="input"
-                id="cert_code"
-                name="cert_code"
-              />
+              <input type="email" class="input" id="cert_number" />
             </div>
           </div>
-          <button id="verify_code">인증하기</button>
+          <button id="cert_email" onclick="cert_email()">인증하기</button>
 
           <!-- password -->
           <div class="input_div pass">
@@ -95,75 +88,41 @@
             </div>
             <div class="div">
               <h5>Password</h5>
-              <input
-                type="password"
-                class="input"
-                name="password"
-                id="password"
-              />
+              <input type="password" class="input" />
             </div>
           </div>
 
           <!-- 가입하기 버튼 -->
-          <button
-            type="submit"
-            class="signup_btn"
-            id="signup_btn"
-            onclick="signup_registerFunc()"
-          >
+          <button type="submit" class="signup_btn" onclick="signup_register()">
             가입하기
           </button>
         </form>
       </div>
     </div>
 
-    <!-- footer -->
-    <%- include('footer') %>
-
-    <!-- 회원가입 기능 동작 JS -->
+    <!-- 기능 동작 JS -->
 
     <script>
-      const form = document.forms["signup_register"];
+      async function signup_register() {
+        const signup_form = document.forms["signup_register"];
 
-      // 인증번호 받기 버튼 클릭 시 동작 함수
-      async function sendVerificationCode() {
         try {
           const res = await axios({
             method: "POST",
             url: "/signup",
             data: {
-              email: form.email.value,
+              username: signup_form.username.value,
+              email: signup_form.email.value,
+              cert_number: signup_form.cert_number.value,
+              pw: signup_form.pw.value,
             },
           });
-
           if (res.data.result) {
-            alert("인증번호가 이메일로 전송되었습니다.");
-          }
-        } catch (error) {
-          console.log("인증번호 전송 오류:", err);
-        }
-      }
-
-      // 인증하기 버튼 클릭 시 동작 함수
-
-      // 회원가입 버튼 클릭시 동작 함수
-      async function signup_registerFunc() {
-        try {
-          const res = await axios({
-            method: "POST",
-            url: "/signup",
-            data: {
-              nick_name: form.username.value,
-              email: form.email.value,
-              pw: form.password.value,
-            },
-          });
-          if (res.data) {
-            alert("회원가입을 축하드립니다.");
+            alert("회원가입이 완료되었습니다.");
             document.location.href = "/";
           }
         } catch (error) {
-          console.log("회원가입 오류:", err);
+          console.log(err);
         }
       }
     </script>
