@@ -73,7 +73,6 @@ const post_signup = async (req, res) => {
     }).then(() => {
       console.log("post_signup");
       console.log("res", res);
-      console.log("res.data", res.data);
 
       res.json({ result: true });
     });
