@@ -170,13 +170,14 @@ const updatebtn = async (req, res) => {
   const response = await models.Recoplearn.findOne({
     where: { project_id: req.body.num },
   });
-  console.log("무슨값이 올까?", response);
+  //console.log("무슨값이 올까?", response);
   if (response == null) {
     res.json({ result: true });
   } else {
     res.json({ result: false });
   }
 };
+
 const porjectlist_search = async (req, res) => {
   const projects = await models.Project.findAll({
     where: {
@@ -199,6 +200,7 @@ const porjectlist_search = async (req, res) => {
     sendData,
   });
 };
+
 
 module.exports = {
   projectlist,

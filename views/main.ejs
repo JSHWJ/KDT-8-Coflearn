@@ -1,711 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
+    <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" 
+    crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/footer.css" />
 
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/main_footer.css"/>
+    
     <script
       src="https://kit.fontawesome.com/5286d2d6db.js"
       crossorigin="anonymous"
     ></script>
-  </head>
-  <body>
-    <div id="Wrap_ch">
-      <header>
-        <nav class="navbar_hi">
-          <div class="navbar_logo_hi">
-            <i class=""></i>
-            <a href="">Coplean</a>
-          </div>
-          <ul class="navbar_menu_hi">
-            <li><a id="home_hi" href="main">HOME</a></li>
-            <li><a id="list_hi" href="project-list">프로젝트 목록</a></li>
-            <li><a id="login_hi" href="login_modal">로그인</a></li>
-          </ul>
-        </nav>
-      </header>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-      <!-- <div id="nav_bottom_dj" style="background-color: #FFD95A; height: 20px;"></div> -->
+    
+</head>
+<body id="main_body_dj">
+  <div id="Wrap_ch">
+    <header>
+      <nav class="navbar_dj">
+        <div class="navbar_logo_hi">
+          <i class=""></i>
+          <a href="">Coplean</a>
+        </div>
+        <ul class="navbar_menu_hi">
+          <li><a id="home_hi" href="#">HOME</a></li>
+          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+          <li><a id="login_hi" href="#">로그인</a></li>
+        </ul>
+      </nav>
+    </header>
 
-      <section class="sech">
-        <div>
-          <form class="search_dj">
-            <h4 id="search_title_dj">
-              코프런에서 원하는 프로젝트를 찾아보세요!
-            </h4>
+    <!-- <div id="nav_bottom_dj" style="background-color: #FFD95A; height: 20px;"></div> -->
 
-            <div id="sech_box_dj">
-              <div id="sech_inbox_dj">
-                <input
-                  type="text"
-                  id="search_keyword_dj"
-                  placeholder="보고 싶은 프로젝트를 검색하세요."
-                />
-                <!-- input 창은 inline 속성(자기 크기만큼만 공간을 차지)이기 때문에 
+
+
+    <section class="sech">
+      <div>
+        <form class="search_dj">
+          
+          <h4 id="search_title_dj">코프런에서 원하는 프로젝트를 찾아보세요!</h4>
+          
+          <div id="sech_box_dj">
+            <div id="sech_inbox_dj">
+              <input type="text" id="search_keyword_dj" placeholder="보고 싶은 프로젝트를 검색하세요.">
+              <!-- input 창은 inline 속성(자기 크기만큼만 공간을 차지)이기 때문에 
                 마진오토로 가운데 정렬을 하지 못한다 block으로 바꾸어주면 적용할 수 있다. -->
-                <button id="sech_btn_dj" onclick="sechK_dj()">
-                  <i
-                    class="fa-solid fa-magnifying-glass"
-                    style="font-size: x-large"
-                  ></i>
-                </button>
-              </div>
+              <button id="sech_btn_dj" onclick="sechK_dj()"><i class="fa-solid fa-magnifying-glass" style="font-size: x-large;"></i> </button>  
             </div>
 
-            <div id="sech_tag_dj">
-              <ul
-                id="tag_ul_dj"
-                aria-live="polite"
-                style="transform: translate3d(0px, 0px, 0px)"
-              >
-                <li role="group" aria-label="1 / 14" style="margin-right: 24px">
-                  <section style="">
+          </div>
+          
+          <div id="sech_tag_dj">
+
+              <ul id="tag_ul_dj" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+          
+                <li role="group" aria-label="1 / 14" style="margin-right: 24px;">
+                  
+                  <section  style="">
                     <a href="/api/main/js" data-category="js">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/byManage.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/byManage.png" >
                       <div>
                         <p># JS</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="2 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="2 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/jQuery" data-category="jQuery">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># jQuery</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="3 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="3 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/React" data-category="React">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># 리액트</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="4 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="4 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Java" data-category="Java">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Java</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="5 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="5 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Typescript" data-category="Typescript">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Typescript</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="6 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="6 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Nodejs" data-category="Nodejs">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Node.js</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="7 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="7 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Spring" data-category="Spring">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># 스프링</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="8 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="8 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/SpringBoot" data-category="SpringBoot">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># 스프링부트</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li role="group" aria-label="9 / 14" style="margin-right: 24px">
+                <li role="group" aria-label="9 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Socket" data-category="Socket">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Socket</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li
-                  role="group"
-                  aria-label="10 / 14"
-                  style="margin-right: 24px"
-                >
+                <li role="group" aria-label="10 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Apache" data-category="Apache">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># 아파치</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li
-                  role="group"
-                  aria-label="11 / 14"
-                  style="margin-right: 24px"
-                >
+                <li role="group" aria-label="11 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/nginex" data-category="nginex">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
-                        <p># nginex</p>
+                        <p># nginx</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li
-                  role="group"
-                  aria-label="12 / 14"
-                  style="margin-right: 24px"
-                >
+                <li role="group" aria-label="12 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Docker" data-category="Docker">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Docker</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li
-                  role="group"
-                  aria-label="13 / 14"
-                  style="margin-right: 24px"
-                >
+                <li role="group" aria-label="13 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Mysql" data-category="Mysql">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Mysql</p>
                       </div>
                     </a>
                   </section>
                 </li>
-                <li
-                  role="group"
-                  aria-label="14 / 14"
-                  style="margin-right: 24px"
-                >
+                <li role="group" aria-label="14 / 14" style="margin-right: 24px;">
+                  
                   <section style="">
                     <a href="/api/main/Oracle" data-category="Oracle">
-                      <img
-                        src="https://cdn.inflearn.com/public/curation/x2/spring.png"
-                      />
+                      <img src="https://cdn.inflearn.com/public/curation/x2/spring.png">
                       <div>
                         <p># Oracle</p>
                       </div>
                     </a>
                   </section>
                 </li>
-              </ul>
-            </div>
-          </form>
-        </div>
-      </section>
+            </ul>                
+          </div>
+        </form>
+      </div>
+    </section>
 
-      <br />
-      <br />
+    <br>
+    <br>
 
-      <section class="list_bignemo_dj">
-        <section class="proindex_dj">
-          <div id="pro_header_dj">
-            <div id="header_inbox_dj">
+    <section class="list_bignemo_dj">
+      <section class="proindex_dj">
+
+        <div id='pro_header_dj'>
+          <div id="header_inbox_dj">
               <a id="gotoPlist_dj" href="/api/project-list">
-                <h4 id="pro_title_dj">우리의 프로젝트 모아보기 💙</h4>
+                <h4 id = "pro_title_dj">우리의 프로젝트 모아보기 💙</h4>
                 <span>
                   <i id="list_icon_dj" class="fa-solid fa-chevron-right"></i>
                 </span>
               </a>
-              <p id="listp_dj">
-                포스코X코딩온 KDT에서 해온 프로젝트를 확인해보세요!
-              </p>
+              <p id="listp_dj">포스코X코딩온 KDT에서 해온 프로젝트를 확인해보세요!</p>
+          </div>
+        </div>
+        
+        <div class="plist_box_dj">
+          <!-- <a href="">
+            <div>
+              <video autoplay muted src="/testvideo.mp4"></video>
             </div>
-          </div>
-          <div class="plist_box_dj">
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 인원수</p>
+            <p style="font-size: 14px;">프로젝트 기간</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a>
 
-            <a href="">
-              <iframe
-                src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              >
-              </iframe>
-              <p>프로젝트 이름</p>
-              <p style="font-size: 11px">프로젝트 설명 요약</p>
-            </a>
-          </div>
-        </section>
+          <a href="">
+            <iframe  src="https://www.youtube.com/embed/cR16pTMmUks?si=pEO2gKuYGNGnt16S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <p style="font-size: 20px;">프로젝트 이름</p>
+            <p style="font-size: 14px;">프로젝트 설명 요약</p>
+          </a> -->
+          
+          
+        </div>    
+      </section>
 
-        <br />
-        <br />
+      <br>
+      <br>
 
-        <section class="reindex_dj">
-          <div id="re_header_dj">
-            <div id="header_inbox_dj">
+      <section class="reindex_dj">
+        <div id='re_header_dj'>
+          <div id="header_inbox_dj">
               <a id="gotoRlist_dj" href="/api/recoplearn">
-                <h4 id="re_title_dj">Re코프런 현황 🐣</h4>
+                <h4 id = "re_title_dj">Re코프런 현황 🐣</h4>
                 <span>
                   <i id="list_icon_dj" class="fa-solid fa-chevron-right"></i>
                 </span>
               </a>
-              <p id="listp_dj">
-                포스코X코딩온 KDT의 프로젝트를 클론코딩 해보아요..!
-              </p>
+              <p id="listp_dj">포스코X코딩온 KDT의 프로젝트를 클론코딩 해보아요..!</p>
+          </div>
+        </div>
+
+        <div class="relist_box_dj">
+          <!-- <a href="">
+            <img src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160" 
+            alt="">
+            <p>Re코프런 공고 이름</p>
+            <div>
+              <span style="font-size: 14px;">
+                필요인원 : 프론트엔드[1/2] 백엔드[0/1]
+              </span>
+              <br>
+              <span style="font-size: 14px;">
+                모집 현황(모집 완료, 모집 중)
+              </span>
             </div>
-          </div>
+          </a> -->
 
-          <div class="relist_box_dj">
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
 
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-
-            <a href="">
-              <img
-                src="https://play-lh.googleusercontent.com/proxy/2tj1HTTkxfLUCHMYCMY7Ik_u9Dv-ctrQ7tteluo8MkL9bUzSFutbEcvkGroJxU6PTS84IHjfzCYjRsCflXcZ5k_CV2OAD2Al4i_fUCrb6cBVNvtB4TZhu97Z=s3840-w3840-h2160"
-                alt=""
-              />
-              <p>Re코프런 공고 이름</p>
-              <div>
-                <span style="font-size: 11px">
-                  필요인원 : 프론트엔드[1/2] 백엔드[0/1]
-                </span>
-                <br />
-                <span style="font-size: 11px">
-                  모집 현황(모집 완료, 모집 중)
-                </span>
-              </div>
-            </a>
-          </div>
-        </section>
-      </section>
-
-      <br />
-      <br />
-      <br />
-
-      <section class="pro_count_dj">
-        <div class="pro_num_dj">
-          <div id="pro_num_inbox_dj">
-            <h4>
-              <span style="color: #c07f00">3,000</span>개의 프로젝트가<br />
-              코프런과 함께합니다.
-            </h4>
-            <br />
-            <p>
-              코딩온 KDT 웹 풀스택 교육 과정 속에서 <br />탄생한 프로젝트들을
-              확인하고, 따라해보며 <br />함께 성장해봐요!!
-            </p>
-            <p>
-              우리 코프런과 함께 꽉 막히고, 답답한 문제
-              <br />들을 풀어보아요.
-            </p>
-          </div>
-        </div>
-        <div class="pro_review_dj">
-          <div class="review 1">
-            <span>사용자 님</span><br />
-            이번 프로젝트 하면서 실무적인 경험과 새로운 협업 방식에 대해 알 수
-            있어서 정말 좋았습니다. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Sed iusto quo sit ullam possimus, exercitationem
-            recusandae ipsa nemo libero fugit, sunt voluptas blanditiis culpa
-            deserunt. Possimus aspernatur commodi quae ad.
-          </div>
-          <div class="review 2">
-            <span>사용자 님</span><br />
-            이번 프로젝트 하면서 실무적인 경험과 새로운 협업 방식에 대해 알 수
-            있어서 정말 좋았습니다. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quaerat, minima possimus rerum repellendus commodi
-            itaque quia voluptates dicta perspiciatis illum debitis distinctio
-            tenetur saepe facilis et maxime. Nam, repellat veritatis.
-          </div>
-          <div class="review 3">
-            <span>사용자 님</span><br />
-            이번 프로젝트 하면서 실무적인 경험과 새로운 협업 방식에 대해 알 수
-            있어서 정말 좋았습니다.
-          </div>
-          <div class="review 4">
-            <span>사용자 님</span><br />
-            이번 프로젝트 하면서 실무적인 경험과 새로운 협업 방식에 대해 알 수
-            있어서 정말 좋았습니다.
-          </div>
         </div>
       </section>
+    </section>
 
-      <br />
-      <br />
-      <br />
-      <br />
-      <div class="footer">
-        <!-- 왼쪽 -->
-        <div class="left_ch">
-          <div>코푼사람들 : 황동준, 조현익, 장창현, 서정현, 서혜원</div>
-          <div>팀이름 : 코막혀's</div>
-          <div>Copyright 2023. coplearn. All Rights Reserved</div>
-        </div>
-        <!-- 오른쪽 -->
-        <div class="right_ch">
-          <a href="https://github.com/JSHWJ/KDT-8-Coflearn"
-            ><i class="fa-brands fa-github fa-2x"></i
-          ></a>
-          <a href="https://www.instagram.com/"
-            ><i class="fa-brands fa-instagram fa-2x"></i
-          ></a>
-          <a href="https://twitter.com/"
-            ><i class="fa-brands fa-twitter fa-2x"></i
-          ></a>
+    <br>
+
+    <section class="pro_count_dj">
+      <div class="pro_num_dj">
+        <div id="pro_num_inbox_dj">
+          <h4><span id="pro_num_dj" style="color: #C07F00;">3,000</span>개의 프로젝트가<br> 코프런과 함께합니다.</h4>
+          <br>
+          <p>코딩온 KDT 웹 풀스택 교육 과정 속에서 
+            <br>탄생한 프로젝트들을 확인하고, 따라해보며
+            <br>함께 성장해봐요!!</p>
+          <p>  
+            우리 코프런과 함께 꽉 막히고, 답답한 문제
+          <br>들을 풀어보아요.</p>
         </div>
       </div>
-    </div>
+      <div class="pro_review_dj">
+        <div class="review 1">
+          <span>사용자 님</span><br>
+          이번 프로젝트 하면서 실무적인 경험과 
+          새로운 협업 방식에 대해 알 수 있어서 정말 좋았습니다.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed iusto quo sit ullam possimus, exercitationem recusandae ipsa nemo libero fugit, sunt voluptas blanditiis culpa deserunt. Possimus aspernatur commodi quae ad.
+        </div>
+        <div class="review 2">
+          <span>사용자 님</span><br>
+          이번 프로젝트 하면서 실무적인 경험과 
+          새로운 협업 방식에 대해 알 수 있어서 정말 좋았습니다.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, minima possimus rerum repellendus commodi itaque quia voluptates dicta perspiciatis illum debitis distinctio tenetur saepe facilis et maxime. Nam, repellat veritatis.
+        </div>
+        <div class="review 3">
+          <span>사용자 님</span><br>
+          이번 프로젝트 하면서 실무적인 경험과 
+          새로운 협업 방식에 대해 알 수 있어서 정말 좋았습니다.
+        </div>
+        <div class="review 4">
+          <span>사용자 님</span><br>
+          이번 프로젝트 하면서 실무적인 경험과 
+          새로운 협업 방식에 대해 알 수 있어서 정말 좋았습니다.
+        </div>
+      </div>
+      
+    </section>
+    
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="footer">
+      <!-- 왼쪽 -->
+      <div class="left_ch">
+        <div>코푼사람들 : 황동준, 조현익, 장창현, 서정현, 서혜원</div>
+        <div>팀이름 : 코막혀's</div>
+        <div>Copyright 2023. coplearn. All Rights Reserved</div>
+      </div>
+      <!-- 오른쪽 -->
+      <div class="right_ch">
+        <a href="https://github.com/JSHWJ/KDT-8-Coflearn"
+          ><i class="fa-brands fa-github fa-2x"></i
+        ></a>
+        <a href="https://www.instagram.com/"
+          ><i class="fa-brands fa-instagram fa-2x"></i
+        ></a>
+        <a href="https://twitter.com/"
+          ><i class="fa-brands fa-twitter fa-2x"></i
+        ></a>
+      </div>
+    </div>
+  
+  </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" 
+      crossorigin="anonymous"></script>
+      <script src="/js/main.js"></script>
+
+</body>
 </html>

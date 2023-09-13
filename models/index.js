@@ -11,9 +11,7 @@ const sequelize = new Sequelize(
   config
 );
 // const test = require("./user");
-
 // console.log("test", test);
-
 db.User = require("./user")(sequelize);
 
 db.sequelize = sequelize;

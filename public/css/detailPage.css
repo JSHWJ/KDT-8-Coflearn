@@ -165,7 +165,7 @@
 
 .communityContent {
   width: 95%;
-  height: 40vh;
+  min-height: 40%;
   border: 2px solid #ffd95a;
   margin: auto;
   border-radius: 10px;
