@@ -84,11 +84,20 @@ router.post(
 //프로젝트 리코프런 등록하기
 router.post("/api/detailpage/recoplearn/make", ch_controller.makerecoplearn);
 
+//사용자가 지금 현재 페이지의 리코프런을 했는지 안했는지 확인하기
+router.post("/api/detailpage/recoplearncheck", ch_controller.recoplearncheck);
+
 //프로젝트 목록 페이지 데이터 가져오기
 router.post("/api/project-list", ch_controller.projectlist_post);
 
 //리코프런 목록 페이지 데이터 가져오기
 router.post("/api/recoplearn-list", ch_controller.recoplearnlist_post);
+
+//리코프런 참가하기
+router.post(
+  "/api/detailpage/recoplearn/join",
+  ch_controller.recoplearnjoin_post
+);
 
 //프로젝트 업로드
 router.post("/api/project/write", ch_controller.project_upload);
