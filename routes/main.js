@@ -52,6 +52,10 @@ router.get(
   "/detailPage/:id/community/write",
   hi_controller.detailGet_community
 );
+
+router.get("/detailPage/:id/community/reply", hi_controller.detailGet_reply);
+
+router.get("/detailPage/:id/recoplearn", hi_controller.detailGet_recoplearn);
 //////////////////////////////////////////////////
 // POST
 router.post("/detailPage/:id/review", hi_controller.detailPost_review);
@@ -60,6 +64,8 @@ router.post(
   "/detailPage/:id/community/write",
   hi_controller.detailPost_community
 );
+
+router.post("/detailPage/:id/community/reply", hi_controller.detailPost_reply);
 
 //상세페이지별 리코프런 버튼 수정하기
 router.post("/api/detailpage/recoplearnBtn", ch_controller.updatebtn);
