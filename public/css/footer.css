@@ -1,20 +1,28 @@
 
+
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+#wrap_ch {
+  min-height: 100%;
+  width: 100%;
+}
 section {
-  padding-bottom: 110px; /* footer의 height값과 동일 */
+  margin-top: 0;
 }
 footer {
-  width: 100%;
-  height: 110px; /* 내용물에 따라 알맞는 값 설정 */
-  bottom: 0px;
-  position: absolute;
+  width: 100%; /* 내용물에 따라 알맞는 값 설정 */
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #4c3d3d;
   display: flex;
+  justify-content: space-between; /* 오른쪽과 왼쪽 요소 사이 간격을 최대로 설정 */
+  align-items: center; /* 수직 중앙 정렬을 위해 추가 */
+  padding: 0 15px; /* 좌우 여백 추가 */
 }
 .left_ch {
   width: 50%;
@@ -35,14 +43,13 @@ footer {
 .right_ch {
   width: 50%;
   box-sizing: border-box;
-  padding-top: 2.7%;
+  padding-top: 2%;
   padding-left: 12%;
 }
 .right_ch i {
   color: white;
   margin-right: 1%;
 }
-
 #wrap_ch {
   min-height: 100%;
   position: relative;

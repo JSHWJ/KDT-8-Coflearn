@@ -3,46 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/css/footer.css" />
-    <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="/css/listpage.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- fontAwesome -->
     <script
       src="https://kit.fontawesome.com/5286d2d6db.js"
       crossorigin="anonymous"
     ></script>
+
     <title>Document</title>
   </head>
   <body>
-    <div id="wrap_ch">
-      <!-- header -->
-      <%- include('header_login') %>
-
-      <!-- section -->
-      <section>
-        <div class="listsection_ch">
-          <div class="page_title_ch">
-            <h2>Re코프런 목록</h2>
-          </div>
-
-          <div class="searchsection_ch">
-            <form action="">
-              <div class="search_ch">
-                <input type="text" placeholder="검색어를 입력하세요" /><button>
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </div>
-            </form>
-            <div class="tag_ch"></div>
-            <button class="dropBtn_ch" onclick="clickdown()">
-              <i class="fa-solid fa-angle-down"></i>
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
     <!-- footer -->
-    <footer>
+    <footer id="footer">
       <!-- 왼쪽 -->
       <div class="left_ch">
         <nav>
@@ -65,6 +50,24 @@
         ></a>
       </div>
     </footer>
+
+    <!-- footer가 스크롤 맨 하단일 때만 나타나게 하기 -->
+    <script>
+      const footer = document.getElementById("footer");
+
+      window.addEventListener("scroll", function () {
+        const scrollY = window.scrollY;
+
+        const windowHeight = window.innerHeight;
+
+        const documentHeight = document.body.scrollHeight;
+
+        if (scrollY + windowHeight - 15 >= documentHeight) {
+          footer.style.display = "block";
+        } else {
+          footer.style.display = "none";
+        }
+      });
+    </script>
   </body>
-  <script src="js/recoplearnlist.js"></script>
 </html>

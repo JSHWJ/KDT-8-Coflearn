@@ -19,46 +19,46 @@ const Model = (sequelize) => {
     },
     {
       tableName: "MyProfile",
-      timestamps: false,
-    }
-  );
-  //프로필_나의 프로젝트
-  const MyProject = sequelize.define(
-    "MyProject",
-    {
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      project_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-    },
-    {
-      tableName: "MyProject",
-      timestamps: false,
     }
   );
 
-    //프로필_나의카트
-    const Mycart = sequelize.define(
-      "Mycart",
+    //프로필_나의 프로젝트
+    const MyProject = sequelize.define(
+      "MyProject",
       {
         user_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
-        cart_id: {
+        project_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
       },
       {
-        tableName: "Mycart",
+        tableName: "MyProject",
         timestamps: false,
       }
     );
+  
+      //프로필_나의카트
+      const Mycart = sequelize.define(
+        "Mycart",
+        {
+          user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+          cart_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+        },
+        {
+          tableName: "Mycart",
+          timestamps: false,
+        }
+      );
 
   // 유저
   const User = sequelize.define(
@@ -110,7 +110,19 @@ const Model = (sequelize) => {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
-      pariod: {
+      period: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      thumnail: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      frontnum: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      backnum: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -156,37 +168,34 @@ const Model = (sequelize) => {
       timestamps: false,
     }
   );
-
-  //후기
-  const Review = sequelize.define(
-    "Review",
-    {
-      review_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
+    //후기
+    const Review = sequelize.define(
+      "Review",
+      {
+        review_id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          primaryKey: true,
+          autoIncrement: true,
+        },
+        user_id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+        },
+        project_id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+        },
+        review_content: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+        },
       },
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      project_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      review_content: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-    },
-    {
-      tableName: "Review",
-      timestamps: false,
-    }
-  );
-
-
+      {
+        tableName: "Review",
+        timestamps: false,
+      }
+    );
 
   // 카트
   const Cart = sequelize.define(
@@ -377,11 +386,11 @@ const Model = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      font_num: {
+      front_num: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      font_goal_num: {
+      front_goal_num: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
@@ -401,6 +410,18 @@ const Model = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      frontability: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      backability: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      recoplearn_goal: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
     },
     {
       tableName: "Recoplearn",
@@ -415,10 +436,12 @@ const Model = (sequelize) => {
   MyProject.belongsTo(Project, { foreignKey: "project_id" }); // 마이프로젝트 -> 프로젝트
   MyProfile.belongsTo(Cart, { foreignKey: "cart_id" }); // 마이프로필 -> 카트
   Mycart.belongsTo(Cart, { foreignKey: "cart_id" }); // 마이카트 -> 카트
+
   Community.belongsTo(User, { foreignKey: "user_id" }); // 커뮤니티 -> 유저
   Community.belongsTo(Project, { foreignKey: "project_id" }); // 커뮤니티 -> 프로젝트
   Review.belongsTo(User, { foreignKey: "user_id" }); // 후기 -> 유저
-  Review.belongsTo(Project, { foreignKey: "project_id" }); // 후기 -> 프로젝트  
+  Review.belongsTo(Project, { foreignKey: "project_id" }); // 후기 -> 프로젝트
+
   Cart.belongsTo(Project, { foreignKey: "project_id" }); // 카트 -> 프로젝트
   Img.belongsTo(Project, { foreignKey: "project_id" }); // 이미지 -> 프로젝트
   Messages.belongsTo(User, { foreignKey: "user_id" }); // 메세지 -> 유저

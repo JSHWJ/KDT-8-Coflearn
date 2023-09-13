@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "NanumSquareNeo-Variable";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
-    format("woff2");
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -10,7 +10,32 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "NanumSquareNeo-Variable";
+}
+
+.loginmodal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 40px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+#loginBody_jh {
+  padding: 15px;
+  width: 35%;
+  height: 60%;
+  margin: 0 auto;
+  border: 1px solid #777;
+  border-radius: 10px;
+  background-color: white;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 .login_container {
@@ -23,24 +48,26 @@
   padding: 0 2rem;
 }
 
-form {
+#login_form {
   width: 360px;
-  margin-left: 50px;
+  margin: auto;
 }
 
 .login_logo {
   width: 150px;
   height: 30px;
-  margin-left: 100px;
+  margin-left: 60px;
 }
 
 .login_content h2 {
-  margin: 15px 0;
   color: #000000;
   text-shadow: 2px 2px #ffd95a;
   text-transform: uppercase;
   font-size: 2.9rem;
-  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
 }
 
 .login_content .login_input_div {
@@ -128,7 +155,7 @@ form {
 
 .login_btn {
   display: block;
-  width: 100%;
+  width: 65%;
   height: 50px;
   border-radius: 5px;
   outline: none;
@@ -147,7 +174,7 @@ form {
 
 .sign_btn {
   display: block;
-  width: 100%;
+  width: 65%;
   height: 50px;
   border-radius: 5px;
   outline: none;
@@ -167,4 +194,22 @@ form {
 /* modal */
 .modal-title {
   margin-left: 170px;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.closesection {
+  display: flex;
+  justify-content: flex-end;
+}
+#closeBtn_jh {
+  border: none;
+  background-color: white;
+  width: 20px;
+  font-size: 25px;
+  cursor: pointer;
 }
