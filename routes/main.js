@@ -18,6 +18,9 @@ router.get("/api/mypage/project/:id", controller.myproj_data);
 router.get("/api/mypage/cart/:id", controller.likepro_data);
 router.get("/api/mypage/recoplearn/:id", controller.recop_data);
 
+// 회원가입
+router.get("/signup", jh_controller.signup);
+
 // 로그인 모달
 router.get("/login_modal", jh_controller.login_modal);
 router.get("/header_login", jh_controller.header_login);
