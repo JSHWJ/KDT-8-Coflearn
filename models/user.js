@@ -130,6 +130,39 @@ const Model = (sequelize) => {
       timestamps: false,
     }
   );
+
+  // 커뮤니티
+  const Reply = sequelize.define(
+    "CommunityReply",
+    {
+      reply_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      community_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      reply_content: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "CommunityReply",
+      timestamps: false,
+    }
+  );
   //후기
   const Review = sequelize.define(
     "Review",
@@ -408,11 +441,16 @@ const Model = (sequelize) => {
   ProjectTag.belongsTo(Project, { foreignKey: "project_id" }); // 프로젝트 태그 -> 프로젝트
   ProjectTag.belongsTo(Tag, { foreignKey: "tag_id" }); // 프로젝트 태그 -> 태그
   Recoplearn.belongsTo(Project, { foreignKey: "project_id" }); // 리코프런 -> 프로젝트
+  Reply.belongsTo(Community, { foreignKey: "community_id" });
+  Reply.belongsTo(User, { foreignKey: "user_id" });
+  Reply.belongsTo(Project, { foreignKey: "project_id" });
+  Community.hasMany(Reply, { foreignKey: "community_id" });
   return {
     MyProfile,
     User,
     Project,
     Community,
+    Reply,
     Cart,
     Tag,
     Img,

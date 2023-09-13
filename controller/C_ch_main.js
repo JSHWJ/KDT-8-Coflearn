@@ -122,7 +122,6 @@ const project_upload = async (req, res) => {
   }
 };
 
-
 //리코프런 DB정보가져오기
 const makerrecoplearn_post = async (req, res) => {
   console.log(req.body.num);
@@ -171,7 +170,7 @@ const updatebtn = async (req, res) => {
   const response = await models.Recoplearn.findOne({
     where: { project_id: req.body.num },
   });
-  console.log("무슨값이 올까?", response);
+  //console.log("무슨값이 올까?", response);
   if (response == null) {
     res.json({ result: true });
   } else {
@@ -179,7 +178,6 @@ const updatebtn = async (req, res) => {
   }
 };
 const porjectlist_search = async (req, res) => {};
-
 
 module.exports = {
   projectlist,
@@ -193,5 +191,4 @@ module.exports = {
   makerecoplearn,
   updatebtn,
   porjectlist_search,
-
 };

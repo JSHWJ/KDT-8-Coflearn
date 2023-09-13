@@ -155,15 +155,23 @@
                 커뮤니티 작성하기
               </button>
             </div>
-
             <!-- 답글 작성 모달 창 -->
-            <div id="replyModal" class="modal">
+            <div id="replyModal" class="modal" >
               <div class="modal-content">
                 <p style="text-align: center"><b>답글 작성</b></p>
                 <div>
-                  <textarea id="replyContent" cols="50" rows="5"></textarea>
-                  <button onclick="submitReply()">작성하기</button>
-                  <button onclick="closeReplyModal()">취소</button>
+                  <textarea
+                    id="replyContent"
+                    cols="50"
+                    rows="5"
+                    placeholder="답글을 작성하세요."
+                  ></textarea>
+                  <button type="button" onclick="submitReply()">
+                    작성하기
+                  </button>
+                  <button type="button" onclick="closeReplyModal()">
+                    취소
+                  </button>
                 </div>
               </div>
             </div>
@@ -322,11 +330,20 @@
             <!--End Modal-->
 
             <div id="tab04">
-              <div class="tab04_content"><label for="">프론트</label></div>
+              <div class="tab04_content">
+                <label for="">프론트</label>
+                <div id="frontText_hi"></div>
+              </div>
 
-              <div class="tab04_content"><label for="">백</label></div>
+              <div class="tab04_content">
+                <label for="">백</label>
+                <div id="backText_hi"></div>
+              </div>
 
-              <div class="tab04_content"><label for="">목표</label></div>
+              <div class="tab04_content">
+                <label for="">목표</label>
+                <div id="goalText_hi"></div>
+              </div>
               <div id="in_container_ch">
                 <button id="in_ch" onclick="participate()">참여하기</button>
               </div>
