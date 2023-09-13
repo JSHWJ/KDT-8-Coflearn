@@ -32,44 +32,7 @@
           <i class=""></i>
           <a href="">Coplearn</a>
         </div>
-        <ul class="navbar_menu_hi">
-          <li><a id="home_hi" href="#">HOME</a></li>
-          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
-          <!-- <li>
-            <a
-              id="login_hi"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              onclick="loginmodalopen()"
-              >로그인</a
-            >
-          </li> -->
-          <% if(cookie){ %>
-          <li>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </li>
-
-          <li>
-            <i class="fa-solid fa-id-badge"></i>
-            <ul id="dropdown_menu_jh">
-              <li><a href="./mypage">마이페이지</a></li>
-              <li>
-                <a href="#">로그아웃</a>
-              </li>
-            </ul>
-          </li>
-          <% } else { %>
-          <li>
-            <a
-              id="login_hi"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              onclick="loginmodalopen()"
-              >로그인</a
-            >
-          </li>
-          <% } %>
-        </ul>
+        <ul class="navbar_menu_hi"></ul>
       </nav>
     </header>
 
@@ -128,6 +91,41 @@
 
     <!-- 로그인 기능 동작 JS -->
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const nav = document.querySelector(".navbar_menu_hi");
+        if (document.cookie) {
+          nav.innerHTML = `
+          <li><a id="home_hi" href="#">HOME</a></li>
+          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+          <li>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </li>
+
+          <li>
+            <i class="fa-solid fa-id-badge"></i>
+            <ul id="dropdown_menu_jh">
+              <li><a href="./mypage">마이페이지</a></li>
+              <li>
+                <a href="#">로그아웃</a>
+              </li>
+            </ul>
+          </li>`;
+        } else {
+          nav.innerHTML = `
+          <li><a id="home_hi" href="#">HOME</a></li>
+          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+          <li>
+            <a
+              id="login_hi"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              onclick="loginmodalopen()"
+              >로그인</a
+            >
+          </li>
+          `;
+        }
+      });
       async function loginFunc() {
         const form = document.forms["login_form"];
 
