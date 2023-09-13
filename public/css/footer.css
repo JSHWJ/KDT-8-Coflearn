@@ -12,17 +12,10 @@ section {
   margin-top: 0;
 }
 footer {
-<<<<<<< HEAD
-  width: 100%;
-  height: 110px; /* 내용물에 따라 알맞는 값 설정 */
-  bottom: 0;
-  position: fixed; /* 화면 하단에 고정시키기 위해 position을 fixed로 변경 */
-=======
   width: 100%; /* 내용물에 따라 알맞는 값 설정 */
   bottom: 0;
   left: 0;
   right: 0;
->>>>>>> develop
   background-color: #4c3d3d;
   display: flex;
   justify-content: space-between; /* 오른쪽과 왼쪽 요소 사이 간격을 최대로 설정 */
@@ -55,12 +48,8 @@ footer {
   color: white;
   margin-right: 1%;
 }
-<<<<<<< HEAD
-
 #wrap_ch {
   min-height: 100%;
   position: relative;
   width: 100%;
 }
-=======
->>>>>>> develop
