@@ -16,27 +16,15 @@
   <body>
     <div id="wrap_ch">
       <!-- header -->
-      <header>
-        <nav class="navbar_hi">
-          <div class="navbar_logo_hi">
-            <i class=""></i>
-            <a href="">Coplearn</a>
-          </div>
-          <ul class="navbar_menu_hi">
-            <li><a id="home_hi" href="#">HOME</a></li>
-            <li><a id="list_hi" href="#">프로젝트 목록</a></li>
-            <li>
-              <a id="list_hi" href="#"
-                ><i class="fa-solid fa-magnifying-glass"></i
-              ></a>
-            </li>
-            <li><a id="login_hi" href="#">로그인</a></li>
-          </ul>
-        </nav>
-      </header>
+      <%- include('header_login') %>
+
+      <!-- section -->
       <section>
         <div class="listsection_ch">
-          <h2>Re코프런 목록</h2>
+          <div class="page_title_ch">
+            <h2>Re코프런 목록</h2>
+          </div>
+
           <div class="searchsection_ch">
             <form action="">
               <div class="search_ch">

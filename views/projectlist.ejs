@@ -16,24 +16,7 @@
   <body>
     <div id="wrap_ch">
       <!-- header -->
-      <header>
-        <nav class="navbar_hi">
-          <div class="navbar_logo_hi">
-            <i class=""></i>
-            <a href="">Coplearn</a>
-          </div>
-          <ul class="navbar_menu_hi">
-            <li><a id="home_hi" href="#">HOME</a></li>
-            <li><a id="list_hi" href="#">프로젝트 목록</a></li>
-            <li>
-              <a id="list_hi" href="#">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </a>
-            </li>
-            <li><a id="login_hi" href="#">로그인</a></li>
-          </ul>
-        </nav>
-      </header>
+      <%- include('header_login') %>
 
       <!-- section -->
       <section>
@@ -45,17 +28,16 @@
             </button>
           </div>
           <div class="searchsection_ch">
-            <form action="">
-              <div class="search_ch">
-                <input
-                  type="text"
-                  placeholder="검색어를 입력하세요"
-                  id="searchcontent_ch"
-                /><button>
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </div>
-            </form>
+            <div class="search_ch">
+              <input
+                type="text"
+                placeholder="검색어를 입력하세요"
+                id="searchcontent_ch"
+              />
+              <button onclick="searchOp_ch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
             <div class="tag_ch"></div>
             <button class="dropBtn_ch" onclick="clickdown()">
               <i class="fa-solid fa-angle-down"></i>

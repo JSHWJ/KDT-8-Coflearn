@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     tag_div.addEventListener("click", function (e) {
       e.currentTarget.classList.toggle("active");
     });
+    tag_div.style.padding = "2px 3px";
     tag_div.style.marginRight = "5px";
     if (i >= 8) {
       tag_div.style.display = "none";
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   for (let i = 1; i <= Object.keys(tags).length; i++) {
-    addTag("#" + tags[i], i);
+    addTag("# " + tags[i], i);
   }
   for (const key in project) {
     if (count_ch % 5 == 0) {

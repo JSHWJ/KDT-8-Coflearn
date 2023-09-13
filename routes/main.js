@@ -25,7 +25,7 @@ router.get("/header_login", jh_controller.header_login);
 router.get("/project-list", ch_controller.projectlist);
 
 //프로젝트 목록 페이지에서 검색
-router.get("/projectlist/search", ch_controller.porjectlist_search);
+router.get("/project-list/search", ch_controller.porjectlist_search);
 
 //리코프런 목록페이지
 router.get("/recoplearn-list", ch_controller.recoplearnlist);
@@ -34,7 +34,6 @@ router.get("/recoplearn-list", ch_controller.recoplearnlist);
 router.get("/project", ch_controller.project);
 
 // 상세페이지
-
 router.get("/detailPage/:id", hi_controller.detail);
 
 router.get("/detailPage/:id/tags", hi_controller.detailPage_tags);

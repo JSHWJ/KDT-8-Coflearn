@@ -9,6 +9,7 @@ body {
   width: 100%;
 }
 section {
+  margin-top: 0;
 }
 footer {
 <<<<<<< HEAD
@@ -47,7 +48,7 @@ footer {
 .right_ch {
   width: 50%;
   box-sizing: border-box;
-  padding-top: 2.7%;
+  padding-top: 2%;
   padding-left: 12%;
 }
 .right_ch i {

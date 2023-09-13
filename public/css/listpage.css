@@ -17,14 +17,12 @@
   display: flex;
   margin-bottom: 20px;
 }
-.searchsection_ch form {
-  margin-right: 15px;
-}
 .search_ch {
   border: 2px solid #ffd95a;
   display: inline-block;
   border-radius: 8px;
   padding: 5px;
+  margin-right: 15px;
 }
 .search_ch input {
   border: none;
@@ -79,6 +77,8 @@
 
 /* 프로젝트 리스트 페이지만 */
 .page_title_ch {
+  margin-top: 30px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -88,5 +88,10 @@
   background-color: #fff7d4;
   border-radius: 8px;
   height: 35px;
+  cursor: pointer;
+  padding: 0px 3px;
+}
+
+.fa-magnifying-glass {
   cursor: pointer;
 }
