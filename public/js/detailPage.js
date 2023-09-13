@@ -6,6 +6,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
   const commentWrite = document.querySelector(".comment");
 
+  // 상세페이지 유저 정보 불러오기
+  const detailUser = await axios({
+    method: "GET",
+    url: `/detailPage/${num}/user`,
+    data: { num },
+  });
+
+  console.log("user:", detailUser.data.user.nick_name);
+
   // 프로젝트 소개 탭
   const projectDetail = await axios({
     method: "GET",
@@ -55,16 +64,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const all = document.querySelector(".allComment_hi");
   for (let i = res.data.data.length - 1; i >= 0; i--) {
+    const nickName = document.createElement("div");
     const ReviewdivTag = document.createElement("div");
     const p = document.createElement("p");
 
     ReviewdivTag.className = "crewComment_hi";
-
+    nickName.innerHTML = detailUser.data.user.nick_name + " 크루";
     p.innerText = res.data.data[i].review_content;
     p.style.width = "200px";
 
     ReviewdivTag.appendChild(p);
-
+    ReviewdivTag.prepend(nickName);
     all.appendChild(ReviewdivTag);
   }
 
@@ -85,11 +95,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     divTag.className = "communityContent";
     replyButton.className = "replyButton";
     const communityId = commures.data.data[i].community_id;
+    console.log(communityId);
     // replyModal.setAttribute("value", communityId);
     divTag.setAttribute("data-commnunity-id", communityId);
     p.innerHTML = commures.data.data[i].community_content;
     p.style.width = "200px";
-    replyButton.style.width = "300px";
+    replyButton.style.width = "100px";
     replyButton.textContent = "답글 달기";
     divTag.appendChild(p);
     divTag.appendChild(replyButton);
@@ -101,14 +112,19 @@ document.addEventListener("DOMContentLoaded", async function () {
     url: `/detailPage/${num}/community/reply`,
     data: { num },
   });
+  console.log(replyGet);
+  const commuElems = document.querySelectorAll(".communityContent");
 
-  const commuId = document.querySelector(".communityContent");
-  const getCommuId = Number(commuId.getAttribute("data-commnunity-id"));
+  for (let commuElem of commuElems) {
+    const getCommuId = Number(commuElem.getAttribute("data-commnunity-id"));
 
-  for (let i in replyGet.data.data) {
-    const replyText = document.createElement("p");
-    replyText.innerHTML = replyGet.data.data[i].reply_content;
-    commuId.appendChild(replyText);
+    for (let i in replyGet.data.data) {
+      if (getCommuId === replyGet.data.data[i].community_id) {
+        const replyText = document.createElement("p");
+        replyText.innerHTML = replyGet.data.data[i].reply_content;
+        commuElem.appendChild(replyText);
+      }
+    }
   }
 
   const reGet = await axios({
@@ -121,15 +137,21 @@ document.addEventListener("DOMContentLoaded", async function () {
   const frontText = document.querySelector("#frontText_hi");
   const backText = document.querySelector("#backText_hi");
   const goalText = document.querySelector("#goalText_hi");
+  const reco = document.querySelector(".recoplearndiv");
 
-  if (frontText) {
-    frontText.textContent = reGet.data.data[0].frontability;
-  }
-  if (backText) {
-    backText.textContent = reGet.data.data[0].backability;
-  }
-  if (goalText) {
-    goalText.textContent = reGet.data.data[0].recoplearn_goal;
+  try {
+    if (frontText) {
+      frontText.textContent = reGet.data.data[0].frontability;
+    }
+    if (backText) {
+      backText.textContent = reGet.data.data[0].backability;
+    }
+    if (goalText) {
+      goalText.textContent = reGet.data.data[0].recoplearn_goal;
+    }
+  } catch (error) {
+    reco.textContent = "아직 리코프런이 생성되지 않았습니다.";
+    reco.style.margin = "auto";
   }
 });
 
@@ -179,25 +201,39 @@ async function writeCommunity_hi() {
   const divTag = document.createElement("div");
   const replyButton = document.createElement("button");
   const p = document.createElement("p");
+
   replyButton.className = "replyButton";
   divTag.className = "communityContent";
+
   p.innerHTML = text;
+
   p.style.width = "200px";
-  replyButton.style.width = "300px";
+
+  replyButton.style.width = "30px";
+
   replyButton.textContent = "답글 달기";
-  divTag.appendChild(p);
-  divTag.appendChild(replyButton);
-  allcom.prepend(divTag);
+
+  // Send POST request to the server
   const res = await axios({
     method: "POST",
     url: `/detailPage/${num}/community/write`,
-    data: {
-      community: text,
-    },
-  }).then((response) => {
+    data: { community: text },
+  });
+
+  if (res.status === 200 && res.data) {
+    // Attach returned community_id to the div tag as a data attribute
+    divTag.setAttribute("data-community-id", res.data.community_id);
+
+    divTag.appendChild(p);
+    divTag.appendChild(replyButton);
+
+    allcom.prepend(divTag);
+
     editor.setMarkdown("");
     modal.style.display = "none";
-  });
+  } else {
+    console.error("Failed to post the community content");
+  }
 }
 
 async function submitReply() {
@@ -206,8 +242,8 @@ async function submitReply() {
   const comid = Number(modalidget.getAttribute("data-modal-id"));
 
   // 커뮤니티 게시물의 고유한 ID를 가져오는 코드 (예시로 데이터 속성 data-community-id를 사용)
-
-  const replyPost = await axios({
+  console.log("comid", comid);
+  await axios({
     method: "POST",
     url: `/detailPage/${num}/community/reply`,
     data: {
@@ -241,6 +277,7 @@ document.querySelector(".allCommunity").addEventListener("click", function (e) {
     const communityId = e.target
       .closest(".communityContent")
       .getAttribute("data-commnunity-id");
+    console.log("communityId", communityId);
     openReplyModal(communityId);
   }
 });
