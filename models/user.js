@@ -23,43 +23,43 @@ const Model = (sequelize) => {
     }
   );
 
-    //프로필_나의 프로젝트
-    const MyProject = sequelize.define(
-      "MyProject",
-      {
-        user_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        project_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
+  //프로필_나의 프로젝트
+  const MyProject = sequelize.define(
+    "MyProject",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
-      {
-        tableName: "MyProject",
-        timestamps: false,
-      }
-    );
-  
-      //프로필_나의카트
-      const Mycart = sequelize.define(
-        "Mycart",
-        {
-          user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
-          cart_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
-        },
-        {
-          tableName: "Mycart",
-          timestamps: false,
-        }
-      );
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "MyProject",
+      timestamps: false,
+    }
+  );
+
+  //프로필_나의카트
+  const Mycart = sequelize.define(
+    "Mycart",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      cart_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "Mycart",
+      timestamps: false,
+    }
+  );
 
   // 유저
   const User = sequelize.define(

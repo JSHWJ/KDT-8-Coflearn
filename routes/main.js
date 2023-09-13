@@ -70,6 +70,8 @@ router.post(
 
 router.post("/detailPage/:id/community/reply", hi_controller.detailPost_reply);
 
+router.get("/detailPage/:id/user", hi_controller.detailGet_user);
+
 //상세페이지별 리코프런 버튼 수정하기
 router.post("/api/detailpage/recoplearnBtn", ch_controller.updatebtn);
 

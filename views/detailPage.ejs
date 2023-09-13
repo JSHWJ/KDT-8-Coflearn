@@ -64,7 +64,6 @@
     <div id="wrap_ch">
       <!-- header -->
       <%- include('header_login') %>
-
       <section>
         <div class="top_hi">
           <iframe
@@ -93,7 +92,10 @@
           <div></div>
         </div>
         <div class="tab_hi">
-          <ul class="tab_menu_hi">
+          <ul
+            class="tab_menu_hi"
+            style="margin: 16px 0 16px 0; padding: 0px 0px 0px 40px"
+          >
             <li class="tabs_hi"><a href="#tab01">프로젝트 소개</a></li>
             <li class="tabs_hi"><a href="#tab02">후기</a></li>
             <li class="tabs_hi"><a href="#tab03">커뮤니티</a></li>
@@ -311,22 +313,27 @@
             <!--End Modal-->
 
             <div id="tab04">
-              <div class="tab04_content">
-                <label for="">프론트</label>
-                <div id="frontText_hi"></div>
-              </div>
+              <div class="recoplearndiv">
+                <div class="tab04_content">
+                  <label for="">프론트</label>
+                  <hr />
+                  <div id="frontText_hi"></div>
+                </div>
 
-              <div class="tab04_content">
-                <label for="">백</label>
-                <div id="backText_hi"></div>
-              </div>
+                <div class="tab04_content">
+                  <label for="">백</label>
+                  <hr />
+                  <div id="backText_hi"></div>
+                </div>
 
-              <div class="tab04_content">
-                <label for="">목표</label>
-                <div id="goalText_hi"></div>
-              </div>
-              <div id="in_container_ch">
-                <button id="in_ch" onclick="participate()">참여하기</button>
+                <div class="tab04_content">
+                  <label for="">목표</label>
+                  <hr />
+                  <div id="goalText_hi"></div>
+                </div>
+                <div id="in_container_ch">
+                  <button id="in_ch" onclick="participate()">참여하기</button>
+                </div>
               </div>
             </div>
           </div>
