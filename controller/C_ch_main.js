@@ -1,6 +1,6 @@
-const { escape } = require("mysql");
 const db = require("../models");
 const models = db.User;
+const { Op } = require("sequelize");
 
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
@@ -177,7 +177,30 @@ const updatebtn = async (req, res) => {
     res.json({ result: false });
   }
 };
-const porjectlist_search = async (req, res) => {};
+
+const porjectlist_search = async (req, res) => {
+  const projects = await models.Project.findAll({
+    where: {
+      title: {
+        [Op.like]: `%${req.query.value}%`,
+      },
+    },
+  });
+  let count = 1;
+  let sendData = {};
+  projects.forEach((project) => {
+    sendData[project.project_id] = [
+      project.thumnail,
+      project.title,
+      project.members,
+    ];
+    count += 1;
+  });
+  res.json({
+    sendData,
+  });
+};
+
 
 module.exports = {
   projectlist,
@@ -186,7 +209,6 @@ module.exports = {
   recoplearnlist_post,
   project_upload,
   project,
-
   makerrecoplearn_post,
   makerecoplearn,
   updatebtn,

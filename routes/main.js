@@ -1,29 +1,35 @@
 const express = require("express");
 const router = express.Router();
-
+const controller = require("../controller/Cdjmain");
 const ch_controller = require("../controller/C_ch_main");
 const hi_controller = require("../controller/C_hi_main");
+const jh_controller = require("../controller/C_jh_main");
 
 //////////////////////////////////////////////////
 // GET
 
-//메인페이지
-router.get("/", hi_controller.main);
+//메인 페이지
+router.get("/main", controller.main);
 
 //마이페이지
-router.get("/mypage", hi_controller.mypage);
+router.get("/mypage/:id", controller.mypage);
+router.get("/api/mypage/:id", controller.mypage_data);
+router.get("/api/mypage/project/:id", controller.myproj_data);
+router.get("/api/mypage/cart/:id", controller.likepro_data);
+router.get("/api/mypage/recoplearn/:id", controller.recop_data);
 
 // 회원가입
-router.get("/signup", hi_controller.signup);
+router.get("/signup", jh_controller.signup);
 
 // 로그인 모달
-router.get("/login_modal", hi_controller.login_modal);
+router.get("/login_modal", jh_controller.login_modal);
+router.get("/header_login", jh_controller.header_login);
 
 //프로젝트 목록페이지
 router.get("/project-list", ch_controller.projectlist);
 
 //프로젝트 목록 페이지에서 검색
-router.get("/projectlist/search", ch_controller.porjectlist_search);
+router.get("/project-list/search", ch_controller.porjectlist_search);
 
 //리코프런 목록페이지
 router.get("/recoplearn-list", ch_controller.recoplearnlist);
@@ -32,7 +38,6 @@ router.get("/recoplearn-list", ch_controller.recoplearnlist);
 router.get("/project", ch_controller.project);
 
 // 상세페이지
-
 router.get("/detailPage/:id", hi_controller.detail);
 
 router.get("/detailPage/:id/tags", hi_controller.detailPage_tags);
@@ -82,6 +87,17 @@ router.post("/api/recoplearn-list", ch_controller.recoplearnlist_post);
 
 //프로젝트 업로드
 router.post("/api/project/write", ch_controller.project_upload);
+
+// 회원가입 정보 저장
+router.post("/signup", jh_controller.post_signup);
+
+// 이메일 전송
+router.post("/signup", jh_controller.post_email);
+
+// 로그인 정보
+router.post("/header_login", jh_controller.post_signin);
+
+// router.post("/main", controller.main_post);
 
 // 로그인 마이페이지
 

@@ -4,8 +4,8 @@ const { S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_REGION, S3_BUCKET } =
 
 // 모듈require
 const express = require("express");
+const path = require("path");
 const app = express();
-var path = require("path");
 const db = require("./models");
 const multer = require("multer");
 const aws = require("aws-sdk");
@@ -14,8 +14,11 @@ const nodemailer = require("nodemailer");
 PORT = 8000;
 
 app.set("view engine", "ejs");
-app.set(express.urlencoded({ extended: true }));
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 app.use(express.static(path.join(__dirname, "public")));
+app.set(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // aws설정
