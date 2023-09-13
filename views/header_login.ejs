@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- fontAwesome -->
+    <script
+      src="https://kit.fontawesome.com/5286d2d6db.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>로그인 모달창</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <nav class="navbar_hi">
+        <div class="navbar_logo_hi">
+          <i class=""></i>
+          <a href="">Coplean</a>
+        </div>
+        <ul class="navbar_menu_hi">
+          <li><a id="home_hi" href="#">HOME</a></li>
+          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+          <li>
+            <a id="list_hi" href="#"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              id="login_hi"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              onclick="loginmodalopen()"
+              >로그인</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="loginmodal" style="display: none">
+      <div id="loginContent_jh">
+        <div id="loginBody_jh">
+          <div class="closesection">
+            <button id="closeBtn_jh" onclick="closepop_ch()">&times;</button>
+          </div>
+          <!-- 로그인 폼 시작 -->
+          <div class="login_content">
+            <form id="login_form" name="login_register">
+              <h2 class="title">SIGNIN</h2>
+
+              <!-- 이메일 -->
+              <div class="login_input_div login_email">
+                <div class="i"><i class="fa-solid fa-envelope"></i></div>
+                <div class="login_div">
+                  <h5>EMAIL</h5>
+                  <input type="email" class="login_input" id="email" />
+                </div>
+              </div>
+
+              <!-- 비밀번호 -->
+              <div class="login_input_div login_pw">
+                <div class="i"><i class="fa-solid fa-lock"></i></div>
+                <div class="login_div">
+                  <h5>PASSWORD</h5>
+                  <input type="password" class="login_input" id="pw" />
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="login_btn" data-bs-dismiss="modal">
+              로그인
+            </button>
+            <button
+              type="button"
+              class="sign_btn"
+              data-bs-dismiss="modal"
+              onclick="location.href='./signup'"
+            >
+              회원가입
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 로그인 기능 동작 JS -->
+    <!-- 작업 중 ... 추가 예정 -->
+
+    <!-- input 태그 media JS -->
+    <script>
+      const loginmodal = document.querySelector(".loginmodal");
+      loginmodal.style.display = "none";
+
+      // 로그인 모달 오픈
+      function loginmodalopen() {
+        loginmodal.style.display = "block";
+      }
+
+      function closepop_ch() {
+        loginmodal.style.display = "none";
+      }
+
+      const inputs2 = document.querySelectorAll(".login_input");
+
+      function add_cl2() {
+        let parent = this.parentNode.parentNode;
+        parent.classList.add("focus");
+      }
+
+      function rem_cl2() {
+        let parent = this.parentNode.parentNode;
+        if (this.value == "") {
+          parent.classList.remove("focus");
+        }
+      }
+
+      inputs2.forEach((input) => {
+        input.addEventListener("focus", add_cl2);
+        input.addEventListener("blur", rem_cl2);
+      });
+    </script>
+  </body>
+</html>

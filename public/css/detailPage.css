@@ -1,0 +1,270 @@
+* {
+  font-family: "GmarketSansMedium";
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.top_hi {
+  position: relative;
+  display: flex;
+  height: 35vh;
+  background-color: #4c3d3d;
+}
+
+.video_hi {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 40vh;
+  height: 30vh;
+}
+
+#CartBtn {
+  position: absolute;
+  width: 5vw;
+  height: 3vh;
+}
+
+.content_hi {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  left: 22%;
+  top: 3%;
+  color: white;
+}
+
+.rs_hi {
+  position: relative;
+  top: 80px;
+}
+
+#rsBtn_hi {
+  position: absolute;
+  padding: 7px 15px 7px 15px;
+  border-radius: 40px;
+  background-color: #ffd95a;
+  border: none;
+  cursor: pointer;
+}
+#rsBtn_ch {
+  position: absolute;
+  padding: 7px 15px 7px 15px;
+  border: none;
+  border-radius: 40px;
+  background-color: #47a992;
+  color: white;
+  cursor: pointer;
+}
+
+.tab_menu_hi {
+  display: flex;
+  position: relative;
+  background-color: white;
+  align-items: center;
+  align-content: center;
+}
+
+.tab_menu_hi li {
+  display: flex;
+  align-content: center;
+
+  list-style: none;
+  padding-right: 25px;
+}
+
+.tab_hi .active {
+  text-decoration: underline;
+}
+
+#date_hi {
+  width: 95%;
+  height: 7vh;
+  border: 2px solid #ffd95a;
+  margin: auto;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+#tab01 span {
+  margin-left: 10%;
+}
+
+#tab01 a {
+  margin-left: 10%;
+}
+
+#link_hi {
+  width: 95%;
+  height: 7vh;
+  border: 2px solid #ffd95a;
+  margin: auto;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+#ex_hi {
+  width: 95%;
+  border: 2px solid #ffd95a;
+  margin: auto;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.allComment_hi {
+  display: flex;
+  width: 95%;
+  height: 300px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  margin: auto;
+}
+
+.allComment_hi::-webkit-scrollbar {
+  background: #fff7d4;
+}
+
+.allComment_hi::-webkit-scrollbar-thumb {
+  background: #ffd95a;
+  border-radius: 10px;
+}
+
+#tab02 .crewComment_hi {
+  width: 200px !important;
+  /* height: 200px; */
+  border: 2px solid #ffd95a;
+  margin: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.crewComment_hi p {
+  white-space: pre-line; /* 텍스트가 줄 바꿈될 수 있도록 설정 */
+}
+
+#tab02 .crewCommentWrite_hi {
+  width: 95%;
+  height: 40vh;
+  border: 2px solid #ffd95a;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.communityContent {
+  width: 95%;
+  height: 40vh;
+  border: 2px solid #ffd95a;
+  margin: auto;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#tab04 {
+  display: flex;
+  flex-direction: column;
+}
+
+#tab04 .tab04_content {
+  width: 95%;
+  height: 40vh;
+  border: 2px solid #ffd95a;
+  margin: auto;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comment {
+  border: 0;
+  width: 99%;
+  height: 30vh;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: block;
+  margin-bottom: 10px;
+  font-size: large;
+  resize: none;
+}
+
+.comment:focus {
+  outline: none;
+}
+
+.writeComment_hi {
+  position: relative;
+  display: inline-block;
+  background-color: #ffd95a;
+  width: 9vw;
+  height: 6.3vh;
+  left: 90%;
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.comWrite_hi {
+  position: relative;
+  background-color: #ffd95a;
+  width: 10vw;
+  height: 6vh;
+  left: 88%;
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#WriteBtn_hi {
+  position: relative;
+  background-color: #ffd95a;
+  width: 6vw;
+  height: 4vh;
+  top: 20px;
+  left: 75%;
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+#out_modal {
+  position: relative;
+  background-color: #fff7d4;
+  width: 6vw;
+  height: 4vh;
+  top: 20px;
+  left: 75%;
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.comHeader_div {
+  display: flex;
+}
+
+#comHeader {
+  margin: auto;
+  width: 100%;
+  height: 4vh;
+  border: 0;
+  font-weight: bold;
+}
+
+#comHeader:focus {
+  outline: none;
+}

@@ -9,33 +9,6 @@ require("dotenv").config();
 //////////////////////////////////////////////////
 // GET
 
-//마이페이지
-const mypage = (req, res) => {
-  res.render("mypage");
-};
-
-// 프로젝트리스트 페이지
-const projectlist = (req, res) => {
-  res.render("projectlist");
-  // models.Project.findAll({}).then((project) => {
-  //   console.log("projects", project[0].project_id);
-  // });
-};
-// 리코프런리스트 페이지
-const recoplearnlist = (req, res) => {
-  res.render("recoplearn");
-};
-
-//프로젝트 업로드 페이지
-const project = (req, res) => {
-  res.render("project");
-};
-
-//메인페이지
-const main = (req, res) => {
-  res.render("main");
-};
-
 //상세페이지
 const detail = (req, res) => {
   res.render("detailPage");
@@ -56,10 +29,6 @@ const login_modal = (req, res) => {
 
 const header_login = (req, res) => {
   res.render("header_login");
-};
-// 상세 페이지
-const detailPage = (req, res) => {
-  res.render("detailPage");
 };
 
 //////////////////////////////////////////////////
@@ -147,6 +116,7 @@ const post_signin = async (req, res) => {
 
       res.json({ result: true, token, data: user });
 
+      console.log("token", token);
       console.log("로그인 성공");
     } else {
       // 비밀번호 틀릴 경우
@@ -161,17 +131,12 @@ const post_signin = async (req, res) => {
 //////////////////////////////////////////////////
 module.exports = {
   // GET
-  projectlist,
-  recoplearnlist,
-  project,
-  main,
+
   detail,
   login_test,
   login_modal,
   header_login,
-  detailPage,
   signup,
-  mypage,
 
   // POST
   post_email,

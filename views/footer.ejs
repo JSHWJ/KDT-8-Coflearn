@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- fontAwesome -->
+    <script
+      src="https://kit.fontawesome.com/5286d2d6db.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- footer -->
+    <footer id="footer">
+      <!-- 왼쪽 -->
+      <div class="left_ch">
+        <nav>
+          <img src="" alt="Coplearn" />
+        </nav>
+        <div>코푼사람들 : 황동준, 조현익, 장창현, 서정현, 서혜원</div>
+        <div>팀이름 : 코막혀's</div>
+        <div>Copyright 2023. coplearn. All Rights Reserved</div>
+      </div>
+      <!-- 오른쪽 -->
+      <div class="right_ch">
+        <a href="https://github.com/JSHWJ/KDT-8-Coflearn"
+          ><i class="fa-brands fa-github fa-2x"></i
+        ></a>
+        <a href="https://www.instagram.com/"
+          ><i class="fa-brands fa-instagram fa-2x"></i
+        ></a>
+        <a href="https://twitter.com/"
+          ><i class="fa-brands fa-twitter fa-2x"></i
+        ></a>
+      </div>
+    </footer>
+
+    <!-- footer가 스크롤 맨 하단일 때만 나타나게 하기 -->
+    <script>
+      const footer = document.getElementById("footer");
+
+      window.addEventListener("scroll", function () {
+        const scrollY = window.scrollY;
+
+        const windowHeight = window.innerHeight;
+
+        const documentHeight = document.body.scrollHeight;
+
+        if (scrollY + windowHeight - 15 >= documentHeight) {
+          footer.style.display = "block";
+        } else {
+          footer.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
