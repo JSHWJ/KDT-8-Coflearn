@@ -9,7 +9,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/chat.css" />
+
+    <link rel="stylesheet" href="/css/chat.css" />
+
     <script src="/socket.io/socket.io.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -73,7 +75,7 @@
           </div>
           <div class="d">
             <div class="other-chat">
-              ascssssssssssssssssssssssssssssssssssssssssssssssssssszzzzzzzzXcZXcXCassssssssssssssssssssssssssssssssssssssssssssssssssssss
+              ascsssssssssssssss
             </div>
           </div>
           <div class="d">
@@ -93,87 +95,24 @@
     <script>
       console.log("시작");
       const roomId = window.location.pathname.split("/").pop();
+      let nick_name;
+      let user_id;
 
-    
-
-      if (roomId) {console.log("roomId:", roomId);} 
-      else {
-        console.log("roomId가 없습니다.");
-      }
-
-const myModal = document.getElementById("exampleModal");
-const myInput = document.getElementById("myInput");
-
-myModal.addEventListener("shown.bs.modal", () => {
-  myInput.focus();
-  updateUserList();
-});
-
-
-function fetchChatRoomInfo(roomId) {
-  fetch(`/api/chat/${roomId}`)
-    .then((response) => response.json())
-    .then((data) => {
-      const roomName = data.roomName;
-      const titleElement = document.querySelector("#title");
-      titleElement.textContent = roomName;
-      updateUserList(data.userList); 
-    })
-    .catch((error) => {
-      console.error("채팅방 정보 오류", error);
-    });
-}
-
-
-fetchChatRoomInfo(roomId);
-
-// 사용자 리스트를 업데이트하는 함수
-function updateUserList(userList) {
-  const userListContainer = document.querySelector("#userList");
-  userListContainer.innerHTML = "";
-
-  userList.forEach((user) => {
-    const listItem = document.createElement("li");
-    listItem.textContent = user.nick_name;
-
-    if (user.nick_name === userNickname) {
-      listItem.id = "username";
-    }
-
-    userListContainer.appendChild(listItem);
-  });
-}
       const socket = io();
 
-      socket.on("connect", async () => {
+      socket.on("connection", async () => {
         console.log("WebSocket 연결 성공");
-
-        // 토큰 가져오기
-        const token = await fetchUserToken();
-
-        // 토큰이 있으면 방에 참여
-        if (token) {
-          joinRoom(roomId, token);
-        } else {
-          // 토큰이 없을 경우 처리
-          console.error("토큰이 없습니다.");
-        }
       });
 
       socket.on("disconnect", () => {
         console.log("WebSocket 연결이 해제되었습니다.");
-
-      
       });
 
       const chatForm = document.querySelector("#chatForm");
 
-      function joinRoom(roomId) {
-        socket.emit("join room", roomId);
-      }
 
-      function loadPreviousMessages(token, roomId) {
-        socket.emit("load previous messages", token, roomId);
+      function loadPreviousMessages(roomId) {
+        socket.emit("load previous messages", roomId);
       }
 
       socket.on("previous messages", (messages) => {
@@ -210,30 +149,80 @@ function updateUserList(userList) {
         e.preventDefault();
         const messageInput = document.querySelector("#message");
         const message = messageInput.value;
-        if (message) {
-          fetchUserToken()
-            .then((token) => {
-              if (token) {
-                sendMessage(message, token);
-                messageInput.value = "";
-              } else {
-                console.error("토큰이 없습니다.");
-              }
-            })
-            .catch((error) => {
-              console.error("토큰 가져오기 오류:", error);
-            });
+        const token = getCookie("Login");
+        if (message) {  
+
+          const send_at = new Date().toISOString();  // ISO 형식으로 변환
+ 
+        socket.emit('sendMessage', roomId, token, message, send_at);
         }
+
+        messageInput.value = "";
       });
 
-      window.addEventListener("load", async () => {
-        const token = await fetchUserToken();
-        if (token) {
-          loadPreviousMessages(token, roomId);
-        } else {
-          console.error("토큰이 없습니다.");
+      function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+          const [cookieName, cookieValue] = cookie.trim().split('=');
+          if (cookieName === name) {
+            return cookieValue;
+          }
         }
-      });
+        return null;
+
+      }
+
+
+
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          const roomId = window.location.pathname.split("/").pop();
+          if (roomId) {
+            console.log("roomId:", roomId);
+            const response = await axios.get(`/api/chat/${roomId}`);
+            const data = response.data;
+            const roomName = data.roomName;
+            const titleElement = document.querySelector("#title");
+            titleElement.textContent = roomName;
+            nick_name=data.userNickname
+            user_id=data.user_id;
+
+            const myModal = document.getElementById("exampleModal");
+            const myInput = document.getElementById("myInput");
+
+            myModal.addEventListener("shown.bs.modal", () => {
+              myInput.focus();
+              updateUserList(data.userList,nick_name);});
+            joinChatRoom(roomId); // 채팅방에 조인
+            loadPreviousMessages(roomId);}
+          else {
+            console.log("roomId가 없습니다.");
+          }
+        } 
+        catch (error) {
+          console.error("오류 발생:", error);}
+        }
+      );
+
+      function joinChatRoom(roomId) {
+        socket.emit("join room", roomId); // 서버에 채팅방 조인 요청
+      }
+
+      function updateUserList(userList, userNickname) {
+            const userListContainer = document.querySelector("#userList");
+            userListContainer.innerHTML = "";
+            userList.forEach((user) => {
+              const listItem = document.createElement("li");
+              listItem.textContent = user.nick_name;
+              if (user.nick_name === userNickname) {
+                listItem.id = "username";
+              }
+
+            userListContainer.appendChild(listItem);
+          });
+        }
+
+    
     </script>
   </body>
 </html>
