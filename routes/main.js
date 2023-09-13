@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const controller = require("../controller/Cdjmain");
 const ch_controller = require("../controller/C_ch_main");
 const hi_controller = require("../controller/C_hi_main");
 const jh_controller = require("../controller/C_jh_main");
@@ -8,14 +8,15 @@ const jh_controller = require("../controller/C_jh_main");
 //////////////////////////////////////////////////
 // GET
 
-//메인페이지
-router.get("/", hi_controller.main);
+//메인 페이지
+router.get("/main", controller.main);
 
 //마이페이지
-router.get("/mypage", hi_controller.mypage);
-
-// 회원가입
-router.get("/signup", jh_controller.signup);
+router.get("/mypage/:id", controller.mypage);
+router.get("/api/mypage/:id", controller.mypage_data);
+router.get("/api/mypage/project/:id", controller.myproj_data);
+router.get("/api/mypage/cart/:id", controller.likepro_data);
+router.get("/api/mypage/recoplearn/:id", controller.recop_data);
 
 // 로그인 모달
 router.get("/login_modal", jh_controller.login_modal);
@@ -48,7 +49,6 @@ router.get(
   "/detailPage/:id/community/write",
   hi_controller.detailGet_community
 );
-
 //////////////////////////////////////////////////
 // POST
 router.post("/detailPage/:id/review", hi_controller.detailPost_review);
@@ -87,6 +87,8 @@ router.post("/signup", jh_controller.post_email);
 
 // 로그인 정보
 router.post("/header_login", jh_controller.post_signin);
+
+// router.post("/main", controller.main_post);
 
 // 로그인 마이페이지
 
