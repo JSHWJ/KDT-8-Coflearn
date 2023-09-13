@@ -133,10 +133,12 @@ const post_signin = async (req, res) => {
         SECRET
       );
 
+      res.cookie("jwt", token);
       res.json({ result: true, token, data: user });
 
       console.log("token", token);
       console.log("cookie 값 확인", req.cookies.isLoggedIn);
+      console.log("jwt cookie", req.cookies.jwt);
       console.log("로그인 성공");
     } else {
       // 비밀번호 틀릴 경우
