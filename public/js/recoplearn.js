@@ -1,5 +1,3 @@
-let cookie = document.cookie;
-const [name_ch, value_ch] = cookie.trim().split("=");
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     const currentUrl = window.location.href;
@@ -63,6 +61,8 @@ function closepop_ch() {
 
 //참여하기 버튼
 async function participate() {
+  let cookie = document.cookie;
+  const [name_ch, value_ch] = cookie.trim().split("=");
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
   let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
@@ -91,6 +91,8 @@ function closepop2_ch() {
 
 //리코프런 생성
 async function Start_ch() {
+  let cookie = document.cookie;
+  const [name_ch, value_ch] = cookie.trim().split("=");
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
   let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
@@ -138,6 +140,8 @@ async function Start_ch() {
 
 // 참여하기 버튼
 async function participate_ch() {
+  let cookie = document.cookie;
+  const [name_ch, value_ch] = cookie.trim().split("=");
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
   let num = currentUrl.replace("http://localhost:8000/detailPage/", "");

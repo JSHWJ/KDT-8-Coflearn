@@ -132,13 +132,13 @@
             </div>
             <!-- 답글 작성 모달 창 -->
             <div id="replyModal" class="modal">
-              <div class="modal-content">
+              <div class="modal-content" style="height: 40%">
                 <p style="text-align: center"><b>답글 작성</b></p>
                 <div>
                   <textarea
                     id="replyContent"
                     cols="50"
-                    rows="5"
+                    rows="10"
                     placeholder="답글을 작성하세요."
                   ></textarea>
                   <button type="button" onclick="submitReply()">
@@ -424,7 +424,7 @@
           ["hr", "quote"],
           ["ul", "ol", "task", "indent", "outdent"],
           ["code", "codeblock"],
-          // Using Option: Customize the last button
+
           [
             {
               el: createLastButton(),

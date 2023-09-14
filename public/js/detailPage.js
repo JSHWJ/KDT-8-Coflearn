@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const content = document.querySelector("#exContent_hi");
   const link_hi = document.querySelector("#link_hi");
   link.setAttribute("id", "gitlink_hi");
-  link.setAttribute("href", `Link ${projectDetail.data.git_link}`);
+  link.setAttribute("href", `${projectDetail.data.git_link}`);
   link.setAttribute("target", "_blank");
   video.innerHTML = projectDetail.data.video;
   title.textContent = projectDetail.data.title;
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     url: `/detailPage/${num}/community/write`,
     data: { num },
   });
-  console.log("qweqeqweqw", commures);
+
   const replyModal = document.querySelector("#replyModal");
 
   for (let i = commures.data.data.length - 1; i >= 0; i--) {
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     replyButton.className = "replyButton";
 
     const communityId = commures.data.data[i].community_id;
-    console.log(communityId);
+
     // replyModal.setAttribute("value", communityId);
     divTag.setAttribute("data-community-id", communityId);
     nickName.innerHTML = commures.data.data[i].User.nick_name + " 크루";
@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     for (let j in replyGet.data.data) {
       if (getCommuId === replyGet.data.data[j].community_id) {
-        console.log("reply");
         const replyText = document.createElement("p");
         // 답글 내용을 생성한 p 요소에 추가
         replyText.textContent =
@@ -143,7 +142,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     data: { num },
   });
 
-  console.log("dd", reGet.data.data);
   const frontText = document.querySelector("#frontText_hi");
   const backText = document.querySelector("#backText_hi");
   const goalText = document.querySelector("#goalText_hi");
@@ -205,7 +203,7 @@ async function reviewFunc() {
       },
     });
     commentWrite.value = "";
-    console.log("q", res.data.decode.nick_name);
+    console.log("리뷰", res.data.decode.nick_name);
     const newReview = res.data.data;
 
     const all = document.querySelector(".allComment_hi");
@@ -257,7 +255,6 @@ async function writeCommunity_hi() {
   console.log("wd", res.data.decode.nick_name);
 
   if (res.data) {
-    // Attach returned community_id to the div tag as a data attribute
     divTag.setAttribute("data-community-id", res.data.community_id);
 
     divTag.textContent = res.data.decode.nick_name + " 크루";
@@ -268,125 +265,52 @@ async function writeCommunity_hi() {
 
     editor.setMarkdown("");
     modal.style.display = "none";
+
+    window.location.reload();
   } else {
     console.error("Failed to post the community content");
   }
 }
 
-// async function submitReply() {
-//   const replyContent = document.querySelector("#replyContent").value;
-//   const modalidget = document.querySelector("#replyModal");
-//   const comid = Number(modalidget.getAttribute("data-modal-id"));
-
-//   // 커뮤니티 게시물의 고유한 ID를 가져오는 코드 (예시로 데이터 속성 data-community-id를 사용)
-//   console.log("comid", comid);
-
-//   // 서버로부터 답글 데이터를 받아온 후
-//   // const res = await axios({
-//   //   method: "POST",
-//   //   url: `/detailPage/${num}/community/reply`,
-//   //   data: {
-//   //     reply_content: replyContent,
-//   //     community_id: comid,
-//   //   },
-//   //   headers: {
-//   //     Authorization: `Bearer ${value_ch}`,
-//   //     "Content-Type": "application/json",
-//   //   },
-//   // });
-
-//   // console.log(res);
-
-//   // if (res.data) {
-//   //   // 서버에서 받은 답글 데이터
-//   //   const newReplyData = res.data;
-
-//   //   // 해당 커뮤니티 게시물을 식별하는 방법 (예: 커뮤니티 ID)
-//   //   const communityIdToMatch = comid;
-
-//   //   // 커뮤니티 게시물을 식별하고, 해당 게시물에 답글을 추가
-//   //   const commuElems = document.querySelectorAll(".communityContent");
-
-//   //   for (let i = 0; i < commuElems.length; i++) {
-//   //     const commuElem = commuElems[i];
-//   //     const getCommuId = Number(commuElem.getAttribute("data-community-id"));
-
-//   //     if (getCommuId === communityIdToMatch) {
-//   //       console.log("reply");
-
-//   //       // 새로운 답글 요소를 생성
-//   //       const replyText = document.createElement("p");
-//   //       replyText.textContent = `${newReplyData.user_name} 크루 : ${newReplyData.reply_content}`;
-
-//   //       // 해당 커뮤니티 게시물에 답글을 추가
-//   //       commuElem.appendChild(replyText);
-//   //     }
-//   //   }
-//   // }
-
-//   //divTag.appendChild(reviewText);
-
-//   // 답글을 작성한 후에 모달을 닫을 수 있도록
-//   closeReplyModal();
-// }
-
 // Reply post 부분에서 사용자 정보 가져오기
 async function submitReply() {
   const replyContent = document.querySelector("#replyContent").value;
+  const replyInit = document.querySelector("#replyContent");
   const modalidget = document.querySelector("#replyModal");
   const comid = Number(modalidget.getAttribute("data-modal-id"));
 
-  // 사용자 정보 가져오기
-  const userRes = await axios({
-    method: "GET",
+  const res = await axios({
+    method: "POST",
     url: `/detailPage/${num}/community/reply`,
-    data: { num },
+    data: {
+      reply_content: replyContent,
+      community_id: comid,
+    },
+    headers: {
+      Authorization: `Bearer ${value_ch}`,
+      "Content-Type": "application/json",
+    },
   });
 
-  console.log(userRes);
+  // 서버에서 받은 답글 데이터
+  const newReplyData = res.data;
 
-  if (userRes.data) {
-    const res = await axios({
-      method: "POST",
-      url: `/detailPage/${num}/community/reply`,
-      data: {
-        reply_content: replyContent,
-        community_id: comid,
-      },
-      headers: {
-        Authorization: `Bearer ${value_ch}`,
-        "Content-Type": "application/json",
-      },
-    });
+  const communityIdToMatch = comid;
 
-    if (res.data) {
-      // 서버에서 받은 답글 데이터
-      const newReplyData = res.data;
+  const commuElems = document.querySelectorAll(".communityContent");
 
-      const communityIdToMatch = comid;
+  for (let i = 0; i < commuElems.length; i++) {
+    const commuElem = commuElems[i];
+    const getCommuId = Number(commuElem.getAttribute("data-community-id"));
 
-      const commuElems = document.querySelectorAll(".communityContent");
+    if (getCommuId === communityIdToMatch) {
+      const replyText = document.createElement("p");
+      replyText.innerHTML = `${res.data.nick_name} 크루 : ${replyContent}`;
 
-      for (let i = 0; i < commuElems.length; i++) {
-        const commuElem = commuElems[i];
-        const getCommuId = Number(commuElem.getAttribute("data-community-id"));
-
-        if (getCommuId === communityIdToMatch) {
-          console.log("reply");
-
-          const replyText = document.createElement("p");
-          replyText.textContent = `${userRes.data.data[i].User.nick_name} 크루 : ${replyContent}`;
-
-          commuElem.appendChild(replyText);
-        }
-      }
+      commuElem.appendChild(replyText);
     }
-  } else {
-    console.error("Failed to fetch user information");
   }
-
-  //divTag.appendChild(reviewText);
-
+  replyInit.value = "";
   // 답글을 작성한 후에 모달을 닫을 수 있도록
   closeReplyModal();
 }
@@ -407,11 +331,10 @@ function closeReplyModal() {
 
 document.querySelector(".allCommunity").addEventListener("click", function (e) {
   if (e.target && e.target.className == "replyButton") {
-    console.log("이거 나옴?", e.target.closest(".communityContent"));
     const communityId = e.target
       .closest(".communityContent")
       .getAttribute("data-community-id");
-    console.log("communityId", communityId);
+
     openReplyModal(communityId);
   }
 });

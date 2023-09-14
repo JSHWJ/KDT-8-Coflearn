@@ -92,14 +92,13 @@
     <!-- 로그인 기능 동작 JS -->
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
-
         let jwt_user_id;
         const nav = document.querySelector(".navbar_menu_hi");
         if (document.cookie) {
-
           nav.innerHTML = `
           <li><a id="home_hi" href="/main">HOME</a></li>
           <li><a id="list_hi" href="/project-list">프로젝트 목록</a></li>
+          <li><a id="list_hi" href="/recoplearn-list">Re코프런 목록</a></li>
           <li>
             <i class="fa-solid fa-cart-shopping"></i>
           </li>
@@ -117,24 +116,24 @@
           let cookie = document.cookie;
           const [name_ch, value_ch] = cookie.trim().split("=");
           const response = await axios({
-              method: "GET",
-              url: "/api/gomypage",
-              headers: {
+            method: "GET",
+            url: "/api/gomypage",
+            headers: {
               Authorization: `Bearer ${value_ch}`, // JWT를 'Bearer' 스킴으로 포함
               "Content-Type": "application/json", // 요청 본문의 타입 설정 (예시)
             },
           });
 
-          console.log('복호화 완료', response);
-          console.log('유저 아이디', response.data.user_info.user_id);
+          console.log("복호화 완료", response);
+          console.log("유저 아이디", response.data.user_info.user_id);
 
           jwt_user_id = response.data.user_info.user_id;
-          console.log(jwt_user_id);        
-
+          console.log(jwt_user_id);
         } else {
           nav.innerHTML = `
           <li><a id="home_hi" href="/main">HOME</a></li>
           <li><a id="list_hi" href="/project-list">프로젝트 목록</a></li>
+          <li><a id="list_hi" href="/recoplearn-list">Re코프런 목록</a></li>
           <li>
             <a
               id="login_hi"
@@ -147,9 +146,8 @@
           `;
         }
 
-        const mypagelink = document.querySelector('#gomypage');
-        mypagelink.setAttribute('href', `/mypage/${jwt_user_id}`);
-
+        const mypagelink = document.querySelector("#gomypage");
+        mypagelink.setAttribute("href", `/mypage/${jwt_user_id}`);
       });
       async function loginFunc() {
         const form = document.forms["login_form"];

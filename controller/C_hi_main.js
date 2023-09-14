@@ -211,18 +211,20 @@ const detailPost_reply = (req, res) => {
     }
   });
 
+  console.log("decode", decode);
+
   models.Reply.create({
     user_id: decode.user_id,
     project_id: project_id,
     reply_content,
     community_id,
   });
-  res.json({ data: reply_content });
+  res.json({ data: reply_content, user_id, nick_name: decode.nick_name });
 };
 
 const detailGet_recoplearn = async (req, res) => {
   const project_id = req.params.id;
-  console.log("플젝 id:", project_id);
+
   const recoplearn = await models.Recoplearn.findAll({
     where: { project_id },
     attributes: ["frontability", "backability", "recoplearn_goal"],
@@ -236,13 +238,9 @@ const detailGet_user = async (req, res) => {
   //const user_id = req.params.id;
   const user = await models.User.findOne({
     where: { user_id },
+    attributes: ["user_id", "nick_name", "email"],
   });
-  const userJson = {
-    user_id: user.user_id,
-    nick_name: user.nick_name,
-    email: user.email,
-    pw: user.pw,
-  };
+
   console.log(userJson);
   res.json({ user: userJson });
 };
