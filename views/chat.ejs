@@ -65,7 +65,16 @@
       <div class="chat-container">
         <div id="chat-messages">
           <div class="d">
+            <div class="name">안녕</div>
             <div class="other-chat">ㅋㅋ</div>
+          </div>
+          <div class="d">
+            <div class="name">안녕</div>
+            <div class="other-chat">ㅋㅋ</div>
+          </div>
+          <div class="d">
+            <div class="name">안녕</div>
+            <div class="other-chat">asdassssssssssssssssssㅋㅋ</div>
           </div>
         </div>
       </div>
@@ -142,7 +151,13 @@
         messageItem.classList.add(messageClass);
 
         if (messageClass === "other-chat") {
-          messageItem.textContent = `${message.nick_name}: ${message.content}`;
+          messageItem.textContent = `${message.content}`;
+          // 이름 표시를 위한 엘리먼트 생성
+          const nameElement = document.createElement("div");
+          nameElement.classList.add("name");
+          nameElement.textContent = message.nick_name;
+
+          messageContainer.appendChild(nameElement); // 이름 엘리먼트 추가
         } else {
           messageItem.textContent = `${message.content}`;
         }
@@ -170,7 +185,14 @@
           messageItem.classList.add(messageClass);
 
           if (messageClass === "other-chat") {
-            messageItem.textContent = `닉네임 : ${message.nick_name}: ${message.content}`;
+            messageItem.textContent = `${message.content}`;
+
+            // 이름 표시를 위한 엘리먼트 생성
+            const nameElement = document.createElement("div");
+            nameElement.classList.add("name");
+            nameElement.textContent = message.nick_name;
+
+            messageContainer.appendChild(nameElement); // 이름 엘리먼트 추가
           } else {
             messageItem.textContent = `${message.content}`;
           }
@@ -195,7 +217,10 @@
             titleElement.textContent = roomName;
             nick_name = data.nick_name;
 
-            console.log("userList:", data.userList);
+            const userNumElement = document.querySelector("#user_num");
+            userNumElement.textContent = data.userList.length;
+
+            console.log("userList:", data.userList.length);
 
             joinChatRoom(roomId);
             loadPreviousMessages(roomId);
@@ -216,17 +241,20 @@
       function joinChatRoom(roomId) {
         socket.emit("join room", roomId);
       }
-
       function updateUserList(userList, userNickname) {
         const userListContainer = document.querySelector("#userList");
         userListContainer.innerHTML = "";
 
         userList.forEach((user) => {
           const listItem = document.createElement("li");
-          listItem.textContent = user;
+
           if (user === userNickname) {
-            listItem.id = "username";
+            // 현재 사용자인 경우 "(나)"를 추가
+            listItem.textContent = user + " (나)";
+          } else {
+            listItem.textContent = user;
           }
+
           userListContainer.appendChild(listItem);
         });
       }

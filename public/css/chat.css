@@ -131,6 +131,7 @@ body {
 }
 .d {
   display: flex;
+  flex-direction: column;
 }
 
 .other-chat,
@@ -181,6 +182,15 @@ body {
 .other-chat {
   align-self: flex-start;
   background-color: #ffffff;
+}
+
+.name {
+  white-space: normal;
+  max-width: 80%;
+  border-radius: 10px;
+  word-wrap: break-word;
+  position: relative;
+  display: inline-block;
 }
 
 .my-chat {
