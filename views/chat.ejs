@@ -63,7 +63,11 @@
       </div>
 
       <div class="chat-container">
-        <div id="chat-messages"></div>
+        <div id="chat-messages">
+          <div class="d">
+            <div class="other-chat">ㅋㅋ</div>
+          </div>
+        </div>
       </div>
       <div class="input-container">
         <form id="chatForm">
@@ -73,7 +77,6 @@
       </div>
     </div>
     <script>
-      console.log("시작");
       const roomId = window.location.pathname.split("/").pop();
       let nick_name;
       let user_id;
@@ -126,7 +129,6 @@
         }
       });
 
-      // socket.io로부터 'chat message' 이벤트를 받을 때 실행되는 콜백 함수
       socket.on("chat message", (message) => {
         const chatMessages = document.querySelector("#chat-messages");
 
@@ -140,17 +142,15 @@
         messageItem.classList.add(messageClass);
 
         if (messageClass === "other-chat") {
-          messageItem.textContent = `(${formattedTime}): 닉네임 : ${message.nick_name}: ${message.content}`;
+          messageItem.textContent = `${message.nick_name}: ${message.content}`;
         } else {
-          messageItem.textContent = `(${formattedTime}):  ${message.content}`;
+          messageItem.textContent = `${message.content}`;
         }
 
-        const messageTime = document.createElement("div");
-        messageTime.classList.add("message-time");
-        messageTime.textContent = formattedTime;
+        // 시간 정보를 data-time 속성에 추가
+        messageItem.setAttribute("data-time", formattedTime);
 
         messageContainer.appendChild(messageItem);
-        messageContainer.appendChild(messageTime);
         chatMessages.appendChild(messageContainer);
 
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -170,13 +170,14 @@
           messageItem.classList.add(messageClass);
 
           if (messageClass === "other-chat") {
-            messageItem.textContent = `(${formattedTime}): 닉네임 : ${message.nick_name}: ${message.content}`;
+            messageItem.textContent = `닉네임 : ${message.nick_name}: ${message.content}`;
           } else {
-            messageItem.textContent = `(${formattedTime}): ${message.content}`;
+            messageItem.textContent = `${message.content}`;
           }
+          // 시간 정보를 data-time 속성에 추가
+          messageItem.setAttribute("data-time", formattedTime);
 
           messageContainer.appendChild(messageItem);
-
           chatMessages.appendChild(messageContainer);
           chatMessages.scrollTop = chatMessages.scrollHeight;
         });
@@ -196,7 +197,7 @@
 
             console.log("userList:", data.userList);
 
-            joinChatRoom(roomId); // 채팅방에 조인
+            joinChatRoom(roomId);
             loadPreviousMessages(roomId);
 
             const myModal = document.getElementById("exampleModal");
@@ -213,7 +214,7 @@
       });
 
       function joinChatRoom(roomId) {
-        socket.emit("join room", roomId); // 서버에 채팅방 조인 요청
+        socket.emit("join room", roomId);
       }
 
       function updateUserList(userList, userNickname) {
