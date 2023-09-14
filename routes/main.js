@@ -3,8 +3,8 @@ const router = express.Router();
 const controller = require("../controller/Cdjmain");
 const ch_controller = require("../controller/C_ch_main");
 const hi_controller = require("../controller/C_hi_main");
+const hw_controller = require("../controller/C_hw_main");
 const jh_controller = require("../controller/C_jh_main");
-
 //////////////////////////////////////////////////
 // GET
 
@@ -62,6 +62,14 @@ router.get(
   "/detailPage/:id/community/write",
   hi_controller.detailGet_community
 );
+//채팅방 들어가는 임의 페이지
+router.get("/ex", hw_controller.ex);
+
+//채팅방
+router.get("/chat/:roomId", hw_controller.chat);
+
+//채팅방 룸 정보 api
+router.get("/api/chat/:roomId", hw_controller.room_info);
 
 router.get("/detailPage/:id/community/reply", hi_controller.detailGet_reply);
 
