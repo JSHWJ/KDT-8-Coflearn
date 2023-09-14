@@ -12,13 +12,8 @@ const nodemailer = require("nodemailer");
 
 require("dotenv").config();
 
-const {
-  S3_ACCESS_KEY_ID,
-  S3_SECRET_ACCESS_KEY,
-  S3_REGION,
-  S3_BUCKET,
-  SECRET_KEY,
-} = process.env;
+const { S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_REGION, S3_BUCKET, SECRET } =
+  process.env;
 
 const PORT = 8000;
 
@@ -114,7 +109,7 @@ io.on("connection", (socket) => {
   // );
   socket.on("sendMessage", async (room_id, token, message, send_at) => {
     try {
-      const decodedToken = jwt.verify(token, SECRET_KEY); // 토큰 검증
+      const decodedToken = jwt.verify(token, SECRET); // 토큰 검증
 
       const newMessage = await db.User.Messages.create({
         user_id: decodedToken.user_id,
