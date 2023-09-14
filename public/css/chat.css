@@ -1,0 +1,196 @@
+/* @font-face 규칙 */
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 모든 요소에 웹 폰트 적용 */
+* {
+  font-family: "GmarketSansMedium", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.all-container {
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow: hidden; /* 스크롤 막기 (선택 사항) */
+}
+.header-container {
+  display: flex;
+  width: 100vw;
+  height: 15vh;
+  background-color: #fff7d4;
+  flex-direction: column;
+}
+.chat-container {
+  display: flex;
+  width: 100vw;
+  height: 68vh;
+  background-color: #fff7d4;
+  overflow-y: auto;
+  flex-direction: column;
+}
+
+.input-container {
+  display: flex;
+  width: 100vw;
+  height: 17vh;
+  background-color: #ffffff;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: rgba(216, 216, 216, 0.7);
+  border-radius: 6px;
+}
+.chat-container::-webkit-scrollbar {
+  background-color: #fff7d4;
+  width: 15px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background-color: rgba(216, 216, 216, 0.7);
+  border-radius: 6px;
+}
+#chat-messages::-webkit-scrollbar {
+  background-color: #fff7d4;
+  width: 15px;
+}
+
+#userList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#userList li {
+  margin-bottom: 10px;
+}
+
+.modal-content {
+  width: 60%;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#title {
+  display: flex;
+  margin-top: 3%;
+  margin-left: 4vw;
+  font-size: 17px;
+  font-weight: 600;
+}
+#user_num {
+  font-size: 15px;
+  padding-left: 4px;
+  color: #a2a2a2;
+}
+.title-content {
+  display: flex;
+  height: 20%;
+  margin-left: 4vw;
+}
+#chatForm {
+  width: 100vw;
+  padding: 5px;
+}
+#message {
+  border-style: none;
+  width: 86vw;
+  padding: 0.5vw;
+  padding-left: 10px;
+  font-size: 13px;
+  margin-right: 0.5vw;
+}
+#message:focus {
+  outline: none;
+}
+#message:focus + #send_button {
+  background-color: #ffd95a;
+  color: #303030;
+}
+#send_button {
+  width: 11vw;
+  height: 25%;
+  font-size: 11px;
+  color: #939393;
+  padding: 0;
+  border-style: none;
+  border-radius: 4px;
+}
+
+#chat-messages {
+  font-size: 13px;
+  padding: 10px;
+  padding-top: 0;
+  font-weight: 400;
+  overflow-y: scroll; /* 추가 */
+}
+.d {
+  display: flex;
+}
+
+.other-chat,
+.my-chat {
+  background-color: white;
+  margin: 10px;
+  padding: 10px; /* 패딩을 추가하여 텍스트와 흰 배경 간격을 조절 */
+  white-space: normal; /* 텍스트가 컨테이너 너비를 넘어갈 경우 자동으로 줄 바꿈 */
+  max-width: 80%; /* 텍스트가 컨테이너의 최대 너비를 넘지 않도록 설정 */
+  border-radius: 10px; /* 흰 배경을 둥글게 처리 */
+  word-wrap: break-word;
+  position: relative;
+  display: inline-block;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 스타일 적용 */
+}
+
+.other-chat:after {
+  content: "";
+  position: absolute;
+  left: 0;
+
+  top: 50%;
+  width: 0;
+  height: 0;
+  bottom: -8px; /* 말풍선 아래에 그림자가 생기도록 조정 */
+
+  border: 0.688em solid transparent;
+  border-right-color: #ffffff;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -0.344em;
+  margin-left: -0.687em;
+}
+.my-chat:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 0.688em solid transparent;
+  border-left-color: #ffe284;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -0.344em;
+  margin-right: -0.687em;
+}
+.other-chat {
+  align-self: flex-start; /* 왼쪽 정렬 (상대방 메시지) */
+  background-color: #ffffff; /* 상대방 메시지 말풍선 배경색 */
+}
+
+.my-chat {
+  background-color: #ffde5c;
+
+  margin-left: auto; /* 오른쪽 정렬을 추가 */
+}
+
+#username {
+  font-weight: 700;
+}

@@ -213,3 +213,7 @@
   font-size: 25px;
   cursor: pointer;
 }
+
+#logout_ch {
+  background-color: none;
+}

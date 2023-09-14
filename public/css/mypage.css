@@ -112,3 +112,32 @@
     height: 200px;
     margin: 0 10px;
 }
+
+.mylike{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.mylike img{
+    width: 330px;
+    height: 200px;
+    margin: 0 10px;
+}
+
+/* 나의 리코프런 현황 */
+.myrecop{
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+
+.myrecop img{
+    width: 330px;
+    height: 200px;
+    margin: 0 10px;
+}

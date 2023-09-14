@@ -14,21 +14,21 @@
     
     for(let i = 0; i<Object.keys(res.data.project).length; i++){
         const a = document.createElement('a');
-        const vid  = document.createElement('video');
+        const vid  = document.createElement('img');
         // const div = document.createElement('div');
         const p_title = document.createElement('p');
         const p_period = document.createElement('p');
         const p_mem = document.createElement('p');
         
         a.setAttribute('href',`/api/dtailpage/${res.data.project[i].project_id}`)
-        vid.setAttribute('autoplay','');
+        // vid.setAttribute('autoplay','');
         // vid.setAttribute('muted', '');
-        vid.setAttribute('src',`/testvideo.mp4`);//`api/${res.data.project[i].pvideo}`
+        vid.setAttribute('src',`${res.data.project[i].pthumnail}`);//`api/${res.data.project[i].pvideo}`
         p_period.style.fontSize = '14px'
         p_title.style.fontSize = '20px'
         p_mem.style.fontSize = '14px'
         p_title.innerText = `${res.data.project[i].ptitle}`
-        p_mem.innerText = `프로젝트 인원수 : ${res.data.project[i].pmembers}명`
+        p_mem.innerText = `프로젝트 멤버 : ${res.data.project[i].pmembers}`
         p_period.innerText = `프로젝트 기간 : ${res.data.project[i].pPeriod}일`
 
 
@@ -55,18 +55,19 @@
                     project_join_id : res.data.recop[j].project_id,
                     project_join_title : res.data.projAll[i].ptitle,
                     join_video : res.data.projAll[i].pvideo,
+                    join_thum : res.data.projAll[i].pthumnail,
                 }
             }
         }
     }
 
-    console.log(join_re_pro);
+    console.log('리코프런 현황', join_re_pro);
 
     const nowarr = [];
 
     for(let i = 0; i<Object.keys(res.data.recop).length; i++){
         const a = document.createElement('a');
-        const vid  = document.createElement('video');
+        const vid  = document.createElement('img');
         // const div = document.createElement('div');
         const re_title = document.createElement('p');
         const re_people = document.createElement('p');
@@ -74,9 +75,9 @@
 
 
         a.setAttribute('href',`/api/recoplearn`)        
-        vid.setAttribute('autoplay','');
+        // vid.setAttribute('autoplay','');
         // vid.setAttribute('muted', '');
-        vid.setAttribute('src',`/testvideo.mp4`);//`api/${res.data.project[i].pvideo}`
+        vid.setAttribute('src',`${join_re_pro[i].join_thum}`);//`api/${res.data.project[i].pvideo}`
         re_title.style.fontSize = '20px'
         re_people.style.fontSize = '14px'
         re_now.style.fontSize = '14px'
@@ -102,7 +103,7 @@
         a.appendChild(re_now);
         recoplearnC.appendChild(a);
 
-    }
+    }   
 
     const review = document.querySelector('.pro_review_dj');
     const proNum = document.querySelector('#pro_num');
