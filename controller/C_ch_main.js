@@ -9,6 +9,7 @@ console.log(models);
 //로그아웃
 const logout = (req, res) => {
   res.clearCookie("jwt");
+  res.clearCookie("csrf_token ");
   res.clearCookie("isLoggedIn").redirect("/main");
 };
 
