@@ -111,3 +111,7 @@
     //후기 보여주기는 마이페이지랑 검색 기능 완료된 후에 하기
 
   })();
+
+//   function sech_dj() {
+//     const keyw = document.querySelector('#search_keyword_dj');
+//   }
