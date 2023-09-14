@@ -1,13 +1,11 @@
 const db = require("../models");
 const models = db.User;
-const { SECRET } = process.env;
-
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const {SECRET}=process.env;
+const { SECRET } = process.env;
 //////////////////////////////////////////////////
 // GET
 
