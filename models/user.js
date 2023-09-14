@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const Model = (sequelize) => {
-  //마이프로필
-  const MyProfile = sequelize.define(
-    "MyProfile",
+  //프로필_나의 프로젝트
+  const MyProject = sequelize.define(
+    "MyProject",
     {
       user_id: {
         type: DataTypes.INTEGER,
@@ -12,54 +12,31 @@ const Model = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+    },
+    {
+      tableName: "MyProject",
+      timestamps: false,
+    }
+  );
+
+  //프로필_나의카트
+  const Mycart = sequelize.define(
+    "Mycart",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       cart_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
-      tableName: "MyProfile",
+      tableName: "Mycart",
       timestamps: false,
     }
   );
-
-    //프로필_나의 프로젝트
-    const MyProject = sequelize.define(
-      "MyProject",
-      {
-        user_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        project_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-      },
-      {
-        tableName: "MyProject",
-        timestamps: false,
-      }
-    );
-  
-      //프로필_나의카트
-      const Mycart = sequelize.define(
-        "Mycart",
-        {
-          user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
-          cart_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
-        },
-        {
-          tableName: "Mycart",
-          timestamps: false,
-        }
-      );
 
   // 유저
   const User = sequelize.define(
@@ -463,12 +440,9 @@ const Model = (sequelize) => {
     }
   );
   // 관계 정의
-  MyProfile.belongsTo(User, { foreignKey: "user_id" }); // 마이프로필 -> 유저
   MyProject.belongsTo(User, { foreignKey: "user_id" }); // 마이프로젝트 -> 유저
   Mycart.belongsTo(User, { foreignKey: "user_id" }); // 마이카트 -> 유저
-  MyProfile.belongsTo(Project, { foreignKey: "project_id" }); // 마이프로필 -> 프로젝트
   MyProject.belongsTo(Project, { foreignKey: "project_id" }); // 마이프로젝트 -> 프로젝트
-  MyProfile.belongsTo(Cart, { foreignKey: "cart_id" }); // 마이프로필 -> 카트
   Mycart.belongsTo(Cart, { foreignKey: "cart_id" }); // 마이카트 -> 카트
 
   Community.belongsTo(User, { foreignKey: "user_id" }); // 커뮤니티 -> 유저
@@ -492,7 +466,6 @@ const Model = (sequelize) => {
   Reply.belongsTo(Project, { foreignKey: "project_id" });
   Community.hasMany(Reply, { foreignKey: "community_id" });
   return {
-    MyProfile,
     MyProject,
     Mycart,
     User,

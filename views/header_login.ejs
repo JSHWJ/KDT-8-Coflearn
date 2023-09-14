@@ -30,46 +30,9 @@
       <nav class="navbar_hi">
         <div class="navbar_logo_hi">
           <i class=""></i>
-          <a href="">Coplearn</a>
+          <a href="/main">Coplearn</a>
         </div>
-        <ul class="navbar_menu_hi">
-          <li><a id="home_hi" href="#">HOME</a></li>
-          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
-          <!-- <li>
-            <a
-              id="login_hi"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              onclick="loginmodalopen()"
-              >로그인</a
-            >
-          </li> -->
-          <% if(cookie){ %>
-          <li>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </li>
-
-          <li>
-            <i class="fa-solid fa-id-badge"></i>
-            <ul id="dropdown_menu_jh">
-              <li><a href="./mypage">마이페이지</a></li>
-              <li>
-                <a href="#">로그아웃</a>
-              </li>
-            </ul>
-          </li>
-          <% } else { %>
-          <li>
-            <a
-              id="login_hi"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              onclick="loginmodalopen()"
-              >로그인</a
-            >
-          </li>
-          <% } %>
-        </ul>
+        <ul class="navbar_menu_hi"></ul>
       </nav>
     </header>
 
@@ -77,13 +40,13 @@
       <div id="loginContent_jh">
         <div id="loginBody_jh">
           <div class="closesection">
-            <button id="closeBtn_jh" onclick="closepop_ch()">&times;</button>
+            <button id="closeBtn_jh" onclick="closepop_jh()">&times;</button>
           </div>
           <!-- 로그인 폼 시작 -->
           <div class="login_content">
             <form id="login_form" name="login_register">
               <h2 class="title">SIGNIN</h2>
-
+              `
               <!-- 이메일 -->
               <div class="login_input_div login_email">
                 <div class="i"><i class="fa-solid fa-envelope"></i></div>
@@ -117,7 +80,7 @@
               type="button"
               class="sign_btn"
               data-bs-dismiss="modal"
-              onclick="location.href='./signup'"
+              onclick="location.href='/signup'"
             >
               회원가입
             </button>
@@ -128,6 +91,41 @@
 
     <!-- 로그인 기능 동작 JS -->
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const nav = document.querySelector(".navbar_menu_hi");
+        if (document.cookie) {
+          nav.innerHTML = `
+          <li><a id="home_hi" href="/main">HOME</a></li>
+          <li><a id="list_hi" href="/project-list">프로젝트 목록</a></li>
+          <li>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </li>
+
+          <li>
+            <i class="fa-solid fa-id-badge"></i>
+            <ul id="dropdown_menu_jh">
+              <li><a href="/mypage">마이페이지</a></li>
+              <li>
+                <a href="/logout">로그아웃</a>
+              </li>
+            </ul>
+          </li>`;
+        } else {
+          nav.innerHTML = `
+          <li><a id="home_hi" href="/main">HOME</a></li>
+          <li><a id="list_hi" href="/project-list">프로젝트 목록</a></li>
+          <li>
+            <a
+              id="login_hi"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              onclick="loginmodalopen()"
+              >로그인</a
+            >
+          </li>
+          `;
+        }
+      });
       async function loginFunc() {
         const form = document.forms["login_form"];
 
@@ -160,7 +158,7 @@
         loginmodal.style.display = "block";
       }
 
-      function closepop_ch() {
+      function closepop_jh() {
         loginmodal.style.display = "none";
       }
 
