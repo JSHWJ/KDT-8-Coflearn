@@ -168,7 +168,38 @@ document.addEventListener('DOMContentLoaded', async () => {
   }   
 
 
-})
+  //채팅방 연결하기
+  const mychat = await axios({
+    method : 'GET',
+    url : `/api/mypage/chat/${num}`,
+    data : { num },
+  });
+
+  console.log('룸정보', mychat);
+  console.log(mychat.data.room[0].room_id)
+
+  const chat = document.querySelector('.mychat');
+
+  for(let i=0; i<Object.keys(mychat.data.room).length; i++){
+    const a2 = document.createElement('a');
+    const p1 = document.createElement('p');
+    const btn = document.createElement('button');
+    const div = document.createElement('div');
+
+    a2.setAttribute('href',`/chat/${mychat.data.room[i].room_id}`);
+    p1.style.fontSize = '20px';
+    p1.innerText = `채팅방 이름 : ${mychat.data.room[i].room_name}`
+    btn.style.fontSize = '16px';
+    btn.innerText = '들어가기'
+
+
+    a2.appendChild(p1);
+    a2.appendChild(btn);
+    div.appendChild(a2);
+    chat.appendChild(div);
+  }
+
+});
 
 //탭 기능 js
 for(var i = 0; i < tabList.length; i++){

@@ -40,7 +40,7 @@ const main_post = async (req, res) => {
 
   //불러와졌는지 체크
   // console.log('프로젝트', projectData);
-  console.log('리코프런', copData);
+  // console.log('리코프런', copData);
   // console.log('리뷰', revwData);
 
   //각 데이터를 사용하기 쉽도록 객체로 만들 배열 만들기
@@ -112,10 +112,10 @@ const main_post = async (req, res) => {
   // console.log("check 프로",proJson);
   // console.log("check 리코",recopJson);
   // console.log("check 후기",revwJson);
-  console.log('모든 프로젝트', proJsonall)
-
+  // console.log('모든 프로젝트', proJsonall)
 
   res.json({ project : proJson, projAll : proJsonall, recop : recopJson, revw : revwJson});
+  console.log('메인페이지 데이터 전송 완료');
 };
 
 
@@ -143,7 +143,7 @@ const mypage = (req, res) => {
 
 const mypage_data = async (req, res) => {
   
-  console.log(req.params);
+  // console.log(req.params);
   
   //유저 데이터 가져오기
   const user_id = req.params.id;
@@ -157,16 +157,18 @@ const mypage_data = async (req, res) => {
     pw: user.pw,
   };
 
-  console.log(userJson);
+  // console.log(userJson);
 
   res.json({userD : userJson});
+
+  console.log('마이페이지 유저 데이터 전송 완료');
 };
 
 ////////////////////////////////////////////////////////////////////////////
 
 const myproj_data = async (req, res) => {
   
-  console.log('내 프로젝트',req.params);
+  // console.log('내 프로젝트',req.params);
 
   const user_id = req.params.id;
   const user = await models.User.findOne({
@@ -183,10 +185,10 @@ const myproj_data = async (req, res) => {
     }
   }
 
-  console.log(uprojJson[0].uproj_id);
-  console.log(uprojJson[1].uproj_id);
-  console.log(uprojJson[2].uproj_id);
-  console.log(user_proj.length);
+  // console.log(uprojJson[0].uproj_id);
+  // console.log(uprojJson[1].uproj_id);
+  // console.log(uprojJson[2].uproj_id);
+  // console.log(user_proj.length);
 
   
 
@@ -213,20 +215,21 @@ const myproj_data = async (req, res) => {
     }
   }
 
-  console.log('나의 프로젝트 유저',user);
-  console.log('나의 프로젝트',user_proj);
-  console.log('프로젝트 찾아오기', uproj_detail);
+  // console.log('나의 프로젝트 유저',user);
+  // console.log('나의 프로젝트',user_proj);
+  // console.log('프로젝트 찾아오기', uproj_detail);
 
-
+  
   res.json({userProject : uproj_detail});
-
+  
+  console.log('마이페이지 내 프로젝트 데이터 전송 완료');
 }
 
 
 
 
 const likepro_data = async (req, res) => {
-  console.log('내가 담은 프로젝트', req.params);
+  // console.log('내가 담은 프로젝트', req.params);
 
   const user_id = req.params.id;
   const user = await models.User.findOne({
@@ -237,8 +240,8 @@ const likepro_data = async (req, res) => {
     where: {user_id},
   });
 
-  console.log(user);
-  console.log(like_cart);
+  // console.log(user);
+  // console.log(like_cart);
 
 
   const LprojJson ={};
@@ -249,13 +252,13 @@ const likepro_data = async (req, res) => {
       }
   }
 
-  console.log('카트 가져오기 위한 json',LprojJson);
+  // console.log('카트 가져오기 위한 json',LprojJson);
   const CartId = {};
   const Cbasis = await models.Cart.findAll({});
 
-  console.log(LprojJson[0].cart_id);
-  console.log(Cbasis[0].cart_id)
-  console.log(like_cart.length);
+  // console.log(LprojJson[0].cart_id);
+  // console.log(Cbasis[0].cart_id)
+  // console.log(like_cart.length);
 
   for(let j=0; j<like_cart.length; j++){
     for(let i=0; i<Cbasis.length; i++){
@@ -272,8 +275,8 @@ const likepro_data = async (req, res) => {
     };
   }
 
-  console.log(CartId);
-  console.log(CartId[0].proj_id_C);
+  // console.log(CartId);
+  // console.log(CartId[0].proj_id_C);
 
   const capro_detail = {};
   const pro_basis = await models.Project.findAll({});
@@ -298,22 +301,22 @@ const likepro_data = async (req, res) => {
     };
   }
 
-  console.log('카트에 맞는 프로젝트',capro_detail);
+  // console.log('카트에 맞는 프로젝트',capro_detail);
   res.json({cartProj : capro_detail });
-
+  console.log('마이페이지 담은 프로젝트 데이터 전송 완료');
 
 }
 
 const recop_data = async (req, res) => {
 
-  console.log('리코프런',req.params);
+  // console.log('리코프런',req.params);
   
   const user_id = req.params.id;
   const recop = await models.UserRecoplearn.findAll({
     where: { user_id },
   });
 
-  console.log(recop.length);
+  // console.log(recop.length);
 
 
   const reid = {};
@@ -323,18 +326,18 @@ const recop_data = async (req, res) => {
     }
   }
 
-  console.log('유저리코프런에서 가져온 리코프런 아이디', reid);
+  // console.log('유저리코프런에서 가져온 리코프런 아이디', reid);
 
 
   const recop_basis = await models.Recoplearn.findAll({});
 
-  console.log(recop.length);
-  console.log(recop_basis.length);
-  console.log(reid[0].recop_id);
+  // console.log(recop.length);
+  // console.log(recop_basis.length);
+  // console.log(reid[0].recop_id);
 
 // 사용자와 매치되는 리코프런 데베 가지고 오기
   const recopJson = {};
-  console.log(recop.length);
+  // console.log(recop.length);
   for(let j = 0; j < recop.length; j++){
     for(let i = 0; i<recop_basis.length; i++){
       
@@ -357,10 +360,10 @@ const recop_data = async (req, res) => {
   
   const proj_basis = await models.Project.findAll({});
   const reproJson = {};
-  console.log('리코프런 현황 프로젝트 베이스', proj_basis);
+  // console.log('리코프런 현황 프로젝트 베이스', proj_basis);
   
-  console.log(Object.keys(recopJson).length);
-  console.log(proj_basis.length);
+  // console.log(Object.keys(recopJson).length);
+  // console.log(proj_basis.length);
 
   
   for(let j = 0; j < Object.keys(recopJson).length; j++){
@@ -380,18 +383,84 @@ const recop_data = async (req, res) => {
   }
 
 
-  console.log('리코프런 사용자 데이터',recopJson);
-  console.log('리코프런 사용자 프로젝트 데이터',reproJson);
+  // console.log('리코프런 사용자 데이터',recopJson);
+  // console.log('리코프런 사용자 프로젝트 데이터',reproJson);
 
-  res.json({ recop : recopJson, proj : reproJson })
+  res.json({ recop : recopJson, proj : reproJson });
+
+  console.log('마이페이지 리코프런+프로젝트 데이터 전송 완료');
+
+}
+
+//채팅방 연결
+const recop_chat = async(req, res) => {
+  const user_id = req.params.id;
+  const re_chat = await models.UserRoom.findAll({
+    where: { user_id },
+    // include: {
+    //   model: models.Room,
+    //   attribute : ["room_name"],
+    // }
+  });
+
+  console.log(re_chat);
+
+  const roomid = {};
+  for(let i=0; i<re_chat.length; i++){
+    roomid[i] = {
+      user_id : re_chat[i].user_id,
+      room_id : re_chat[i].room_id,
+    }
+  }
+
+  console.log(roomid);
+  console.log(roomid[0].room_id);
+  console.log(Object.keys(roomid).length);
+
+  const room_name = await models.Room.findAll({});
+
+  console.log(room_name[0].room_id);
+  console.log(room_name.length);
+
+  const realchat = {};
+  for(let i=0; i<Object.keys(roomid).length; i++){
+    for(let j=0; j<room_name.length; j++){
+      if(roomid[i].room_id === room_name[j].room_id){
+        realchat[i] = {
+          user_id : roomid[i].user_id,
+          room_id : roomid[i].room_id,
+          room_name : room_name[j].room_name,
+        }
+      }
+    }
+  }
+
+  console.log(realchat);
+  res.json({room : realchat});
 
 }
 
 
-//마이페이지 데이터 받기
-// const mypage_post = (req, res) => {
+//마이페이지로 넘어가기
+const jwt = require("jsonwebtoken");
+const {SECRET} = process.env;
 
-// };
+const go_mypage=(req, res)=>{
+  const token = req.headers.authorization.split(" ")[1];
+  let decode;
+  console.log(token);
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) {
+      // JWT 검증 실패
+      res.status(401).json({ error: "JWT 검증 실패" });
+    } else {
+      // JWT 검증 성공, 디코딩된 정보는 decoded에 저장됨
+      console.log("복호화 완료", decoded);
+      decode = decoded;
+      res.json({user_info : decode});
+    }
+  });
+}
 
 module.exports = {
   main,
@@ -401,5 +470,7 @@ module.exports = {
   myproj_data,
   likepro_data,
   recop_data,
+  recop_chat,
+  go_mypage,
   // mypage_post,
 };
