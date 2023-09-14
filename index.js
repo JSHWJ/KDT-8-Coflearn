@@ -1,12 +1,12 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const http = require("http");
+const http = require("http"); // http 모듈 추가
 const socketIo = require("socket.io");
 const path = require("path");
 const db = require("./models");
-const multer = require("multer");
-const aws = require("aws-sdk");
+const multer = require("multer"); // multer 모듈 추가
+const aws = require("aws-sdk"); // aws-sdk 모듈 추가
 const multerS3 = require("multer-s3");
 const nodemailer = require("nodemailer");
 
@@ -18,24 +18,21 @@ const { S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_REGION, S3_BUCKET, SECRET } =
 const PORT = 8000;
 
 const app = express();
-const server = http.createServer(app);
+const server = http.createServer(app); // http 서버 생성
 const io = socketIo(server);
 
 // 정적 파일을 제공할 디렉토리를 설정
 app.use(express.static(path.join(__dirname, "public")));
 
-//body-parser
+// body-parser
 app.use(express.json());
 
-//view engine
+// view engine
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-
-// AWS S3 설정
-const s3 = new aws.S3();
 
 aws.config.update({
   accessKeyId: S3_ACCESS_KEY_ID,
@@ -43,9 +40,8 @@ aws.config.update({
   region: S3_REGION,
 });
 
-// Router 분리
-const router = require("./routes/main");
-app.use("/", router);
+// AWS S3 설정
+const s3 = new aws.S3();
 
 const upload = multer({
   storage: multerS3({
@@ -63,15 +59,20 @@ const upload = multer({
   }),
 });
 
-//s3 이미지 처리
+// Router 분리
+const router = require("./routes/main");
+app.use("/", router);
+
+// s3 이미지 처리
 app.post("/api/project/img/write", upload.single("data"), (req, res) => {
   res.json({ imageUrl: req.file.location });
 });
 
-//s3 비디오처리
+// s3 비디오 처리
 app.post("/api/project/video/upload", upload.single("file"), (req, res) => {
   res.json({ imageUrl: req.file.location });
 });
+
 // 오류 처리
 app.use("*", (req, res) => {
   res.status(404).render("404");
@@ -136,7 +137,7 @@ io.on("connection", (socket) => {
 });
 
 db.sequelize.sync({ force: false }).then(() => {
-  server.listen(8000, () => {
+  server.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
   });
 });
