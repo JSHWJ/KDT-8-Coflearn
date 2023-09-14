@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+const {SECRET}=process.env;
 //////////////////////////////////////////////////
 // GET
 
@@ -178,8 +179,6 @@ const cookieConfig = {
   httpOnly: true,
   maxAge: 60 * 1000 * 10, // 60 * 1000 = 1분
 };
-
-const SECRET = "mySecret";
 
 // 이메일 전송 함수
 const sendEmail = (email, cert_code) => {
