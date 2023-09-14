@@ -80,7 +80,7 @@ videoInput.addEventListener("change", async function () {
           data: formData,
         });
         videoUrl = response.data.imageUrl;
-        console.log("들어온 정보", response.data.imageUrl);
+        console.log("들어온 정보", videoUrl);
       } catch (error) {
         console.log("동영상 S3업로드 중 에러 발생", error);
       }
