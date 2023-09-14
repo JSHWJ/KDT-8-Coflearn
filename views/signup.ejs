@@ -103,7 +103,7 @@
 
           <!-- 가입하기 버튼 -->
           <button
-            type="submit"
+            type="button"
             class="signup_btn"
             id="signup_btn"
             onclick="signup_registerFunc()"
@@ -155,6 +155,7 @@
               pw: signup_form.password.value,
             },
           });
+          console.log(res);
           if (res.data) {
             alert("회원가입을 축하드립니다.");
             document.location.href = "/main";

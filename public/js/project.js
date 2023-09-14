@@ -106,7 +106,7 @@ function addTag(e) {
     if (tags.includes(tagText) === false) {
       tags.push(tagText);
       const tag_div = document.createElement("div");
-      tag_div.innerText = "#" + tagText;
+      tag_div.innerText = "#" + tagText + " ";
       tag_div.style.padding = "4px 4px";
       tag_div.style.border = "none";
       tag_div.style.borderRadius = "10px";

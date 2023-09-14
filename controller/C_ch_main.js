@@ -2,9 +2,16 @@ const db = require("../models");
 const models = db.User;
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const SECRET = "mySecret";
-
 console.log(models);
+
+//로그아웃
+const logout = (req, res) => {
+  res.clearCookie("jwt");
+  res.clearCookie("isLoggedIn").redirect("/main");
+};
+
 // 프로젝트리스트 페이지
 const projectlist = (req, res) => {
   res.render("projectlist");
@@ -293,6 +300,7 @@ const recoplearncheck = async (req, res) => {
     res.json({ result: false });
   }
 };
+
 //참가처리
 const recoplearnjoin_post = async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
@@ -318,7 +326,7 @@ const recoplearnjoin_post = async (req, res) => {
     user_id: decode.user_id,
     Recoplearn_id: nowrecoplearn.Recoplearn_id,
   };
-  console.log(req.body.role);
+
   if (nowrecoplearn.current_num == nowrecoplearn.goal_num) {
     result = "이 프로젝트는마감된 프로젝트입니다.";
   } else {
@@ -333,12 +341,35 @@ const recoplearnjoin_post = async (req, res) => {
           },
           {
             where: {
-              project_id: req.body.data, // Recoplearn ID 필터링 조건
+              project_id: req.body.data,
             },
           }
         );
         result = true;
         await models.UserRecoplearn.create(joinrecoplearn);
+        // console.log("해당 프로젝트 리코프런 사람들", member);
+        if (nowrecoplearn.current_num == nowrecoplearn.goal_num - 1) {
+          const member = await models.UserRecoplearn.findAll({
+            where: {
+              Recoplearn_id: nowrecoplearn.Recoplearn_id,
+            },
+          });
+          const roomname = await models.Project.findOne({
+            where: {
+              project_id: nowrecoplearn.project_id,
+            },
+          });
+          const roomnum = await models.Room.create({
+            room_name: roomname.title,
+          });
+          for (let key in member) {
+            await models.UserRoom.create({
+              room_id: roomnum.room_id,
+              user_id: member[key].user_id,
+            });
+          }
+          ``;
+        }
       }
     } else {
       if (nowrecoplearn.back_num == nowrecoplearn.back_goal_num) {
@@ -357,6 +388,28 @@ const recoplearnjoin_post = async (req, res) => {
         );
         result = true;
         await models.UserRecoplearn.create(joinrecoplearn);
+        // console.log("해당 프로젝트 리코프런 사람들", member);
+        if (nowrecoplearn.current_num == nowrecoplearn.goal_num - 1) {
+          const member = await models.UserRecoplearn.findAll({
+            where: {
+              Recoplearn_id: nowrecoplearn.Recoplearn_id,
+            },
+          });
+          const roomname = await models.Project.findOne({
+            where: {
+              project_id: nowrecoplearn.project_id,
+            },
+          });
+          const roomnum = await models.Room.create({
+            room_name: roomname.title,
+          });
+          for (let key in member) {
+            await models.UserRoom.create({
+              room_id: roomnum.room_id,
+              user_id: member[key].user_id,
+            });
+          }
+        }
       }
     }
   }
@@ -377,4 +430,5 @@ module.exports = {
   tag_search,
   recoplearncheck,
   recoplearnjoin_post,
+  logout,
 };
