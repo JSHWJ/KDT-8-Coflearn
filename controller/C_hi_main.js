@@ -197,7 +197,7 @@ const detailPost_reply = (req, res) => {
   const project_id = req.params.id;
   const reply_content = req.body.reply_content;
   const community_id = req.body.community_id;
-
+  console.log("commu", community_id);
   const token = req.headers.authorization.split(" ")[1];
   let decode;
   jwt.verify(token, SECRET, (err, decoded) => {
