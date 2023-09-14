@@ -1,9 +1,10 @@
 {
+
   "development": {
-    "username": "user1",
-    "password": "12345",
+    "username": "admin",
+    "password": "12345678",
     "database": "coplearn",
-    "host": "localhost",
+    "host": "coplearn-rds.ce4bvlnybee2.ap-northeast-2.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

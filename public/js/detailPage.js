@@ -1,12 +1,12 @@
 const currentUrl = window.location.href;
-let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
+let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
 
 let cookie = document.cookie;
 const [name_ch, value_ch] = cookie.trim().split("=");
 
 document.addEventListener("DOMContentLoaded", async function () {
   const currentUrl = window.location.href;
-  let num = currentUrl.replace("http://localhost:8000/detailPage/", "");
+  let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
   const commentWrite = document.querySelector(".comment");
 
   // 상세페이지 유저 정보 불러오기

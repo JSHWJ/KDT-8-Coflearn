@@ -138,6 +138,6 @@ io.on("connection", (socket) => {
 
 db.sequelize.sync({ force: false }).then(() => {
   server.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+    console.log(`http://15.164.79.184:${PORT}`);
   });
 });

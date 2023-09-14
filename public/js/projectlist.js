@@ -8,7 +8,7 @@ let selectedTag = [];
 document.addEventListener("DOMContentLoaded", async function () {
   //테스트
   const currentUrl = window.location.href;
-  let num = currentUrl.replace("http://localhost:8000/project-list", "");
+  let num = currentUrl.replace("http://15.164.79.184/project-list", "");
   if (num == "") {
     try {
       const response = await axios({
