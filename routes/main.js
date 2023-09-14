@@ -63,6 +63,8 @@ router.get("/detailPage/:id/recoplearn", hi_controller.detailGet_recoplearn);
 // POST
 router.post("/detailPage/:id/review", hi_controller.detailPost_review);
 
+router.post("/detailPage/:id/addCart", hi_controller.detailPost_cart);
+
 router.post(
   "/detailPage/:id/community/write",
   hi_controller.detailPost_community
