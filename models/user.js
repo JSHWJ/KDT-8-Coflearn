@@ -1,5 +1,27 @@
 const { DataTypes } = require("sequelize");
 const Model = (sequelize) => {
+  //마이프로필
+  const MyProfile = sequelize.define(
+    "MyProfile",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      cart_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "MyProfile",
+      timestamps: false,
+    }
+  );
   //프로필_나의 프로젝트
   const MyProfile = sequelize.define(
     "MyProfile",

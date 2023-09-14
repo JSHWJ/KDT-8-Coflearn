@@ -1,6 +1,6 @@
 const db = require("../models");
 const models = db.User;
-const { SECRET_KEY } = process.env;
+const { SECRET } = process.env;
 
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
@@ -131,7 +131,7 @@ const post_signin = async (req, res) => {
           email: user.email,
           nick_name: user.nick_name,
         },
-        SECRET_KEY, // 시크릿 키 사용
+        SECRET, // 시크릿 키 사용
         { expiresIn: "1h" } // 토큰 만료 시간 설정 (옵션)
       );
 
@@ -180,8 +180,6 @@ const cookieConfig = {
   httpOnly: true,
   maxAge: 60 * 1000 * 10, // 60 * 1000 = 1분
 };
-
-const SECRET = "mySecret";
 
 // 이메일 전송 함수
 const sendEmail = (email, cert_code) => {
