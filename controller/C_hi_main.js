@@ -1,7 +1,7 @@
 const db = require("../models");
 const models = db.User;
 const jwt = require("jsonwebtoken");
-const SECRET = "mySecret";
+const { SECRET } = process.env;
 
 // console.log(models);
 
