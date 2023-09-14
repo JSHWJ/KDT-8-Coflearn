@@ -15,7 +15,6 @@ PORT = 8000;
 
 app.set("view engine", "ejs");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set(express.urlencoded({ extended: true }));
