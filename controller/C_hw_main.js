@@ -1,6 +1,6 @@
 const db = require("../models");
 const models = db.User;
-const { SECRET_KEY } = process.env;
+const { SECRET } = process.env;
 
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
@@ -29,7 +29,7 @@ const chat = async (req, res) => {
     const token = req.cookies.jwt;
 
     try {
-      const decodedToken = jwt.verify(token, SECRET_KEY);
+      const decodedToken = jwt.verify(token, SECRET);
 
       const userId = decodedToken.user_id; // 토큰에서 유저 아이디 추출
       const userNickname = decodedToken.nick_name; // 토큰에서 닉네임 추출
@@ -61,7 +61,7 @@ const room_info = async (req, res) => {
   const roomId = req.params.roomId;
 
   const token = req.cookies.jwt;
-  const decodedToken = jwt.verify(token, SECRET_KEY);
+  const decodedToken = jwt.verify(token, SECRET);
   const nick_name = decodedToken.nick_name; // 토큰에서 닉네임 추출
 
   try {
