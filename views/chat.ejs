@@ -20,14 +20,13 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-
     <title>Koflearn</title>
     <style></style>
   </head>
   <body>
     <div class="all-container">
       <div class="header-container">
-        <div id="title"><div>
+        <div id="title"></div>
         <div class="title-content">
           <img
             src="/user.png"
@@ -57,33 +56,14 @@
               ></button>
             </div>
             <div class="modal-body">
-              <ul id="userList">
-                <li>예시</li>
-                <li>예시2</li>
-                
-              </ul>
+              <ul id="userList"></ul>
             </div>
           </div>
         </div>
       </div>
 
       <div class="chat-container">
-        <div id="chat-messages">
-          <div class="d">
-            <div class="other-chat">sssssssssssssssssssssssssssssssss</div>
-          </div>
-          <div class="d">
-            <div class="my-chat">cccsX</div>
-          </div>
-          <div class="d">
-            <div class="other-chat">
-              ascsssssssssssssss
-            </div>
-          </div>
-          <div class="d">
-            <div class="my-chat">cccsX</div>
-          </div>
-        </div>
+        <div id="chat-messages"></div>
       </div>
       <div class="input-container">
         <form id="chatForm">
@@ -115,26 +95,24 @@
         const messageInput = document.querySelector("#message");
         const message = messageInput.value;
         const token = getCookie("jwt");
-        if (message) {  
+        if (message) {
+          const send_at = new Date().toISOString(); // ISO 형식으로 변환
 
-          const send_at = new Date().toISOString();  // ISO 형식으로 변환
- 
-        socket.emit('sendMessage', roomId, token, message, send_at);
+          socket.emit("sendMessage", roomId, token, message, send_at);
         }
 
         messageInput.value = "";
       });
 
       function getCookie(name) {
-        const cookies = document.cookie.split(';');
+        const cookies = document.cookie.split(";");
         for (const cookie of cookies) {
-          const [cookieName, cookieValue] = cookie.trim().split('=');
+          const [cookieName, cookieValue] = cookie.trim().split("=");
           if (cookieName === name) {
             return cookieValue;
           }
         }
         return null;
-
       }
 
       function loadPreviousMessages(roomId) {
@@ -143,28 +121,56 @@
       socket.on("previous messages", (messages) => {
         if (messages && messages.length > 0) {
           displayPreviousMessages(messages);
-  } else {
-    console.log("이전 메시지가 없습니다.");
-  }
-});
+        } else {
+          console.log("이전 메시지가 없습니다.");
+        }
+      });
 
+      // socket.io로부터 'chat message' 이벤트를 받을 때 실행되는 콜백 함수
+      socket.on("chat message", (message) => {
+        const chatMessages = document.querySelector("#chat-messages");
+
+        const formattedTime = new Date(message.send_at).toLocaleTimeString();
+        const messageContainer = document.createElement("div");
+        messageContainer.classList.add("d");
+
+        const messageItem = document.createElement("div");
+        const messageClass =
+          message.nick_name === nick_name ? "my-chat" : "other-chat";
+        messageItem.classList.add(messageClass);
+
+        if (messageClass === "other-chat") {
+          messageItem.textContent = `(${formattedTime}): 닉네임 : ${message.nick_name}: ${message.content}`;
+        } else {
+          messageItem.textContent = `(${formattedTime}):  ${message.content}`;
+        }
+
+        const messageTime = document.createElement("div");
+        messageTime.classList.add("message-time");
+        messageTime.textContent = formattedTime;
+
+        messageContainer.appendChild(messageItem);
+        messageContainer.appendChild(messageTime);
+        chatMessages.appendChild(messageContainer);
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
 
       function displayPreviousMessages(messages) {
         const chatMessages = document.querySelector("#chat-messages");
 
         messages.forEach((message) => {
-          const formattedTime = new Date(message.send_at).toLocaleDateString();
-
+          const formattedTime = new Date(message.send_at).toLocaleTimeString();
           const messageContainer = document.createElement("div");
           messageContainer.classList.add("d");
 
           const messageItem = document.createElement("div");
           const messageClass =
-            message.nick_name === userNickname ? "my-chat" : "other-chat";
+            message.nick_name === nick_name ? "my-chat" : "other-chat";
           messageItem.classList.add(messageClass);
 
           if (messageClass === "other-chat") {
-            messageItem.textContent = message.content;
+            messageItem.textContent = `(${formattedTime}): 닉네임 : ${message.nick_name}: ${message.content}`;
           } else {
             messageItem.textContent = `(${formattedTime}): ${message.content}`;
           }
@@ -172,6 +178,7 @@
           messageContainer.appendChild(messageItem);
 
           chatMessages.appendChild(messageContainer);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
         });
       }
 
@@ -185,46 +192,43 @@
             const roomName = data.roomName;
             const titleElement = document.querySelector("#title");
             titleElement.textContent = roomName;
-            nick_name=data.userNickname
-            user_id=data.user_id;
+            nick_name = data.nick_name;
 
-            // const myModal = document.getElementById("exampleModal");
+            console.log("userList:", data.userList);
+
             joinChatRoom(roomId); // 채팅방에 조인
             loadPreviousMessages(roomId);
 
-            // myModal.addEventListener("shown.bs.modal", () => {
-        
-            //   updateUserList(data.userList,nick_name);
-            // });
-          }
-          else {
+            const myModal = document.getElementById("exampleModal");
+
+            myModal.addEventListener("shown.bs.modal", () => {
+              updateUserList(data.userList, nick_name);
+            });
+          } else {
             console.log("roomId가 없습니다.");
           }
-        } 
-        catch (error) {
-          console.error("오류 발생:", error);}
+        } catch (error) {
+          console.error("오류 발생:", error);
         }
-      );
+      });
 
       function joinChatRoom(roomId) {
         socket.emit("join room", roomId); // 서버에 채팅방 조인 요청
       }
 
       function updateUserList(userList, userNickname) {
-            const userListContainer = document.querySelector("#userList");
-            userListContainer.innerHTML = "";
-            userList.forEach((user) => {
-              const listItem = document.createElement("li");
-              listItem.textContent = user.nick_name;
-              if (user.nick_name === userNickname) {
-                listItem.id = "username";
-              }
+        const userListContainer = document.querySelector("#userList");
+        userListContainer.innerHTML = "";
 
-            userListContainer.appendChild(listItem);
-          });
-        }
-
-    
+        userList.forEach((user) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = user;
+          if (user === userNickname) {
+            listItem.id = "username";
+          }
+          userListContainer.appendChild(listItem);
+        });
+      }
     </script>
   </body>
 </html>

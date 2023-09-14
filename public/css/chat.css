@@ -54,6 +54,15 @@ body {
   width: 15px;
 }
 
+#chat-messages::-webkit-scrollbar-thumb {
+  background-color: rgba(216, 216, 216, 0.7);
+  border-radius: 6px;
+}
+#chat-messages::-webkit-scrollbar {
+  background-color: #fff7d4;
+  width: 15px;
+}
+
 #userList {
   list-style-type: none;
   padding: 0;
@@ -120,6 +129,7 @@ body {
   padding: 10px;
   padding-top: 0;
   font-weight: 400;
+  overflow-y: scroll; /* 추가 */
 }
 .d {
   display: flex;

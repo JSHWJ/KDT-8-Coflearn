@@ -60,9 +60,16 @@ const chat = async (req, res) => {
 const room_info = async (req, res) => {
   const roomId = req.params.roomId;
 
+  const token = req.cookies.jwt;
+  const decodedToken = jwt.verify(token, SECRET_KEY);
+  const nick_name = decodedToken.nick_name; // 토큰에서 닉네임 추출
+
   try {
     const userList = await models.UserRoom.findAll({
-      include: models.User,
+      include: {
+        model: models.User, // User 테이블과 조인
+        attributes: ["nick_name"], // 필요한 열만 선택
+      },
       where: { room_id: roomId },
     });
 
@@ -75,8 +82,11 @@ const room_info = async (req, res) => {
 
     const roomName = room.get("room_name");
 
+    // userList에서 nick_name만 추출하여 배열로 변환
+    const nickNames = userList.map((userRoom) => userRoom.User.nick_name);
+    console.log("백엔드에서 닉네임:", nickNames);
     // JSON 형식으로 응답
-    const responseData = { roomId, roomName, userList };
+    const responseData = { roomId, roomName, userList: nickNames, nick_name };
     res.json(responseData);
   } catch (error) {
     console.error("채팅방 정보 검색 실패:", error);

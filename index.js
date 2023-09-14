@@ -114,10 +114,10 @@ io.on("connection", (socket) => {
   // );
   socket.on("sendMessage", async (room_id, token, message, send_at) => {
     try {
-      const decodedToken = jwt.verify(token, "your-secret-key"); // 토큰 검증
+      const decodedToken = jwt.verify(token, SECRET_KEY); // 토큰 검증
 
       const newMessage = await db.User.Messages.create({
-        user_id: decodedToken.username,
+        user_id: decodedToken.user_id,
         room_id: room_id,
         nick_name: decodedToken.nick_name,
         content: message,
