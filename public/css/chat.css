@@ -1,4 +1,3 @@
-/* @font-face 규칙 */
 @font-face {
   font-family: "GmarketSansMedium";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
@@ -7,7 +6,6 @@
   font-style: normal;
 }
 
-/* 모든 요소에 웹 폰트 적용 */
 * {
   font-family: "GmarketSansMedium", sans-serif;
 }
@@ -129,7 +127,7 @@ body {
   padding: 10px;
   padding-top: 0;
   font-weight: 400;
-  overflow-y: scroll; /* 추가 */
+  overflow-y: scroll;
 }
 .d {
   display: flex;
@@ -139,14 +137,14 @@ body {
 .my-chat {
   background-color: white;
   margin: 10px;
-  padding: 10px; /* 패딩을 추가하여 텍스트와 흰 배경 간격을 조절 */
-  white-space: normal; /* 텍스트가 컨테이너 너비를 넘어갈 경우 자동으로 줄 바꿈 */
-  max-width: 80%; /* 텍스트가 컨테이너의 최대 너비를 넘지 않도록 설정 */
-  border-radius: 10px; /* 흰 배경을 둥글게 처리 */
+  padding: 10px;
+  white-space: normal;
+  max-width: 80%;
+  border-radius: 10px;
   word-wrap: break-word;
   position: relative;
   display: inline-block;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 스타일 적용 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .other-chat:after {
@@ -157,7 +155,7 @@ body {
   top: 50%;
   width: 0;
   height: 0;
-  bottom: -8px; /* 말풍선 아래에 그림자가 생기도록 조정 */
+  bottom: -8px;
 
   border: 0.688em solid transparent;
   border-right-color: #ffffff;
@@ -181,14 +179,14 @@ body {
   margin-right: -0.687em;
 }
 .other-chat {
-  align-self: flex-start; /* 왼쪽 정렬 (상대방 메시지) */
-  background-color: #ffffff; /* 상대방 메시지 말풍선 배경색 */
+  align-self: flex-start;
+  background-color: #ffffff;
 }
 
 .my-chat {
   background-color: #ffde5c;
 
-  margin-left: auto; /* 오른쪽 정렬을 추가 */
+  margin-left: auto;
 }
 
 #username {
