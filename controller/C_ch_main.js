@@ -3,7 +3,6 @@ const models = db.User;
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const SECRET = "mySecret";
 console.log(models);
 
 //로그아웃
