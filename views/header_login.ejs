@@ -30,7 +30,7 @@
       <nav class="navbar_hi">
         <div class="navbar_logo_hi">
           <i class=""></i>
-          <a href="">Coplearn</a>
+          <a href="/main">Coplearn</a>
         </div>
         <ul class="navbar_menu_hi"></ul>
       </nav>
@@ -46,7 +46,7 @@
           <div class="login_content">
             <form id="login_form" name="login_register">
               <h2 class="title">SIGNIN</h2>
-
+              `
               <!-- 이메일 -->
               <div class="login_input_div login_email">
                 <div class="i"><i class="fa-solid fa-envelope"></i></div>
@@ -98,8 +98,8 @@
         if (document.cookie) {
 
           nav.innerHTML = `
-          <li><a id="home_hi" href="#">HOME</a></li>
-          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+          <li><a id="home_hi" href="/main">HOME</a></li>
+          <li><a id="list_hi" href="/project-list">프로젝트 목록</a></li>
           <li>
             <i class="fa-solid fa-cart-shopping"></i>
           </li>
@@ -109,7 +109,7 @@
             <ul id="dropdown_menu_jh">
               <li><a id="gomypage">마이페이지</a></li>
               <li>
-                <a href="#">로그아웃</a>
+                <a href="/logout">로그아웃</a>
               </li>
             </ul>
           </li>`;
@@ -133,8 +133,8 @@
 
         } else {
           nav.innerHTML = `
-          <li><a id="home_hi" href="#">HOME</a></li>
-          <li><a id="list_hi" href="#">프로젝트 목록</a></li>
+          <li><a id="home_hi" href="/main">HOME</a></li>
+          <li><a id="list_hi" href="/project-list">프로젝트 목록</a></li>
           <li>
             <a
               id="login_hi"

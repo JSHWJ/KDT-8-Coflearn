@@ -1,5 +1,7 @@
 const db = require("../models");
 const models = db.User;
+const jwt = require("jsonwebtoken");
+const { SECRET } = process.env;
 
 // console.log(models);
 
@@ -49,6 +51,7 @@ const detailGet_intro = async (req, res) => {
 
   res.json({
     title: project.title,
+    video: project.video,
     period: project.period,
     git_link: project.git_link,
     content: project.content,
@@ -58,21 +61,31 @@ const detailGet_intro = async (req, res) => {
 
 // 리뷰
 const detailPost_review = (req, res) => {
-  const userid = 1;
   const projectid = req.body.project_id;
 
   const review_content = req.body.commentWrite;
-
+  const token = req.headers.authorization.split(" ")[1];
+  let decode;
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) {
+      // JWT 검증 실패
+      res.status(401).json({ error: "JWT 검증 실패" });
+    } else {
+      // JWT 검증 성공, 디코딩된 정보는 decoded에 저장됨
+      console.log("복호화 완료", decoded);
+      decode = decoded;
+    }
+  });
   //console.log(review_content);
 
   models.Review.create({
-    user_id: userid,
+    user_id: decode.user_id,
     project_id: projectid,
     review_content,
   });
   //console.log(review_content);
 
-  res.json({ data: review_content, project_id: projectid });
+  res.json({ data: review_content, project_id: projectid, decode: decode });
 };
 
 const detailGet_review = async (req, res) => {
@@ -82,30 +95,70 @@ const detailGet_review = async (req, res) => {
   const allReview = await models.Review.findAll({
     where: { project_id: projectid },
     attributes: ["review_content"],
+    include: {
+      model: models.User,
+      attributes: ["nick_name"],
+    },
   });
 
   //console.log(allReview);
   res.json({ data: allReview });
 };
 
+// 상세페이지 카트 담기
+const detailPost_cart = async (req, res) => {
+  const project_id = req.params.id;
+  console.log("카트 : ", req.params.id);
+
+  const token = req.headers.authorization.split(" ")[1];
+  let decode;
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) {
+      // JWT 검증 실패
+      res.status(401).json({ error: "JWT 검증 실패" });
+    } else {
+      // JWT 검증 성공, 디코딩된 정보는 decoded에 저장됨
+      console.log("복호화 완료", decoded);
+      decode = decoded;
+    }
+  });
+
+  models.hi_Cart.create({
+    user_id: decode.user_id,
+    project_id: project_id,
+  });
+};
+
 // 커뮤니티
 
-const detailPost_community = (req, res) => {
+const detailPost_community = async (req, res) => {
   const projectid = req.params.id;
-
-  const userid = 1;
   const community_content = req.body.community;
 
-  models.Community.create({
-    user_id: userid,
+  const token = req.headers.authorization.split(" ")[1];
+  let decode;
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) {
+      // JWT 검증 실패
+      res.status(401).json({ error: "JWT 검증 실패" });
+    } else {
+      // JWT 검증 성공, 디코딩된 정보는 decoded에 저장됨
+      console.log("복호화 완료", decoded);
+      decode = decoded;
+    }
+  });
+
+  const nowcommunity = await models.Community.create({
+    user_id: decode.user_id,
     project_id: projectid,
     community_content,
   });
   //console.log(community_content);
-
   res.json({
-    community_content: community_content,
+    community_id: nowcommunity.community_id,
+    community_content: nowcommunity.community_content,
     project_id: projectid,
+    decode: decode,
   });
 };
 const detailGet_community = async (req, res) => {
@@ -114,6 +167,10 @@ const detailGet_community = async (req, res) => {
   const allCommunity = await models.Community.findAll({
     where: { project_id: projectid },
     attributes: ["community_content", "community_id"],
+    include: {
+      model: models.User,
+      attributes: ["nick_name"],
+    },
   });
   //console.log(allCommunity);
   res.json({ data: allCommunity });
@@ -126,6 +183,10 @@ const detailGet_reply = async (req, res) => {
 
   const allReply = await models.Reply.findAll({
     where: { project_id: project_id },
+    include: {
+      model: models.User,
+      attributes: ["nick_name"],
+    },
   });
 
   res.json({ data: allReply });
@@ -137,8 +198,21 @@ const detailPost_reply = (req, res) => {
   const reply_content = req.body.reply_content;
   const community_id = req.body.community_id;
 
+  const token = req.headers.authorization.split(" ")[1];
+  let decode;
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) {
+      // JWT 검증 실패
+      res.status(401).json({ error: "JWT 검증 실패" });
+    } else {
+      // JWT 검증 성공, 디코딩된 정보는 decoded에 저장됨
+      console.log("복호화 완료", decoded);
+      decode = decoded;
+    }
+  });
+
   models.Reply.create({
-    user_id: user_id,
+    user_id: decode.user_id,
     project_id: project_id,
     reply_content,
     community_id,
@@ -198,4 +272,5 @@ module.exports = {
   detailGet_community,
   detailPost_reply,
   detailGet_user,
+  detailPost_cart,
 };

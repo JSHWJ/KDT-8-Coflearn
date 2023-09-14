@@ -1,5 +1,6 @@
 const db = require("../models");
 const models = db.User;
+const { SECRET } = process.env;
 
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
@@ -131,7 +132,8 @@ const post_signin = async (req, res) => {
           email: user.email,
           nick_name: user.nick_name,
         },
-        SECRET
+        SECRET, // 시크릿 키 사용
+        { expiresIn: "1h" } // 토큰 만료 시간 설정 (옵션)
       );
 
       res.cookie("jwt", token);

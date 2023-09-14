@@ -106,7 +106,7 @@ function addTag(e) {
     if (tags.includes(tagText) === false) {
       tags.push(tagText);
       const tag_div = document.createElement("div");
-      tag_div.innerText = "#" + tagText;
+      tag_div.innerText = "#" + tagText + " ";
       tag_div.style.padding = "4px 4px";
       tag_div.style.border = "none";
       tag_div.style.borderRadius = "10px";
@@ -139,23 +139,12 @@ function addTag(e) {
     alert("태그에 값을 입력해주세요");
   }
 }
-
+// 프로젝트 업로드
+let cookie = document.cookie;
+const [name_ch, value_ch] = cookie.trim().split("=");
 async function upload_ch() {
   const form = document.forms["project_form_ch"];
   let text = editor.getHTML();
-  console.log(
-    "전송될값들",
-    form.project_title_ch.value,
-    form.project_period_ch.value,
-    form.project_git_ch.value,
-    form.project_member_ch.value,
-    form.front_num_ch.value,
-    form.back_num_ch.value,
-    text,
-    videoUrl,
-    tags,
-    imageArr[0]
-  );
   let data = {
     title: form.project_title_ch.value,
     tags: tags,
@@ -173,6 +162,10 @@ async function upload_ch() {
       method: "POST",
       url: "/api/project/write",
       data,
+      headers: {
+        Authorization: `Bearer ${value_ch}`, // JWT를 'Bearer' 스킴으로 포함
+        "Content-Type": "application/json", // 요청 본문의 타입 설정 (예시)
+      },
     });
     window.location.href = "/project-list";
   } catch (error) {

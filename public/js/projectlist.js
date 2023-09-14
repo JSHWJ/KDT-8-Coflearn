@@ -4,8 +4,9 @@ let count_ch = 0;
 let count = 1;
 let selectedTag = [];
 
-//render전 데이터 가져오기
+//render전 프로젝트 리스트 데이터 가져오기
 document.addEventListener("DOMContentLoaded", async function () {
+  //테스트
   const currentUrl = window.location.href;
   let num = currentUrl.replace("http://localhost:8000/project-list", "");
   if (num == "") {
@@ -22,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const tag_ch = document.querySelector(".tag_ch");
 
     //태그 목록 가져와 태그 만들기
-
     function addTag(tagname, i) {
       const tag_div = document.createElement("button");
       tag_div.textContent = "# " + tagname;
