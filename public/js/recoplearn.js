@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     const currentUrl = window.location.href;
     //차후 배포시 변경하기
-    let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
+    let num = currentUrl.replace("http://15.164.79.184:8000/detailPage/", "");
     const rs_hi = document.querySelector(".rs_hi");
     const response = await axios({
       method: "POST",
@@ -33,7 +33,7 @@ let goalback = 0;
 async function openrecoplearn() {
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
-  let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
+  let num = currentUrl.replace("http://15.164.79.184:8000/detailPage/", "");
 
   const response = await axios({
     method: "POST",
@@ -65,7 +65,7 @@ async function participate() {
   const [name_ch, value_ch] = cookie.trim().split("=");
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
-  let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
+  let num = currentUrl.replace("http://15.164.79.184:8000/detailPage/", "");
 
   const response = await axios({
     method: "POST",
@@ -95,7 +95,7 @@ async function Start_ch() {
   const [name_ch, value_ch] = cookie.trim().split("=");
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
-  let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
+  let num = currentUrl.replace("http://15.164.79.184:8000/detailPage/", "");
 
   const form = document.forms["modalrecoplearn_ch"];
   const radioGroup = document.getElementsByName("rule_ch");
@@ -144,7 +144,7 @@ async function participate_ch() {
   const [name_ch, value_ch] = cookie.trim().split("=");
   const currentUrl = window.location.href;
   //차후 배포시 변경하기
-  let num = currentUrl.replace("http://15.164.79.184/detailPage/", "");
+  let num = currentUrl.replace("http://15.164.79.184:8000/detailPage/", "");
 
   const form = document.forms["modalrecoplearn2_ch"];
   const radioGroup = document.getElementsByName("rule2_ch");

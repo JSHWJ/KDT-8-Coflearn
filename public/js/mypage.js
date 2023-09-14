@@ -3,7 +3,7 @@ const contents = document.querySelectorAll('.content_dj .rightcont_dj .cont')
 let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
 
 const currentUrl = window.location.href;
-let num = currentUrl.replace("http://15.164.79.184/mypage/", "");
+let num = currentUrl.replace("http://15.164.79.184:8000/mypage/", "");
 document.addEventListener('DOMContentLoaded', async () => {
   // 프로필 정보 가지고 오기
   const mypage_pro = await axios({
