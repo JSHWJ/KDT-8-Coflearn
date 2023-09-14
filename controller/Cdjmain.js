@@ -232,11 +232,8 @@ const likepro_data = async (req, res) => {
   // console.log('내가 담은 프로젝트', req.params);
 
   const user_id = req.params.id;
-  const user = await models.User.findOne({
-    where: { user_id },
-  });
 
-  const like_cart = await models.Mycart.findAll({
+  const like_cart = await models.hi_Cart.findAll({
     where: {user_id},
   });
 
@@ -248,32 +245,33 @@ const likepro_data = async (req, res) => {
 
   for(let i = 0; i<like_cart.length; i++){
       LprojJson[i] = {
-        cart_id : like_cart[i].cart_id,
+        project_id : like_cart[i].project_id,
+        user_id : like_cart[i].user_id,
       }
   }
 
   // console.log('카트 가져오기 위한 json',LprojJson);
-  const CartId = {};
-  const Cbasis = await models.Cart.findAll({});
+  // const CartId = {};
+  // const Cbasis = await models.Cart.findAll({});
 
   // console.log(LprojJson[0].cart_id);
   // console.log(Cbasis[0].cart_id)
   // console.log(like_cart.length);
 
-  for(let j=0; j<like_cart.length; j++){
-    for(let i=0; i<Cbasis.length; i++){
-      let cart_id_val = LprojJson[j].cart_id;
-      // console.log(cart_id_val);
-      // console.log('카트 비교',Cbasis[i].cart_id);
+  // for(let j=0; j<like_cart.length; j++){
+  //   for(let i=0; i<Cbasis.length; i++){
+  //     let cart_id_val = LprojJson[j].cart_id;
+  //     // console.log(cart_id_val);
+  //     // console.log('카트 비교',Cbasis[i].cart_id);
       
-      if (cart_id_val === Cbasis[i].cart_id){
-        CartId[j] = {
-          cart_id : cart_id_val,
-          proj_id_C : Cbasis[i].project_id 
-        };
-      };
-    };
-  }
+  //     if (cart_id_val === Cbasis[i].cart_id){
+  //       CartId[j] = {
+  //         cart_id : cart_id_val,
+  //         proj_id_C : Cbasis[i].project_id 
+  //       };
+  //     };
+  //   };
+  // }
 
   // console.log(CartId);
   // console.log(CartId[0].proj_id_C);
@@ -283,7 +281,7 @@ const likepro_data = async (req, res) => {
 
   for(let j=0; j<like_cart.length; j++){
     for(let i=0; i<pro_basis.length; i++){
-      let like_id_val = CartId[j].proj_id_C;//유저가 만든 프로젝트의 아이디 
+      let like_id_val = like_cart[j].project_id;//유저가 만든 프로젝트의 아이디 
       // console.log('접속 유저가 만든 프로젝트의 아이디', uproj_id_val);
       // console.log('비교할 전체 프로젝트의 아이디', pro_basis[i].project_id);
       if (like_id_val === pro_basis[i].project_id){
@@ -397,10 +395,6 @@ const recop_chat = async(req, res) => {
   const user_id = req.params.id;
   const re_chat = await models.UserRoom.findAll({
     where: { user_id },
-    // include: {
-    //   model: models.Room,
-    //   attribute : ["room_name"],
-    // }
   });
 
   console.log(re_chat);
@@ -408,8 +402,8 @@ const recop_chat = async(req, res) => {
   const roomid = {};
   for(let i=0; i<re_chat.length; i++){
     roomid[i] = {
-      user_id : re_chat[i].user_id,
       room_id : re_chat[i].room_id,
+      user_id : re_chat[i].user_id,
     }
   }
 
