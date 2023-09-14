@@ -1,6 +1,27 @@
 const { DataTypes } = require("sequelize");
 const Model = (sequelize) => {
   //프로필_나의 프로젝트
+  const MyProfile = sequelize.define(
+    "MyProfile",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      cart_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "MyProfile",
+      timestamps: false,
+    }
+  );
   const MyProject = sequelize.define(
     "MyProject",
     {
@@ -465,7 +486,6 @@ const Model = (sequelize) => {
   );
   // 관계 정의
 
-
   MyProfile.belongsTo(User, { foreignKey: "user_id" }); // 마이프로필 -> 유저
   MyProject.belongsTo(User, { foreignKey: "user_id" }); // 마이프로젝트 -> 유저
 
@@ -476,11 +496,9 @@ const Model = (sequelize) => {
   Mycart.belongsTo(hi_Cart, { foreignKey: "user_id" }); // 마이카트 -> 하이카트
   Cart.belongsTo(hi_Cart, { foreignKey: "project_id" }); // 카트 -> 하이카트
 
-
   Mycart.belongsTo(User, { foreignKey: "user_id" }); // 마이카트 -> 유저
 
   Mycart.belongsTo(Cart, { foreignKey: "cart_id" }); // 마이카트 -> 카트
-
 
   Community.belongsTo(User, { foreignKey: "user_id" }); // 커뮤니티 -> 유저
   Community.belongsTo(Project, { foreignKey: "project_id" }); // 커뮤니티 -> 프로젝트
