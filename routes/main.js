@@ -21,6 +21,11 @@ router.get("/api/mypage/project/:id", controller.myproj_data);
 router.get("/api/mypage/cart/:id", controller.likepro_data);
 //마이페이지 리코프런 가지고 오기
 router.get("/api/mypage/recoplearn/:id", controller.recop_data);
+//마이페이지 채팅방 연결
+router.get("/api/mypage/chat/:id", controller.recop_chat);
+
+//메인에서 마이페이지로 이동
+router.get("/api/gomypage", controller.go_mypage);
 
 // 회원가입
 router.get("/signup", jh_controller.signup);
