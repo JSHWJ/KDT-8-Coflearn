@@ -1,0 +1,137 @@
+#modalWrap_ch {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 40px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+#modalBody_ch {
+  width: 35%;
+  margin: 0 auto;
+  border: 1px solid #777;
+  background-color: white;
+  padding-bottom: 20px;
+}
+#modalnav_ch {
+  background-color: #4c3d3d;
+  width: 100%;
+  height: 30px;
+  color: white;
+  padding: 2px 10px 2px 10px;
+  text-align: left;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#closeBtn_ch {
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#modalrecoplearn_ch {
+  padding: 10px 5% 10px 5%;
+}
+.textarea_ch {
+  width: 95%;
+  border: 1px solid #ffd95a;
+  border-radius: 8px;
+  padding: 10px;
+  resize: none;
+}
+.submit_section_ch {
+  display: flex;
+  justify-content: flex-end;
+}
+#recoplearnStart_ch {
+  padding: 2px 5px 2px 5px;
+  background-color: #ffd95a;
+  border: 2.5px solid #ffd95a;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 5%;
+}
+.write_name_ch {
+  display: inline-block;
+  margin-top: 10px;
+}
+.search_ch {
+  border: 2px solid #ffd95a;
+  display: inline-block;
+  border-radius: 8px;
+  padding: 5px;
+}
+.search_ch input {
+  border: none;
+  background-color: white;
+  outline: none;
+}
+.search_ch button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+#in_container_ch {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#in_ch {
+  padding: 2px 5px 2px 5px;
+  background-color: #ffd95a;
+  border: 2.5px solid #ffd95a;
+  border-radius: 8px;
+  position: relative;
+  width: 100px;
+  margin-bottom: 10px;
+  margin-right: 26px;
+  cursor: pointer;
+}
+
+#modalWrap2_ch {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 40px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+#modalBody2_ch {
+  width: 35%;
+  margin: 0 auto;
+  border: 1px solid #777;
+  background-color: white;
+  padding-bottom: 20px;
+}
+#modalnav2_ch {
+  background-color: #4c3d3d;
+  width: 100%;
+  height: 30px;
+  color: white;
+  padding: 2px 10px 2px 10px;
+  text-align: left;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#closeBtn2_ch {
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+#modalrecoplearn2_ch {
+  padding: 10px 5% 10px 5%;
+}

@@ -1,0 +1,167 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: 'GmarketSansMedium';
+}
+
+#nowlist_dj{
+    width: 100%;
+    height: 30px;
+    background-color: #FFD95A;
+}
+
+#nowlist_dj p{
+    font-weight: bold;
+    display: block;
+    color: white;
+    position: absolute;
+    font-size: x-large;
+    left: 20px;
+    margin-top: 5px;
+}
+
+/* 목록 */
+
+.content_dj{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.leftlist_dj{
+    position: absolute;
+    left: 50px;
+    top: 20%;
+}
+
+.left_dj{
+    width: 30%;
+    height: 100vh;
+}
+
+.leftlist_dj ul{
+    list-style: none;
+}
+
+.leftlist_dj p{
+    color: gray;
+}
+
+.rightcont_dj{
+    width: 70%;
+    height: 100vh;
+    margin: 0;
+}
+
+.leftlist_dj li.ison_dj .btn{
+    color: #FFD95A;
+    font-weight: bolder;
+}
+
+.content_dj .rightcont_dj .cont{
+    display: none;    
+} 
+
+
+/* 마이페이지 프로필 */
+#prof_dj{
+    margin-top: 30px;
+}
+
+#prof_dj_inbox{
+    display: flex;
+}
+
+#prof_dj img{
+    display: block;
+    width: 40vw;
+    height: 60vh;
+    /* margin: auto; */
+}
+
+#prof_table{
+    /* margin: auto; */
+    margin-left: 20px;
+}
+
+/* 마이페이지 담은 프로젝트 */
+.mypro{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.mypro img{
+    width: 330px;
+    height: 200px;
+    margin: 0 10px;
+}
+
+.mypro_ta{
+    margin-top: 30px;
+}
+
+.mypro_ta img{
+    width: 330px;
+    height: 200px;
+    margin: 0 10px;
+}
+
+.mylike{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.mylike img{
+    width: 330px;
+    height: 200px;
+    margin: 0 10px;
+}
+
+/* 나의 리코프런 현황 */
+.myrecop{
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+
+.myrecop img{
+    width: 330px;
+    height: 200px;
+    margin: 0 10px;
+}
+
+/* 나의 채팅 들어가기 */
+.mychat{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.mychat div{
+    border: 2px solid #FFD95A;
+    margin: 3px;
+}
+
+.mychat a{
+    padding: 5px;
+}
+
+.mychat button{
+    background-color: #FFD95A;
+    border: none;
+    border-radius: 10px;
+    padding: 3px;
+}
