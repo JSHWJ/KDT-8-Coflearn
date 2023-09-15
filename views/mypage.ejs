@@ -1,120 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" 
-    crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
 
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/main_footer.css" />
+    <link rel="stylesheet" href="/css/mypage.css" />
 
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/main_footer.css">
-    <link rel="stylesheet" href="/css/mypage.css">
-    
     <script
       src="https://kit.fontawesome.com/5286d2d6db.js"
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body id="mypage_body_dj">
+    <!-- header -->
+    <%- include('header_login') %>
 
-</head>
-<body id="mypage_body_dj">
-      <!-- header -->
-      <%- include('header_login') %>
+    <!-- section -->
 
-      <!-- section -->
-
-
-
-      <!-- <div id="nowlist_dj">
+    <!-- <div id="nowlist_dj">
       </div> -->
 
+    <section class="content_dj">
+      <section class="left_dj">
+        <aside class="leftlist_dj">
+          <p>HOME</p>
+          <ul class="home_dj">
+            <li class="ison_dj"><a href="#prof_dj" class="btn">프로필</a></li>
+          </ul>
+          <br />
+          <p>PROJECT</p>
+          <ul class="pro_dj">
+            <li><a href="#myprof_dj" class="btn">내 프로젝트</a></li>
+            <li><a href="#likeprof_dj" class="btn">담은 프로젝트</a></li>
+          </ul>
+          <br />
+          <p>RECOPLEARN</p>
+          <ul class="recop_dj">
+            <li><a href="#re_now_dj" class="btn">Re코프런 현황</a></li>
+            <li><a href="#re_chat_dj" class="btn">Re코프런 채팅방</a></li>
+          </ul>
+        </aside>
+      </section>
 
-      <section class="content_dj" >
-        <section class="left_dj">
-            <aside class="leftlist_dj">
-                <p>HOME</p>
-                <ul class="home_dj">
-                    <li class="ison_dj"><a href="#prof_dj" class="btn">프로필</a></li>
-                </ul>
-                <br>
-                <p>PROJECT</p>
-                <ul class="pro_dj">
-                    <li><a href="#myprof_dj" class="btn">내 프로젝트</a></li>
-                    <li><a href="#likeprof_dj" class="btn">담은 프로젝트</a></li>
-                </ul>
-                <br>
-                <p>RECOPLEARN</p>
-                <ul class="recop_dj">
-                    <li><a href="#re_now_dj" class="btn">Re코프런 현황</a></li>
-                    <li><a href="#re_chat_dj" class="btn">Re코프런 채팅방</a></li>
-                </ul>
-            </aside>
-        </section>
+      <div class="rightcont_dj">
+        <div style="display: block" id="prof_dj" class="cont">
+          <div id="prof_dj_inbox">
+            <img
+              src="https://t1.daumcdn.net/cfile/tistory/23075943521EA9282E"
+              alt=""
+            />
 
-
-        <div class="rightcont_dj">
-            <div style="display: block;" id="prof_dj" class="cont">
-              <div id="prof_dj_inbox">
-                <img src="https://t1.daumcdn.net/cfile/tistory/23075943521EA9282E" alt="">
-              
-                <table id="prof_table">
-                  <tr style="border-bottom: 3px solid #FFD95A;">
-                    <td>닉네임</td>
-                    <td> : </td>
-                    <td><span id="nick_dj">dong</span></td>
-                  </tr>
-                  <tr style="border-bottom: 3px solid #FFD95A;">
-                    <td>이메일</td>
-                    <td> : </td>
-                    <td><span id="email_dj">dong@naver.com</span></td>
-                  </tr>
-                  <tr style="border-bottom: 3px solid #FFD95A;">
+            <table id="prof_table">
+              <tr style="border-bottom: 3px solid #ffd95a">
+                <td>닉네임</td>
+                <td>:</td>
+                <td><span id="nick_dj">dong</span></td>
+              </tr>
+              <tr style="border-bottom: 3px solid #ffd95a">
+                <td>이메일</td>
+                <td>:</td>
+                <td><span id="email_dj">dong@naver.com</span></td>
+              </tr>
+              <!-- <tr style="border-bottom: 3px solid #FFD95A;">
                     <td>패스워드</td>
                     <td> : </td>
                     <td><span id="pw_dj">1334</span></td>
-                  </tr>
-                </table>
-              </div>        
-            </div>
-            
-            <div id="myprof_dj" class="cont">
-              <div class="mypro">
-             
-                  
-              </div>
-            </div>
-            
-            <div id="likeprof_dj" class="cont">
-              <div class="mylike">
+                  </tr> -->
+            </table>
+          </div>
+        </div>
 
-              </div>
-            </div>
+        <div id="myprof_dj" class="cont">
+          <div class="mypro"></div>
+        </div>
 
-            <div id="re_now_dj" class="cont">
-              <div class="myrecop"></div>         
-            </div>
-            
-            <div id="re_chat_dj" class="cont">
-              <div class="mychat"> 
-                <!-- <a href=""> -->
-                  <!-- <p>채팅방 이름 : 채팅방</p>
+        <div id="likeprof_dj" class="cont">
+          <div class="mylike"></div>
+        </div>
+
+        <div id="re_now_dj" class="cont">
+          <div class="myrecop"></div>
+        </div>
+
+        <div id="re_chat_dj" class="cont">
+          <div class="mychat">
+            <!-- <a href=""> -->
+            <!-- <p>채팅방 이름 : 채팅방</p>
                   <p style="background-color: #C07F00;">채팅방 들어가기</p>
                   <p style="background-color: #4C3D3D;">채팅방 들어가기</p>
                   <p style="background-color: #FFD95A; display: block; width: auto;">채팅방 들어가기</p>
                   <button style="background-color: #FFD95A; border: none; border-radius: 10px; padding: 3px;"> 채팅방 들어가기</button> -->
-                <!-- </a>  -->
-              </div>
-            </div>
+            <!-- </a>  -->
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" 
-    crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
     <script src="/js/mypage.js"></script>
-</body>
+  </body>
 </html>
