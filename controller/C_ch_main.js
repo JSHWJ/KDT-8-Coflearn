@@ -91,6 +91,7 @@ const project = (req, res) => {
 //프로젝트 업로드 하기
 const project_upload = async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
+  console.log("token", token);
   let decode;
   jwt.verify(token, SECRET, (err, decoded) => {
     if (err) {
