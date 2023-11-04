@@ -63,7 +63,7 @@
 | 메인/마이페이지 | 채팅방 | 로그인 및 회원가입 |  펀딩(프로젝트 모집) | 프로젝트 업로드 |
 | --- | --- | --- | --- | --- |
 | 황동준 | 서혜원 | 서정현 | 장창현 | 조현익 | 
-|  <img src="https://avatars.githubusercontent.com/u/114459629?v=4" width="100px" height="100px"><br> <a href="https://github.com/nebulaBdj">nebulaBdj</a> | <img src="https://avatars.githubusercontent.com/u/81088222?v=4" width="100px" height="100px"><br/><a href="https://github.com/JSHWJ">JSHWJ</a> | <img src="https://avatars.githubusercontent.com/u/105518951?v=4" width="100px" height="100px"><br><a href="https://github.com/HyunnS2">HyunnS2</a> |  <img src="https://avatars.githubusercontent.com/u/81136546?v=4" width="100px" height="100px"><br> <a href="https://github.com/changhyun-jang">changhyun-jang</a> | <img src="https://avatars.githubusercontent.com/u/122008118?v=4" width="100px" height="100px"><br/><a href="https://github.com/Johyunik">Johyunik</a> |
+|  <img src="https://avatars.githubusercontent.com/u/114459629?v=4" width="100px" height="100px"><br> <a href="https://github.com/nebulaBdj">nebulaBdj</a> | <img src="https://avatars.githubusercontent.com/u/81088222?v=4" width="100px" height="100px"><br/><a href="https://github.com/JSHWJ">JSHWJ</a> | <img src="https://avatars.githubusercontent.com/u/105518951?v=4" width="100px" height="100px"><br><a href="https://github.com/HyunnS2">HyunnS2</a> |  <img src="https://avatars.githubusercontent.com/u/86968048?v=4" width="100px" height="100px"><br> <a href="https://github.com/changhyun-jang">changhyun-jang</a> | <img src="https://avatars.githubusercontent.com/u/122008118?v=4" width="100px" height="100px"><br/><a href="https://github.com/Johyunik">Johyunik</a> |
 
 
 
