@@ -18,34 +18,38 @@
     - 로그인 시 쿠키를 생성하고 쿠기 존재 여부에 따라 아이콘을 변경
     - 아이콘에 마우스를 올리면 마이페이지 이동과 로그아웃 가능
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/b342e77d-a14c-4e38-ae2a-b499fc65ff2b/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/b40ce449-4df9-40c8-8e9f-ed96ffc59604)
+
 
 - 회원가입 기능
     - node mailer을 활용한 이메일 인증 기능
     - 비밀 번호를 Bcrypt 방식으로 암호화하여 DB에 저장
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/442b48f6-0b49-4c6d-9e48-d78237c19e8c/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/2aa722a5-8397-46d3-bc93-dd4d4c8eb0b6)
+
 
 - 메인페이지
     - 검색기능 (태그 이용한 검색)
     - 프로젝트 현황 확인 기능
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/0890b208-f560-4a5e-b55d-d2fd19a0e0b7/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/34e966b3-233c-4891-86dd-ce878e30aa16)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/5a1ceb9c-ba8a-4358-8352-a021fd96cfb3)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/d8bfb116-ee2b-41b0-a12a-735e8087ece7/Untitled.png)
 
 - 마이페이지
     - 사용자의 프로젝트 확인 기능
     - 사용자가 담은 프로젝트 확인 기능
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/5de9908f-68c5-43eb-999a-cd31bdb6c4b2/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/d31316b4-fcfb-4328-a254-90e98b4e60ea)
+
 
 - 단체 채팅방 기능
     - [Socket.io](http://socket.io/) 활용해 유저들과 실시간 소통 기능
     - DB 활용해 이전 메시지 휘발 방지
     - 허용된 유저 채팅방 접근 기능
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/aa68e54d-fa33-4cad-a7e8-1b03bf615d15/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/f63c84d4-54bf-4e24-a405-c0f4e87e5efa)
+
 
 - 프로젝트 페이지
     - TOAST UI 사용
@@ -53,7 +57,8 @@
     - 검색창을 통한 제목 기준 검색
     - Tag 버튼 통한 tag 기준 검색
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/6f7afd9d-b700-4dca-93dc-e0abe33fa9f8/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/defdf458-7672-4137-8ede-8438c6f11f04)
+
 
 - 상세페이지
     - 프로젝트 장바구니에 담기 기능
@@ -62,9 +67,9 @@
     - 팀원 모집 기능을 통해 팀원모집페이지로 이동
     - 팀원 모집 여부 실시간 확인 기능
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/83478fc0-ca2b-4168-b149-1532be9b7f8b/Untitled.png)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/28b96c68-620c-4466-9204-fe6e8a236053)
+![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/1ab54d64-fd28-43e2-8418-6cb304b833c6)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/345aa67f-b477-43be-bbd9-008b5bf3c238/51599938-9ead-49b1-b536-df83c8a6a7fb/Untitled.png)
 
 ---
 
