@@ -32,9 +32,8 @@
     - 검색기능 (태그 이용한 검색)
     - 프로젝트 현황 확인 기능
 
-![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/34e966b3-233c-4891-86dd-ce878e30aa16)
-![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/5a1ceb9c-ba8a-4358-8352-a021fd96cfb3)
-
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/34e966b3-233c-4891-86dd-ce878e30aa16" width="400"/>
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/5a1ceb9c-ba8a-4358-8352-a021fd96cfb3" width="400"/>
 
 - 마이페이지
     - 사용자의 프로젝트 확인 기능
