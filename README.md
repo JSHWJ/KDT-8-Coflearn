@@ -18,15 +18,14 @@
     - 로그인 시 쿠키를 생성하고 쿠기 존재 여부에 따라 아이콘을 변경
     - 아이콘에 마우스를 올리면 마이페이지 이동과 로그아웃 가능
 
-![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/b40ce449-4df9-40c8-8e9f-ed96ffc59604)
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/b40ce449-4df9-40c8-8e9f-ed96ffc59604" width="500"/>
 
 
 - 회원가입 기능
     - node mailer을 활용한 이메일 인증 기능
     - 비밀 번호를 Bcrypt 방식으로 암호화하여 DB에 저장
 
-![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/2aa722a5-8397-46d3-bc93-dd4d4c8eb0b6)
-
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/2aa722a5-8397-46d3-bc93-dd4d4c8eb0b6" width="500"/>
 
 - 메인페이지
     - 검색기능 (태그 이용한 검색)
