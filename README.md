@@ -47,7 +47,7 @@
     - DB 활용해 이전 메시지 휘발 방지
     - 허용된 유저 채팅방 접근 기능
 
-<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/f63c84d4-54bf-4e24-a405-c0f4e87e5efa" width="800"/>
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/f63c84d4-54bf-4e24-a405-c0f4e87e5efa" width="750"/>
 
 
 - 프로젝트 페이지
@@ -66,8 +66,8 @@
     - 팀원 모집 기능을 통해 팀원모집페이지로 이동
     - 팀원 모집 여부 실시간 확인 기능
 
-![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/28b96c68-620c-4466-9204-fe6e8a236053)
-![image](https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/1ab54d64-fd28-43e2-8418-6cb304b833c6)
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/28b96c68-620c-4466-9204-fe6e8a236053" width="750"/>
+<img src="https://github.com/JSHWJ/KDT-8-Coplearn/assets/114459629/1ab54d64-fd28-43e2-8418-6cb304b833c6" width="750"/>
 
 
 ---
